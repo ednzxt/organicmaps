@@ -12,6 +12,7 @@ namespace osm
 using namespace std;
 
 static auto const s_instaRegex = regex(R"(^@?[A-Za-z0-9_][A-Za-z0-9_.]{0,28}[A-Za-z0-9_]$)");
+static auto const s_telegramRegex = regex(R"(?<=^|(?<=[^a-zA-Z0-9-_\.]))@([A-Za-z0-9_]{5,32})");
 static auto const s_twitterRegex = regex(R"(^@?[A-Za-z0-9_]{1,15}$)");
 static auto const s_badVkRegex = regex(R"(^\d\d\d.+$)");
 static auto const s_goodVkRegex = regex(R"(^[A-Za-z0-9_.]{5,32}$)");
@@ -19,6 +20,7 @@ static auto const s_lineRegex = regex(R"(^[a-z0-9-_.]{4,20}$)");
 
 constexpr string_view kFacebook{"contact:facebook"};
 constexpr string_view kInstagram{"contact:instagram"};
+constexpr string_view kTelegram{"contact:telegram"};
 constexpr string_view kTwitter{"contact:twitter"};
 constexpr string_view kVk{"contact:vk"};
 constexpr string_view kLine{"contact:line"};
@@ -30,6 +32,8 @@ constexpr string_view kFbDot{"fb."};
 constexpr string_view kFacebookDot{"facebook."};
 constexpr string_view kInstagramCom{"instagram.com"};
 constexpr string_view kDotInstagramCom{".instagram.com"};
+constexpr string_view kTMe{"t.me"};
+constexpr string_view kDotTMe{".t.me"};
 constexpr string_view kTwitterCom{"twitter.com"};
 constexpr string_view kDotTwitterCom{".twitter.com"};
 constexpr string_view kXCom{"x.com"};
@@ -45,6 +49,7 @@ constexpr string_view kDotLineMe{".line.me"};
 // URLs constants
 constexpr string_view kUrlFacebook{"https://facebook.com/"};
 constexpr string_view kUrlInstagram{"https://instagram.com/"};
+constexpr string_view kUrlTelegram{"https://t.me/"};
 constexpr string_view kUrlTwitter{"https://twitter.com/"};
 constexpr string_view kUrlVk{"https://vk.com/"};
 constexpr string_view kUrlLine{"https://line.me/R/ti/p/@"};
@@ -160,7 +165,36 @@ string ValidateAndFormat_instagram(string const & instagramPage)
     webPath.erase(webPath.find_last_not_of('/') + 1);
     return webPath;
   }
+  
+  return {};
+}
 
+string ValidateAndFormat_telegram(string const & telegramPage)
+{
+  if (telegramPage.empty())
+    return {};
+  // Check that telegramPage contains valid username.
+  // Rules are defined here: https://core.telegram.org/method/account.checkUsername ???
+  if (regex_match(telegramPage, s_teleRegex))
+  {
+    if (telegramPage.front() == '@')
+      return telegramPage.substr(1);
+    return telegramPage;
+  }
+  if (!ValidateWebsite(telegramPage))
+    return {};
+
+  url::Url const url = url::Url::FromString(telegramPage);
+  string const domain = strings::MakeLowerCase(url.GetHost());
+  // Check telegram domain name: "t.me" or "*.t.me".
+  if (domain == kTelegramCom || domain.ends_with(kDotTelegramCom))
+  {
+    auto webPath = url.GetPath();
+    // Strip last '/' symbol.
+    webPath.erase(webPath.find_last_not_of('/') + 1);
+    return webPath;
+  }
+  
   return {};
 }
 
@@ -375,6 +409,22 @@ bool ValidateInstagramPage(string const & page)
   return domain == kInstagramCom || domain.ends_with(kDotInstagramCom);
 }
 
+bool ValidateTelegramPage(string const & page)
+{
+  if (page.empty())
+    return true;
+
+  // Rules are defined here: ???
+  if (regex_match(page, s_telegramRegex))
+    return true;
+
+  if (!ValidateWebsite(page))
+    return false;
+
+  string const domain = strings::MakeLowerCase(url::Url::FromString(page).GetHost());
+  return domain == kTMe || domain.ends_with(kDotTme);
+}
+
 bool ValidateTwitterPage(string const & page)
 {
   if (page.empty())
@@ -445,12 +495,13 @@ bool ValidateLinePage(string const & page)
 
 bool isSocialContactTag(string_view tag)
 {
-  return tag == kInstagram || tag == kFacebook || tag == kTwitter || tag == kVk || tag == kLine;
+  return tag == kInstagram || tag == kTelegram || tag == kFacebook || tag == kTwitter || tag == kVk || tag == kLine;
 }
 
 bool isSocialContactTag(MapObject::MetadataID const metaID)
 {
   return metaID == MapObject::MetadataID::FMD_CONTACT_INSTAGRAM ||
+         metaID == MapObject::MetadataID::FMD_CONTACT_TELEGRAM ||
          metaID == MapObject::MetadataID::FMD_CONTACT_FACEBOOK ||
          metaID == MapObject::MetadataID::FMD_CONTACT_TWITTER || metaID == MapObject::MetadataID::FMD_CONTACT_VK ||
          metaID == MapObject::MetadataID::FMD_CONTACT_LINE;
@@ -464,6 +515,8 @@ string socialContactToURL(string_view tag, string_view value)
 
   if (tag == kInstagram)
     return string{kUrlInstagram}.append(value);
+  if (tag == kTelegram)
+    return string{kUrlTelegram}.append(value);
   if (tag == kFacebook)
     return string{kUrlFacebook}.append(value);
   if (tag == kTwitter)
@@ -488,6 +541,7 @@ string socialContactToURL(MapObject::MetadataID metaID, string_view value)
   switch (metaID)
   {
   case MapObject::MetadataID::FMD_CONTACT_INSTAGRAM: return string{kUrlInstagram}.append(value);
+  case MapObject::MetadataID::FMD_CONTACT_TELEGRAM: return string{kUrlTelegram}.append(value);
   case MapObject::MetadataID::FMD_CONTACT_FACEBOOK: return string{kUrlFacebook}.append(value);
   case MapObject::MetadataID::FMD_CONTACT_TWITTER: return string{kUrlTwitter}.append(value);
   case MapObject::MetadataID::FMD_CONTACT_VK: return string{kUrlVk}.append(value);
