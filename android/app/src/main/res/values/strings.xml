@@ -549,6 +549,7 @@
     <string name="error_enter_correct_email">Enter a valid email</string>
     <string name="error_enter_correct_facebook_page">Enter a valid Facebook web address, account, or page name</string>
     <string name="error_enter_correct_instagram_page">Enter a valid Instagram username or web address</string>
+    <string name="error_enter_correct_telegram_page">Enter a valid Telegram username or web address</string>
     <string name="error_enter_correct_twitter_page">Enter a valid Twitter username or web address</string>
     <string name="error_enter_correct_vk_page">Enter a valid VK username or web address</string>
     <string name="error_enter_correct_line_page">Enter a valid LINE ID or web address</string>
