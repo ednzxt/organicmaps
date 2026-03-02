@@ -125,6 +125,8 @@ bool Metadata::TypeFromString(string_view k, Metadata::EType & outType)
     outType = Metadata::FMD_CONTACT_FACEBOOK;
   else if (k == "instagram" || k == "contact:instagram")
     outType = Metadata::FMD_CONTACT_INSTAGRAM;
+  else if (k == "telegram" || k == "contact:telegram")
+    outType = Metadata::FMD_CONTACT_TELEGRAM;
   else if (k == "twitter" || k == "contact:twitter")
     outType = Metadata::FMD_CONTACT_TWITTER;
   else if (k == "vk" || k == "contact:vk")
@@ -312,6 +314,7 @@ string ToString(Metadata::EType type)
   case Metadata::FMD_DURATION: return "duration";
   case Metadata::FMD_CONTACT_FACEBOOK: return "contact:facebook";
   case Metadata::FMD_CONTACT_INSTAGRAM: return "contact:instagram";
+  case Metadata::FMD_CONTACT_TELEGRAM: return "contact:telegram";
   case Metadata::FMD_CONTACT_TWITTER: return "contact:twitter";
   case Metadata::FMD_CONTACT_VK: return "contact:vk";
   case Metadata::FMD_CONTACT_LINE: return "contact:line";
