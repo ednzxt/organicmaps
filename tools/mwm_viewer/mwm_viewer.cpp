@@ -199,6 +199,7 @@ public:
     std::string const website(meta.Get(feature::Metadata::FMD_WEBSITE));
     std::string const contact_facebook(meta.Get(feature::Metadata::FMD_CONTACT_FACEBOOK));
     std::string const contact_instagram(meta.Get(feature::Metadata::FMD_CONTACT_INSTAGRAM));
+    std::string const contact_telegram(meta.Get(feature::Metadata::FMD_CONTACT_TELEGRAM));
     std::string const contact_twitter(meta.Get(feature::Metadata::FMD_CONTACT_TWITTER));
     std::string const contact_vk(meta.Get(feature::Metadata::FMD_CONTACT_VK));
     std::string const contact_line(meta.Get(feature::Metadata::FMD_CONTACT_LINE));
@@ -235,6 +236,7 @@ public:
                       atm,
                       contact_facebook,
                       contact_instagram,
+                      contact_telegram,
                       contact_twitter,
                       contact_vk,
                       contact_line,
@@ -270,6 +272,7 @@ void PrintHeader()
                                  "atm",
                                  "contact_facebook",
                                  "contact_instagram",
+                                 "contact_telegram",
                                  "contact_twitter",
                                  "contact_vk",
                                  "contact_line",
