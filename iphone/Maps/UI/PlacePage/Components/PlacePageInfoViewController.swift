@@ -8,6 +8,7 @@ protocol PlacePageInfoViewControllerDelegate: AnyObject {
   func didPressWikimediaCommons()
   func didPressFacebook()
   func didPressInstagram()
+  func didPressTelegram()
   func didPressTwitter()
   func didPressVk()
   func didPressLine()
@@ -37,6 +38,7 @@ class PlacePageInfoViewController: UIViewController {
   private var emailView: InfoItemView?
   private var facebookView: InfoItemView?
   private var instagramView: InfoItemView?
+  private var telegramView: InfoItemView?
   private var twitterView: InfoItemView?
   private var vkView: InfoItemView?
   private var lineView: InfoItemView?
