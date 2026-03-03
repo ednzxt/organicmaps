@@ -119,6 +119,10 @@ extension PlacePageInteractor: PlacePageInfoViewControllerDelegate {
     MWMPlacePageManagerHelper.openInstagram(placePageData)
   }
 
+  func didPressTelegram() {
+    MWMPlacePageManagerHelper.openTelegram(placePageData)
+  }
+  
   func didPressTwitter() {
     MWMPlacePageManagerHelper.openTwitter(placePageData)
   }
