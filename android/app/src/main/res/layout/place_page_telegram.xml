@@ -5,20 +5,19 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/ll__place_telegram"
   style="@style/PlacePageItemFrame"
-  tools:background="#20FF0000"
   tools:visibility="visible">
 
   <ImageView
     android:id="@+id/iv__place_telegram"
     style="@style/PlacePageMetadataIcon"
-    app:srcCompat="@drawable/ic_telegram_white"
+    app:srcCompat="@drawable/ic_telegram"
     app:tint="?colorAccent"/>
 
   <TextView
     android:id="@+id/tv__place_telegram_page"
-    android:textAlignment="viewStart"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:textAlignment="viewStart"
     android:textAppearance="@style/MwmTextAppearance.PlacePage.Accent"
     tools:text="@string/telegram"/>
 </LinearLayout>
