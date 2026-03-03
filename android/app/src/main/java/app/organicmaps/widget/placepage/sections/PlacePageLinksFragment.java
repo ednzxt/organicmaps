@@ -31,8 +31,10 @@ public class PlacePageLinksFragment extends Fragment implements Observer<MapObje
   private View mFrame;
   private View mFacebookPage;
   private TextView mTvFacebookPage;
-  private View mInstagramPage;
-  private TextView mTvInstagramPage;
+  private View mramPage;
+  private TextView mTvramPage;
+  private View mTelegramPage;
+  private TextView mTvTelegramPage;
   private View mTwitterPage;
   private TextView mTvTwitterPage;
   private View mVkPage;
@@ -71,7 +73,7 @@ public class PlacePageLinksFragment extends Fragment implements Observer<MapObje
     {
       case FMD_WEBSITE -> mMapObject.getWebsiteUrl(false /* strip */, Metadata.MetadataType.FMD_WEBSITE);
       case FMD_WEBSITE_MENU -> mMapObject.getWebsiteUrl(false /* strip */, Metadata.MetadataType.FMD_WEBSITE_MENU);
-      case FMD_CONTACT_FACEBOOK, FMD_CONTACT_INSTAGRAM, FMD_CONTACT_TWITTER, FMD_CONTACT_VK, FMD_CONTACT_LINE ->
+      case FMD_CONTACT_FACEBOOK, FMD_CONTACT_INSTAGRAM, FMD_CONTACT_TELEGRAM, FMD_CONTACT_TWITTER, FMD_CONTACT_VK, FMD_CONTACT_LINE ->
       {
         if (TextUtils.isEmpty(mMapObject.getMetadata(type)))
           yield "";
@@ -130,6 +132,11 @@ public class PlacePageLinksFragment extends Fragment implements Observer<MapObje
     mInstagramPage.setOnClickListener((v) -> openUrl(Metadata.MetadataType.FMD_CONTACT_INSTAGRAM));
     mInstagramPage.setOnLongClickListener((v) -> copyUrl(mInstagramPage, Metadata.MetadataType.FMD_CONTACT_INSTAGRAM));
 
+    mTelegramPage = mFrame.findViewById(R.id.ll__place_telegram);
+    mTvTelegramPage = mFrame.findViewById(R.id.tv__place_telegram_page);
+    mTelegramPage.setOnClickListener((v) -> openUrl(Metadata.MetadataType.FMD_CONTACT_TELEGRAM));
+    mTelegramPage.setOnLongClickListener((v) -> copyUrl(mTelegramPage, Metadata.MetadataType.FMD_CONTACT_TELEGRAM));
+    
     mTwitterPage = mFrame.findViewById(R.id.ll__place_twitter);
     mTvTwitterPage = mFrame.findViewById(R.id.tv__place_twitter_page);
     mTwitterPage.setOnClickListener((v) -> openUrl(Metadata.MetadataType.FMD_CONTACT_TWITTER));
@@ -196,6 +203,9 @@ public class PlacePageLinksFragment extends Fragment implements Observer<MapObje
 
     final String instagram = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_INSTAGRAM);
     refreshMetadataOrHide(instagram, mInstagramPage, mTvInstagramPage);
+
+    final String telegram = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_TELEGRAM);
+    refreshMetadataOrHide(telegram, mTelegramPage, mTvTelegramPage);
 
     final String twitter = mMapObject.getMetadata(Metadata.MetadataType.FMD_CONTACT_TWITTER);
     refreshMetadataOrHide(twitter, mTwitterPage, mTvTwitterPage);
