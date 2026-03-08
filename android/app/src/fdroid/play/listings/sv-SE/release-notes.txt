@@ -1,11 +1,10 @@
-• NYHET: Mörkare temafärger med högre kontrast
-• NYHET: Google Assistant för navigering och sökning
-• OSM-kartdata från 11 januari
-• Navigeringstemainställningen "Auto" följer systemets mörka/ljusa läge
-• Tunnare tunnelbanelinjer
-• Sökresultat visar kapacitet för motorcykelparkering, cykeluthyrning, cykelladdning och billaddning
-• Visa våningsplan i sökresultat
-• Albanska översättningar och TTS-röstguidning
-• Uppdaterade FAQ och appöversättningar
-• Fixade krascher
-…mer på omaps.org/sv/news
+• OSM-data per den 16 februari, Wikipedia per den 1 februari
+• Svarta vandrings- och cykelleder är nu synliga i mörkt tema
+• Lade till ziplines och fler biltjänster: reparation, service och delar
+• Fixade cykelruttning och beräkning av medelhastighet
+• Förbättrad kategorisökning
+• Uzbekiskt kök
+• Expanderbara öppettider
+• Visa och använd MSL-höjd för inspelade spår på Android 14+
+• Fixade import av KML, KMZ, GPX, GeoJSON från WhatsApp
+…mer på omaps.org/news

@@ -1,16 +1,27 @@
-• NOVITÀ: Colori del tema scuro a contrasto più elevato
-• Dati OpenStreetMap aggiornati (11 gennaio)
-• Esclusi i casinò dalla categoria “Intrattenimento”
-• Ridotto lo spessore delle linee della metropolitana
-• Aggiunte informazioni sulla capacità ai risultati di ricerca per parcheggi moto, noleggio bici, ricarica bici e ricarica auto
-• Mostra il piano nei risultati di ricerca
-• Pulsanti di pianificazione del percorso più larghi
+• Dati mappa OSM al 16 febbraio
+• Dati Wikipedia al 1 febbraio
+• I percorsi escursionistici e ciclabili neri sono ora visibili nel tema scuro
+• Aggiunti più servizi per auto: riparazione, assistenza e ricambi
+• Aggiunta autenticazione browser OSM
+• Risolto l'accesso alle biciclette su alcuni tipi di strade
+• Risolto il calcolo della velocità media
+• Migliorato il posizionamento della ricerca per le categorie
+• Aggiunta cucina uzbeka
+• Aggiunte teleferiche (zip line) sulla mappa
+• Risolti i link Wikimedia con "?" nel titolo
+• Risolta l'analisi dei file GPX con "+" nelle coordinate
 
 ### Traduzioni
 
-• Aggiunte traduzioni dell'app e guida vocale in albanese
-• Aggiornate le FAQ e aggiunte le traduzioni delle FAQ per arabo, ceco, olandese, farsi, greco, ebraico, hindi, ungherese, indonesiano, italiano, lituano, marathi, svedese, telugu
-• Migliorate le traduzioni dell'app e delle FAQ in tedesco
-• Aggiunti sinonimi di ricerca in bulgaro
-• Rinominata l'impostazione "Pulsanti zoom" per chiarezza
-• Correzioni alle traduzioni dai contributori di Weblate per varie lingue
+• Rimossi nomi di città duplicati in alcune regioni della mappa
+• Risolte le indicazioni vocali in ebraico
+• Risolti errori di battitura in coreano
+• Aggiunti sinonimi di ricerca in russo
+• Migliorate le indicazioni vocali in tedesco
+• Risolto traduzione mancante per tunnel ferroviario in disuso
+• Risolto traduzione del paese in rumeno
+• Aggiunte traduzioni in laotiano e armeno
+• Aggiunte traduzioni armene mancanti
+• Aggiornate le traduzioni dai collaboratori di Weblate
+
+Grazie a tutti coloro che contribuiscono, donano e supportano Organic Maps! Costruiamo insieme le mappe migliori!

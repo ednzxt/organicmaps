@@ -1,9 +1,9 @@
-• UUS: Suurema kontrastsusega tumeda teema värvid
-• Google Assistant navigeerimiseks ja otsinguks
-• OSM kaardiandmed seisuga 11. jaanuar
-• Navigeerimisteema säte "Automaatne" järgib süsteemi tumedat/heledat režiimi
-• Peenemad metrooliinid
-• Otsingutulemused näitavad mootorrataste parkimise, jalgrattarendi, jalgrataste laadimise ja autode laadimise mahtu
-• Näita korruse taset otsingutulemustes
-• Albaania tõlked ja TTS hääljuhised
-…rohkem aadressil omaps.org/et/news
+• OSM andmed seisuga 16. veebruar, Vikipeedia seisuga 1. veebruar
+• Mustad matka- ja jalgrattarajad on nüüd tumedas teemas nähtavad
+• Lisatud köisraudteed ja rohkem autoteenuseid: remont, hooldus ja varuosad
+• Parandatud jalgratta marsruutimine ja keskmise kiiruse arvutamine
+• Täiustatud kategooriaotsing
+• Usbeki köök
+• Laiendatavad lahtiolekuajad
+• Kuva ja kasuta MSL kõrgust salvestatud radade jaoks Android 14+
+…rohkem aadressil omaps.org/news

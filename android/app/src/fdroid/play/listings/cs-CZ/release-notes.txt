@@ -1,10 +1,10 @@
-• NOVÉ: Kontrastnější barvy tmavého motivu
-• NOVÉ: Google Assistant pro navigaci a vyhledávání
-• Mapová data OSM k 11. lednu
-• Nastavení motivu navigace „Auto“ sleduje systémový tmavý/světlý režim
-• Tenčí linky metra
-• Výsledky vyhledávání zobrazují kapacitu pro parkování motocyklů, půjčovny kol, nabíjení kol a nabíjení aut
-• Zobrazit úroveň podlaží ve výsledcích vyhledávání
-• Albánské překlady a hlasové navádění TTS
-• Aktualizované FAQ a překlady aplikací
-…více na omaps.org/cs/news
+• Data OSM k 16. únoru, Wikipedia k 1. únoru
+• Černé turistické a cyklistické trasy jsou nyní viditelné v tmavém motivu
+• Přidány lanové dráhy a další autoservisy: opravy, servis a díly
+• Opraveno routování pro kola a výpočet průměrné rychlosti
+• Vylepšené vyhledávání kategorií
+• Uzbecká kuchyně
+• Rozbalitelná otevírací doba
+• Zobrazení a použití nadmořské výšky MSL pro zaznamenané trasy na Android 14+
+• Opraven import KML, KMZ, GPX, GeoJSON z WhatsApp
+…více na omaps.org/news

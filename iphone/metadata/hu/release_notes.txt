@@ -1,16 +1,27 @@
-• ÚJ: Nagyobb kontrasztú sötét téma színek
-• Frissített OpenStreetMap adatok (január 11.)
-• A kaszinók kizárva a „Szórakozás” kategóriából
-• Csökkentett metróvonal-vastagság
-• Kapacitásinformációk hozzáadva a keresési eredményekhez motorkerékpár-parkolók, kerékpárkölcsönzők, kerékpártöltők és autótöltők esetén
-• Emeletszint megjelenítése a keresési eredményekben
-• Szélesebb útvonaltervező gombok
+• OSM térképadatok február 16-i állapota
+• Wikipédia adatok február 1-i állapota
+• A fekete túra- és kerékpárútvonalak mostantól láthatók sötét módban
+• További autós szolgáltatások hozzáadva: javítás, szerviz és alkatrészek
+• OSM böngésző hitelesítés hozzáadva
+• Kerékpáros hozzáférés javítva egyes úttípusokon
+• Átlagsebesség-számítás javítva
+• Kategóriák keresési rangsorolásának javítása
+• Üzbég konyha hozzáadva
+• Drótkötélpályák (zip lines) hozzáadva a térképhez
+• Wikimedia linkek javítása, amelyek címében „?” szerepel
+• GPX fájlok elemzésének javítása, amelyek koordinátáiban „+” szerepel
 
 ### Fordítások
 
-• Albán alkalmazásfordítások és hangos navigáció hozzáadva
-• Frissített GYIK és hozzáadott GYIK fordítások arab, cseh, holland, perzsa, görög, héber, hindi, magyar, indonéz, olasz, litván, marathi, svéd, telugu nyelvekhez
-• Javított német alkalmazás- és GYIK-fordítások
-• Bolgár keresési szinonimák hozzáadva
-• A „Nagyítás gombok” beállítás átnevezése az egyértelműség érdekében
-• Fordítási javítások a Weblate közreműködőitől különböző nyelvekre
+• Dupla városnevek eltávolítása egyes térképrégiókban
+• Héber hangutasítások javítása
+• Koreai elírások javítása
+• Orosz keresési szinonimák hozzáadva
+• Német hangutasítások javítása
+• Hiányzó fordítás javítása a használaton kívüli vasúti alagúthoz
+• Országnév fordításának javítása román nyelven
+• Laoszi és örmény fordítások hozzáadva
+• Hiányzó örmény fordítások hozzáadva
+• Fordítások frissítése a Weblate közreműködőitől
+
+Köszönjük mindenkinek, aki hozzájárul, adományoz és támogatja az Organic Maps-et! Építsük együtt a legjobb térképeket!

@@ -25,11 +25,10 @@ import app.organicmaps.sdk.editor.data.Timespan;
 import app.organicmaps.sdk.editor.data.Timetable;
 import app.organicmaps.util.ThemeUtils;
 import app.organicmaps.util.UiUtils;
-import app.organicmaps.util.Utils;
+import app.organicmaps.utils.Utils;
 import app.organicmaps.widget.placepage.PlacePageUtils;
 import app.organicmaps.widget.placepage.PlacePageViewModel;
 import java.util.Calendar;
-import java.util.Locale;
 
 public class PlacePageOpeningHoursFragment extends Fragment implements Observer<MapObject>
 {
@@ -40,6 +39,7 @@ public class PlacePageOpeningHoursFragment extends Fragment implements Observer<
   private RecyclerView mFullWeekOpeningHours;
   private PlaceOpeningHoursAdapter mOpeningHoursAdapter;
   private View dropDownIcon;
+  private View mOhContainer;
   private boolean isOhExpanded;
 
   private PlacePageViewModel mViewModel;
@@ -68,6 +68,23 @@ public class PlacePageOpeningHoursFragment extends Fragment implements Observer<
     mFullWeekOpeningHours.getLayoutParams().height = 0;
     UiUtils.hide(dropDownIcon);
     isOhExpanded = false;
+    mOhContainer = mFrame.findViewById(R.id.oh_container);
+    var touchListener = new RecyclerView.OnItemTouchListener() {
+      @Override
+      public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e)
+      {
+        if (e.getAction() == MotionEvent.ACTION_UP)
+          expandOpeningHours();
+        return false;
+      }
+      @Override
+      public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e)
+      {}
+      @Override
+      public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept)
+      {}
+    };
+    mFullWeekOpeningHours.addOnItemTouchListener(touchListener);
   }
 
   private void refreshTodayNonBusinessTime(Timespan[] closedTimespans)
@@ -102,24 +119,23 @@ public class PlacePageOpeningHoursFragment extends Fragment implements Observer<
   {
     final String ohStr = mapObject.getMetadata(Metadata.MetadataType.FMD_OPEN_HOURS);
     final Timetable[] timetables = OpeningHours.nativeTimetablesFromString(ohStr);
-    mFrame.setOnLongClickListener((v) -> {
-      PlacePageUtils.copyToClipboard(requireContext(), mFrame,
+    mOhContainer.setOnLongClickListener((v) -> {
+      PlacePageUtils.copyToClipboard(requireContext(), mOhContainer,
                                      TimeFormatUtils.formatTimetables(getResources(), ohStr, timetables));
       return true;
     });
-
     final boolean isEmptyTT = (timetables == null || timetables.length == 0);
     final int color = ThemeUtils.getColor(requireContext(), android.R.attr.textColorPrimary);
 
     if (isEmptyTT)
     {
+      resetWeeklyViewState();
       // 'opening_hours' tag wasn't parsed either because it's empty or wrong format.
       if (!ohStr.isEmpty())
       {
         UiUtils.show(mFrame);
         refreshTodayOpeningHours(ohStr, color);
         UiUtils.hide(mTodayNonBusinessTime);
-        UiUtils.hide(mFullWeekOpeningHours);
       }
       else
         UiUtils.hide(mFrame);
@@ -130,43 +146,35 @@ public class PlacePageOpeningHoursFragment extends Fragment implements Observer<
       final Resources resources = getResources();
       if (timetables[0].isFullWeek())
       {
+        resetWeeklyViewState();
         final Timetable tt = timetables[0];
         if (tt.isFullday)
         {
           refreshTodayOpeningHours(resources.getString(R.string.twentyfour_seven), color);
           UiUtils.clearTextAndHide(mTodayNonBusinessTime);
-          UiUtils.hide(mTodayNonBusinessTime);
         }
         else
         {
           refreshTodayOpeningHours(resources.getString(R.string.daily), tt.workingTimespan.toWideString(), color);
           refreshTodayNonBusinessTime(tt.closedTimespans);
         }
-        UiUtils.hide(mFullWeekOpeningHours);
       }
       else
       {
         // Show whole week time table.
-        int firstDayOfWeek = Calendar.getInstance(Locale.getDefault()).getFirstDayOfWeek();
+        int firstDayOfWeek = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
         mOpeningHoursAdapter.setTimetables(timetables, firstDayOfWeek);
-        final View iconView = mFrame.findViewById(R.id.dropdown_icon);
-        UiUtils.show(iconView);
-        mFrame.setOnClickListener((v) -> expandOpeningHours());
-        mFullWeekOpeningHours.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-          @Override
-          public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e)
-          {
-            if (e.getAction() == MotionEvent.ACTION_UP)
-              expandOpeningHours();
-            return false;
-          }
-          @Override
-          public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e)
-          {}
-          @Override
-          public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept)
-          {}
-        });
+        if (isOhExpanded)
+        {
+          mFullWeekOpeningHours.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                                        View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+          int newHeight = mFullWeekOpeningHours.getMeasuredHeight();
+          mFullWeekOpeningHours.getLayoutParams().height = newHeight;
+          mFullWeekOpeningHours.requestLayout();
+        }
+        UiUtils.show(dropDownIcon);
+        mOhContainer.setOnClickListener((v) -> expandOpeningHours());
+
         // Show today's open time + non-business time.
         boolean containsCurrentWeekday = false;
         final int currentDay = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
@@ -229,6 +237,8 @@ public class PlacePageOpeningHoursFragment extends Fragment implements Observer<
     va.addUpdateListener(animation -> {
       mFullWeekOpeningHours.getLayoutParams().height = (int) animation.getAnimatedValue();
       mFullWeekOpeningHours.requestLayout();
+      if (mFrame.getParent() instanceof View)
+        ((View) mFrame.getParent()).requestLayout();
     });
     va.start();
   }
@@ -252,5 +262,13 @@ public class PlacePageOpeningHoursFragment extends Fragment implements Observer<
   {
     if (mapObject != null)
       refreshOpeningHours(mapObject);
+  }
+  private void resetWeeklyViewState()
+  {
+    isOhExpanded = false;
+    UiUtils.hide(mFullWeekOpeningHours);
+    UiUtils.hide(dropDownIcon);
+    dropDownIcon.setRotation(0f);
+    mOhContainer.setOnClickListener(null);
   }
 }

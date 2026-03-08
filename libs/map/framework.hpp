@@ -753,7 +753,7 @@ public:
 protected:
   /// RoutingManager::Delegate
   void OnRouteFollow(routing::RouterType type) override;
-  void RegisterCountryFilesOnRoute(std::shared_ptr<routing::NumMwmIds> ptr) const override;
+  void InitRouting();
 
 public:
   /// @returns false in case when coordinate is in the ocean or mwm is not downloaded.
@@ -771,7 +771,7 @@ public:
 private:
   settings::UsageStats m_usageStats;
 
-  bool m_showDownloadedRegions = true;
+  bool m_showDownloadedRegions = false;
 
 public:
   power_management::PowerManager & GetPowerManager() { return m_powerManager; }

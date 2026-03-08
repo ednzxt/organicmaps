@@ -1,16 +1,27 @@
-• BARU: Warna tema gelap dengan kontras lebih tinggi
-• Data OpenStreetMap diperbarui (11 Januari)
-• Kasino dikecualikan dari kategori "Hiburan"
-• Ketebalan jalur kereta bawah tanah dikurangi
-• Informasi kapasitas ditambahkan ke hasil pencarian untuk parkir sepeda motor, penyewaan sepeda, pengisian daya sepeda, dan pengisian daya mobil
-• Tampilkan tingkat lantai di hasil pencarian
-• Tombol perencanaan rute yang lebih lebar
+• Data peta OSM per 16 Februari
+• Data Wikipedia per 1 Februari
+• Rute pendakian dan bersepeda warna hitam kini terlihat dalam tema gelap
+• Menambahkan lebih banyak layanan mobil: perbaikan, servis, dan suku cadang
+• Menambahkan autentikasi browser OSM
+• Memperbaiki akses sepeda pada beberapa jenis jalan
+• Memperbaiki perhitungan kecepatan rata-rata
+• Meningkatkan peringkat pencarian untuk kategori
+• Menambahkan masakan Uzbekistan
+• Menambahkan flying fox (zip line) di peta
+• Memperbaiki tautan Wikimedia dengan tanda "?" pada judul
+• Memperbaiki parsing file GPX dengan tanda "+" pada koordinat
 
 ### Terjemahan
 
-• Menambahkan terjemahan aplikasi dan panduan suara bahasa Albania
-• Memperbarui FAQ dan menambahkan terjemahan FAQ untuk bahasa Arab, Ceko, Belanda, Farsi, Yunani, Ibrani, Hindi, Hungaria, Indonesia, Italia, Lithuania, Marathi, Swedia, Telugu
-• Meningkatkan terjemahan aplikasi dan FAQ bahasa Jerman
-• Menambahkan sinonim pencarian bahasa Bulgaria
-• Mengubah nama pengaturan "Tombol zoom" demi kejelasan
-• Perbaikan terjemahan dari kontributor Weblate untuk berbagai bahasa
+• Menghapus nama kota ganda di beberapa wilayah peta
+• Memperbaiki panduan suara bahasa Ibrani
+• Memperbaiki kesalahan ketik bahasa Korea
+• Menambahkan sinonim pencarian bahasa Rusia
+• Meningkatkan panduan suara bahasa Jerman
+• Memperbaiki terjemahan yang hilang untuk terowongan kereta api yang tidak digunakan
+• Memperbaiki terjemahan negara dalam bahasa Rumania
+• Menambahkan terjemahan bahasa Lao dan Armenia
+• Menambahkan terjemahan bahasa Armenia yang hilang
+• Memperbarui terjemahan dari kontributor Weblate
+
+Terima kasih kepada semua yang berkontribusi, mendonasikan, dan mendukung Organic Maps! Mari kita bangun peta terbaik bersama!

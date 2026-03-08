@@ -364,6 +364,7 @@
 "type.cuisine.tea" = "Te";
 "type.cuisine.thai" = "Taílenskt";
 "type.cuisine.turkish" = "Tyrkneskt";
+"type.cuisine.uzbek" = "Úsbekska";
 "type.cuisine.vegan" = "Grænkerafæði";
 "type.cuisine.vegetarian" = "Grænmetisfæði";
 "type.cuisine.vietnamese" = "Víetnamskt";
@@ -485,6 +486,7 @@
 
 /* These translations are used for all type.highway.*.tunnel. */
 "type.highway.pedestrian.tunnel" = "Göng fyrir fótgangandi";
+"type.highway.platform" = "Pallur";
 "type.highway.primary" = "Stofnvegur";
 
 /* These translations are used for all type.highway.*.bridge. */
@@ -974,6 +976,7 @@
 "type.railway.crossing" = "Þverun járnbrauta";
 "type.railway.disused" = "Aflögð járnbraut";
 "type.railway.disused.bridge" = "Aflögð járnbrautarbrú";
+"type.railway.disused.tunnel" = "Aflögð járnbrautargöng";
 "type.railway.funicular" = "Dráttarlest";
 "type.railway.funicular.bridge" = "Dráttarlestarbrú";
 "type.railway.funicular.tunnel" = "Dráttarlestargöng";
@@ -1027,7 +1030,7 @@
 "type.railway.station.light_rail" = "Léttlestarstöð";
 "type.railway.station.light_rail.berlin" = "S-Bahn stöð";
 "type.railway.station.light_rail.london" = "Lestarstöð (DLR)";
-"type.railway.station.light_rail.porto" = "Neðanjarðarlestarstöð (PM)";
+"type.railway.station.light_rail.porto" = "Lestarstöð (PM)";
 "type.railway.station.monorail" = "Einteinungslestarstöð";
 "type.railway.station.subway" = "Neðanjarðarlestarstöð";
 "type.railway.station.subway.adana" = "Neðanjarðarlestarstöð";
@@ -1325,6 +1328,7 @@
 "type.shop.kiosk" = "Söluturn";
 "type.shop.kitchen" = "Eldhúsvörur";
 "type.shop.laundry" = "Þvottahús";
+"type.shop.leather" = "Leðurverslun";
 "type.shop.mall" = "Verslunarkjarni";
 "type.shop.massage" = "Nuddstofa";
 "type.shop.mobile_phone" = "Farsímaverslun";
@@ -1343,6 +1347,7 @@
 "type.shop.pet" = "Gæludýraverslun";
 "type.shop.pet_grooming" = "Snyrting fyrir gæludýr";
 "type.shop.photo" = "Ljósmyndavöruverslun";
+"type.shop.religion" = "Trúarvöruverslun";
 "type.shop.rental" = "Leiga";
 "type.shop.rental.bicycle" = "Reiðhjólaleiga";
 "type.amenity.bicycle_rental.shop" = "Hjólaleiga";

@@ -1,16 +1,27 @@
-• NOVO: Boje tamne teme većeg kontrasta
-• Ažurirani podaci OpenStreetMap-a (11. siječnja)
-• Isključena casina iz kategorije "Zabava"
-• Smanjena debljina linija podzemne željeznice
-• Dodane informacije o kapacitetu u rezultate pretraživanja za parkiranje motocikala, najam bicikala, punjenje bicikala i punjenje automobila
-• Prikaz kata u rezultatima pretraživanja
-• Širi gumbi za planiranje rute
+• Podaci OSM karte od 16. veljače
+• Podaci Wikipedije od 1. veljače
+• Crne pješačke i biciklističke rute sada su vidljive u tamnoj temi
+• Dodano više usluga za automobile: popravak, servis i dijelovi
+• Dodana autentifikacija preglednika OSM
+• Ispravljen pristup biciklima na nekim vrstama cesta
+• Ispravljen izračun prosječne brzine
+• Poboljšano rangiranje pretraživanja za kategorije
+• Dodana uzbečka kuhinja
+• Dodane zip linije na kartu
+• Ispravljene Wikimedia poveznice s "?" u naslovu
+• Ispravljeno parsiranje GPX datoteka s "+" u koordinatama
 
 ### Prijevodi
 
-• Dodani prijevodi aplikacije i glasovno navođenje na albanskom jeziku
-• Ažurirana Česta pitanja (FAQ) i dodani prijevodi za arapski, češki, nizozemski, perzijski, grčki, hebrejski, hindi, mađarski, indonezijski, talijanski, litvanski, marati, švedski, telugu
-• Poboljšani njemački prijevodi aplikacije i Čestih pitanja
-• Dodani bugarski sinonimi za pretraživanje
-• Preimenovana postavka "Gumbi za zumiranje" radi jasnoće
-• Ispravci prijevoda suradnika Weblatea za razne jezike
+• Uklonjeni dupli nazivi gradova u nekim regijama karte
+• Ispravljene glasovne upute na hebrejskom
+• Ispravljene korejske tipfeleri
+• Dodani ruski sinonimi za pretraživanje
+• Poboljšane njemačke glasovne upute
+• Ispravljen nedostajući prijevod za napušteni željeznički tunel
+• Ispravljen prijevod zemlje na rumunjskom
+• Dodani prijevodi na laoski i armenski
+• Dodani nedostajući armenski prijevodi
+• Ažurirani prijevodi suradnika Weblate-a
+
+Hvala svima koji doprinose, doniraju i podržavaju Organic Maps! Izgradimo najbolje karte zajedno!

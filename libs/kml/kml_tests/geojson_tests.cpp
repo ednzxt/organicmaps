@@ -2,6 +2,7 @@
 
 #include "geometry/mercator.hpp"
 
+#include <sstream>
 #include "coding/string_utf8_multilang.hpp"
 #include "kml/serdes_geojson.hpp"
 
@@ -245,7 +246,7 @@ UNIT_TEST(GeoJson_Parse_UMapOptions)
   std::string const & umapOptionsStr = umapOptionsIt->second;
   glz::generic umapOptionsJson;
   auto const parseResult = glz::read_json(umapOptionsJson, umapOptionsStr);
-  TEST_EQUAL(parseResult, glz::error_code::none, ("Should be able to parse stored _umap_options JSON"));
+  TEST(parseResult == glz::error_code::none, ("Should be able to parse stored _umap_options JSON"));
 
   TEST(umapOptionsJson.is_object(), ("_umap_options should be an object"));
   auto const & umapObj = umapOptionsJson.get_object();
@@ -270,7 +271,7 @@ UNIT_TEST(GeoJson_Parse_UMapOptions)
   std::string const & trackUmapOptionsStr = trackUmapOptionsIt->second;
   glz::generic trackUmapOptionsJson;
   auto const trackParseResult = glz::read_json(trackUmapOptionsJson, trackUmapOptionsStr);
-  TEST_EQUAL(trackParseResult, glz::error_code::none, ("Should be able to parse stored track _umap_options JSON"));
+  TEST(trackParseResult == glz::error_code::none, ("Should be able to parse stored track _umap_options JSON"));
 
   TEST(trackUmapOptionsJson.is_object(), ("track _umap_options should be an object"));
   auto const & trackUmapObj = trackUmapOptionsJson.get_object();
@@ -378,9 +379,9 @@ UNIT_TEST(GeoJson_Writer_Simple)
         ]
       },
       "properties": {
-        "description": "Test bookmark description",
+        "name": "Marcador de prueba",
         "marker-color": "blue",
-        "name": "Marcador de prueba"
+        "description": "Test bookmark description"
       }
     },
     {
@@ -403,9 +404,9 @@ UNIT_TEST(GeoJson_Writer_Simple)
         ]
       },
       "properties": {
-        "description": "Test track description",
         "name": "Test track",
-        "stroke": "#FF0000"
+        "stroke": "#FF0000",
+        "description": "Test track description"
       }
     },
     {
@@ -486,9 +487,9 @@ UNIT_TEST(GeoJson_Writer_MultiTrack)
         ]
       },
       "properties": {
-        "description": "Test multitrack description",
         "name": "Test multitrack",
-        "stroke": "#00FF00"
+        "stroke": "#00FF00",
+        "description": "Test multitrack description"
       }
     }
   ]
@@ -504,7 +505,7 @@ UNIT_TEST(GeoJson_Writer_MultiTrack)
 UNIT_TEST(GeoJson_Writer_Simple_Minimized)
 {
   // clang-format off
-  std::string_view constexpr expected_geojson = R"({"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[13.39712,52.48982]},"properties":{"description":"Test bookmark description","marker-color":"blue","name":"Marcador de prueba"}}]})";
+  std::string_view constexpr expected_geojson = R"({"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[13.39712,52.48982]},"properties":{"name":"Marcador de prueba","marker-color":"blue","description":"Test bookmark description"}}]})";
   // clang-format on
 
   kml::FileData const testData = GenerateKmlFileData();
@@ -528,16 +529,16 @@ UNIT_TEST(GeoJson_Writer_UMap)
         ]
       },
       "properties": {
-        "_umap_options": {
-          "color": "blue",
-          "customProperty": "should be preserved",
-          "iconClass": "Drop",
-          "opacity": 0.8,
-          "weight": 4
-        },
-        "description": "Test bookmark description",
+        "name": "Marcador de prueba",
         "marker-color": "blue",
-        "name": "Marcador de prueba"
+        "description": "Test bookmark description",
+        "_umap_options": {
+          "iconClass": "Drop",
+          "color": "blue",
+          "weight": 4,
+          "opacity": 0.8,
+          "customProperty": "should be preserved"
+        }
       }
     },
     {
@@ -560,15 +561,15 @@ UNIT_TEST(GeoJson_Writer_UMap)
         ]
       },
       "properties": {
+        "name": "Test track",
+        "stroke": "#FF0000",
+        "description": "Test track description",
         "_umap_options": {
           "color": "#FF0000",
-          "dashArray": "5,10",
+          "weight": 2,
           "opacity": 0.5,
-          "weight": 2
-        },
-        "description": "Test track description",
-        "name": "Test track",
-        "stroke": "#FF0000"
+          "dashArray": "5,10"
+        }
       }
     },
     {
@@ -591,14 +592,14 @@ UNIT_TEST(GeoJson_Writer_UMap)
         ]
       },
       "properties": {
+        "name": "Another track",
+        "stroke": "#93BF39",
         "_umap_options": {
           "color": "#93BF39",
-          "dashArray": "5,10",
+          "weight": 2,
           "opacity": 0.5,
-          "weight": 2
-        },
-        "name": "Another track",
-        "stroke": "#93BF39"
+          "dashArray": "5,10"
+        }
       }
     }
   ]
@@ -649,9 +650,9 @@ UNIT_TEST(GeoJson_Writer_UMap_Invalid_Json)
         ]
       },
       "properties": {
-        "description": "Test bookmark description",
+        "name": "Marcador de prueba",
         "marker-color": "blue",
-        "name": "Marcador de prueba"
+        "description": "Test bookmark description"
       }
     }
   ]

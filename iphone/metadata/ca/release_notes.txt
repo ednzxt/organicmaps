@@ -1,16 +1,27 @@
-• NOVETAT: Colors del tema fosc amb més contrast
-• Dades d’OpenStreetMap actualitzades (11 de gener)
-• Exclosos els casinos de la categoria "Entreteniment"
-• Reduït el gruix de les línies de metro
-• Afegida informació de capacitat als resultats de cerca per a aparcaments de motos, lloguer de bicicletes, càrrega de bicicletes i càrrega de cotxes
-• Mostra el nivell del pis als resultats de cerca
-• Botons de planificació de rutes més amples
+• Dades del mapa OSM del 16 de febrer
+• Dades de la Viquipèdia de l'1 de febrer
+• Les rutes de senderisme i ciclisme negres ara són visibles al tema fosc
+• S'han afegit més serveis per a cotxes: reparació, servei i recanvis
+• S'ha afegit l'autenticació del navegador OSM
+• S'ha corregit l'accés de bicicletes en alguns tipus de carreteres
+• S'ha corregit el càlcul de la velocitat mitjana
+• Millora del rànquing de cerca per categories
+• S'ha afegit cuina uzbeka
+• S'han afegit tirolines al mapa
+• S'han corregit els enllaços de Wikimedia amb "?" al títol
+• S'ha corregit l'anàlisi de fitxers GPX amb "+" a les coordenades
 
 ### Traduccions
 
-• Afegides traduccions de l'aplicació i guiatge per veu en albanès
-• Actualitzades les PMF i afegides traduccions de les PMF per a àrab, txec, neerlandès, farsi, grec, hebreu, hindi, hongarès, indonesi, italià, lituà, marathi, suec i telugu
-• Millorades les traduccions de l'aplicació i de les PMF en alemany
-• Afegits sinònims de cerca en búlgar
-• Canviat el nom de la configuració "Botons de zoom" per a més claredat
-• Correccions de traducció dels col·laboradors de Weblate per a diversos idiomes
+• S'han eliminat noms de ciutats duplicats en algunes regions del mapa
+• S'han corregit les indicacions de veu en hebreu
+• S'han corregit errors tipogràfics en coreà
+• S'han afegit sinònims de cerca en rus
+• Millora de les indicacions de veu en alemany
+• S'ha corregit la traducció que faltava per al túnel ferroviari en desús
+• S'ha corregit la traducció del país en romanès
+• S'han afegit traduccions al laosià i a l'armeni
+• S'han afegit traduccions armènies que faltaven
+• S'han actualitzat les traduccions dels col·laboradors de Weblate
+
+Gràcies a tothom que contribueix, fa donacions i dóna suport a Organic Maps! Construïm els millors mapes junts!

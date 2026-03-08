@@ -17,6 +17,7 @@
 #include "search/locality_finder.hpp"
 
 #include "storage/country_info_getter.hpp"
+#include "storage/routing_helpers.hpp"
 #include "storage/storage.hpp"
 #include "storage/storage_helpers.hpp"
 
@@ -361,8 +362,6 @@ Framework::Framework(FrameworkParams const & params, bool loadMaps)
   m_storage.SetDownloadingPolicy(&m_storageDownloadingPolicy);
   m_storage.SetStartDownloadingCallback([this]() { UpdatePlacePageInfoForCurrentSelection(); });
 
-  m_routingManager.SetRouterImpl(RouterType::Vehicle);
-
   UpdateMinBuildingsTapZoom();
 
   LOG(LINFO, ("System languages:", languages::GetPreferred()));
@@ -387,7 +386,11 @@ Framework::Framework(FrameworkParams const & params, bool loadMaps)
   if (loadMaps)
     LoadMapsSync();
 
-  UNUSED_VALUE(settings::Get(kShowDownloadedRegions, m_showDownloadedRegions));
+  if (m_infoGetter->HasRegionTriangles())
+  {
+    m_showDownloadedRegions = true;
+    UNUSED_VALUE(settings::Get(kShowDownloadedRegions, m_showDownloadedRegions));
+  }
 }
 
 Framework::~Framework()
@@ -513,6 +516,8 @@ void Framework::LoadMapsSync()
   m_featuresFetcher.GetDataSource().AddObserver(editor);
   LOG(LDEBUG, ("Editor initialized"));
 
+  InitRouting();
+
   GetStorage().RestoreDownloadQueue();
 }
 
@@ -532,7 +537,13 @@ void Framework::LoadMapsAsync(std::function<void()> && callback)
     m_featuresFetcher.GetDataSource().AddObserver(editor);
     LOG(LDEBUG, ("Editor initialized"));
 
-    GetPlatform().RunTask(Platform::Thread::Gui, [callback = std::move(callback)]() { callback(); });
+    GetPlatform().RunTask(Platform::Thread::Gui, [this, callback = std::move(callback)]()
+    {
+      /// @todo Investigate if we can call it async after "Editor initialized".
+      InitRouting();
+
+      callback();
+    });
 
     LOG(LINFO, ("Finished async loading"));
   }).detach();
@@ -575,7 +586,7 @@ void Framework::FillPointInfoForBookmark(Bookmark const & bmk, place_page::Info 
 {
   // Convert indices to sorted classifier types.
   Classificator const & cl = classif();
-  buffer_vector<uint8_t, 8> types;
+  buffer_vector<uint32_t, 8> types;
   for (uint32_t i : bmk.GetData().m_featureTypes)
     types.push_back(cl.GetTypeForIndex(i));
   std::sort(types.begin(), types.end());
@@ -1201,7 +1212,7 @@ void Framework::MemoryWarning()
 {
   LOG(LINFO, ("MemoryWarning"));
   ClearAllCaches();
-  SharedBufferManager::instance().clearReserved();
+  SharedBufferManager::Instance().ClearReserved();
 }
 
 void Framework::EnterBackground()
@@ -2615,6 +2626,9 @@ bool Framework::IsShowDownloadedRegions()
 
 void Framework::SetShowDownloadedRegions(bool isEnabled)
 {
+  if (isEnabled && !m_infoGetter->HasRegionTriangles())
+    return;
+
   m_showDownloadedRegions = isEnabled;
   settings::Set(kShowDownloadedRegions, isEnabled);
   Invalidate();
@@ -3344,9 +3358,11 @@ void Framework::OnRouteFollow(routing::RouterType type)
 }
 
 // RoutingManager::Delegate
-void Framework::RegisterCountryFilesOnRoute(shared_ptr<routing::NumMwmIds> ptr) const
+void Framework::InitRouting()
 {
-  m_storage.ForEachCountry([&ptr](storage::Country const & country) { ptr->RegisterFile(country.GetFile()); });
+  m_routingManager.Init(routing::CreateNumMwmIds(m_storage));
+
+  LOG(LDEBUG, ("Routing initialized"));
 }
 
 void Framework::SetPlacePageLocation(place_page::Info & info)
@@ -3385,7 +3401,7 @@ void Framework::FillDescriptions(FeatureType & ft, place_page::Info & info) cons
   if (osmDescriptionValue.empty())
     return;
 
-  buffer_vector<int8_t, 4> langCodes;
+  LangsBufferT langCodes;
   for (auto const & lang : languages::GetSystemPreferred())
   {
     auto const code = StringUtf8Multilang::GetLangIndex(languages::Normalize(lang));

@@ -20,8 +20,9 @@ import androidx.core.graphics.drawable.IconCompat;
 import androidx.lifecycle.LifecycleOwner;
 import app.organicmaps.R;
 import app.organicmaps.car.CarAppService;
-import app.organicmaps.car.screens.base.BaseScreen;
 import app.organicmaps.car.util.UserActionRequired;
+import app.organicmaps.sdk.OrganicMaps;
+import app.organicmaps.sdk.car.screens.BaseScreen;
 import app.organicmaps.sdk.util.LocationUtils;
 import app.organicmaps.sdk.util.concurrency.ThreadPool;
 import app.organicmaps.sdk.util.concurrency.UiThread;
@@ -38,9 +39,10 @@ public class RequestPermissionsScreenWithNotification extends BaseScreen impleme
   private final Runnable mPermissionsGrantedCallback;
 
   public RequestPermissionsScreenWithNotification(@NonNull CarContext carContext,
+                                                  @NonNull OrganicMaps organicMapsContext,
                                                   @NonNull Runnable permissionsGrantedCallback)
   {
-    super(carContext);
+    super(carContext, organicMapsContext);
     mBackgroundExecutor = ThreadPool.getWorker();
     mPermissionsGrantedCallback = permissionsGrantedCallback;
   }

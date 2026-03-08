@@ -157,7 +157,7 @@
 
 /********** Other translations **********/
 
-"share_bookmarks_email_body" = "Zdravo! \n \nU privitku su moje zabilješke; otvori ih u aplikaciji Organic Maps. Ako nije instalirana, možeš je preuzeti ovdje: https://omaps.app/get?kmz \n \nUživaj u putovanju s Organic Maps!";
+"share_bookmarks_email_body" = "Zdravo! \n \nU privitku su moje zabilješke; otvori ih u aplikaciji Organic Maps. Ako nije instalirana, možeš je preuzeti na: https://omaps.app/get?kmz \n \nUživaj u putovanju s Organic Maps!";
 
 /* message title of loading file */
 "load_kmz_title" = "Učitavanje zabilješki";
@@ -1106,3 +1106,16 @@
 
 /* Settings/Highlight downloaded regions on the map */
 "show_downloaded_regions" = "Ljubičaste preuzete regije";
+
+
+/********** gps strings **********/
+
+
+/* Login to OSM button text */
+"login_osm_credentials" = "Prijava s lozinkom";
+
+/* Login to OSM button text */
+"login_osm_browser" = "Prijava putem preglednika";
+
+/* Editor section title that shows recently used categories (types of objects) when adding a place on the map */
+"editor_add_select_category_recent_subtitle" = "Nedavno korišteno";

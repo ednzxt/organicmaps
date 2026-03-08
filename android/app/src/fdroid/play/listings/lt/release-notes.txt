@@ -1,8 +1,9 @@
-• NAUJIENA: Didesnio kontrasto tamsios temos spalvos
-• NAUJIENA: „Google Assistant“ navigacijai ir paieškai
-• OSM žemėlapio duomenys nuo sausio 11 d.
-• „Auto“ navigacijos temos nustatymas vadovaujasi sistemos tamsiu / šviesiu režimu
-• Plonesnės metro linijos
-• Paieškos rezultatuose rodoma motociklų stovėjimo, dviračių nuomos, dviračių įkrovimo ir automobilių įkrovimo vietų talpa
-• Rodyti aukšto lygį paieškos rezultatuose
-…daugiau adresu omaps.org/lt/news
+• OSM duomenys nuo vasario 16 d., Vikipedija nuo vasario 1 d.
+• Juodi pėsčiųjų ir dviračių maršrutai dabar matomi tamsioje temoje
+• Pridėtos lynų trasos ir daugiau automobilių paslaugų: remontas, aptarnavimas ir dalys
+• Pataisytas dviračių maršruto parinkimas ir vidutinio greičio skaičiavimas
+• Patobulinta kategorijų paieška
+• Uzbekų virtuvė
+• Išplečiamos darbo valandos
+• Rodyti ir naudoti MSL aukštį įrašytiems maršrutams „Android 14+“
+…daugiau omaps.org/news

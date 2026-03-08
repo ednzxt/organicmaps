@@ -55,9 +55,9 @@
     <string name="disconnect_usb_cable">Isključite USB kabel ili umetnite memorijsku karticu kako biste koristili Organic Maps</string>
     <!-- Used in DownloadResources startup screen -->
     <string name="not_enough_free_space_on_sdcard">Prvo oslobodite prostor na SD kartici/USB memoriji kako biste mogli koristiti aplikaciju</string>
-    <string name="download_resources">Prije što počnete koristiti aplikaciju, molim vas preuzmite svijetsku preglednu kartu na vaš uređaj.\nIskoristit če %s od memorije.</string>
+    <string name="download_resources">Prije nego što počnete koristiti aplikaciju, preuzmite svjetsku preglednu kartu na vaš uređaj.\nIskoristit će %s memorije.</string>
     <string name="download_resources_continue">Prikaži kartu</string>
-    <string name="downloading_country_can_proceed">Preuzimanje %s. Sada možete\nnastaviti na kartu.</string>
+    <string name="downloading_country_can_proceed">Preuzima se %s. Sada možete\nnastaviti na kartu.</string>
     <string name="download_country_ask">Preuzmi %s?</string>
     <string name="update_country_ask">Ažurirati %s?</string>
     <!-- REMOVE THIS STRING AFTER REFACTORING -->
@@ -90,7 +90,7 @@
     <string name="description">Bilješke</string>
     <!-- Email Subject when sharing bookmark list -->
     <string name="share_bookmarks_email_subject">Organic Maps zabilješke su s tobom dijeljene</string>
-    <string name="share_bookmarks_email_body">Zdravo! \n \nU privitku su moje zabilješke; otvori ih u aplikaciji Organic Maps. Ako nije instalirana, možeš je preuzeti ovdje: https://omaps.app/get?kmz \n \nUživaj u putovanju s Organic Maps!</string>
+    <string name="share_bookmarks_email_body">Zdravo! \n \nU privitku su moje zabilješke; otvori ih u aplikaciji Organic Maps. Ako nije instalirana, možeš je preuzeti na: https://omaps.app/get?kmz \n \nUživaj u putovanju s Organic Maps!</string>
     <!-- message title of loading file -->
     <string name="load_kmz_title">Učitavanje zabilješki</string>
     <!-- Kmz file successful loading -->
@@ -98,7 +98,7 @@
     <!-- Kml file loading failed -->
     <string name="load_kmz_failed">Neuspjelo učitavanje zabilješki. Datoteka je možda oštećena ili neispravna.</string>
     <!-- Failed to recognize the format of a bookmarks or tracks file. -->
-    <string name="unknown_file_type">Aplikacija ne prepoznaje vrstu datoteke: \n%1$s</string>
+    <string name="unknown_file_type">Aplikacija ne prepoznaje vrstu datoteke:\n%1$s</string>
     <!-- Failed to open a bookmarks or tracks file in Organic Maps. -->
     <string name="failed_to_open_file">Neuspjelo otvaranje datoteke %1$s\n\n%2$s</string>
     <!-- resource for context menu -->
@@ -256,9 +256,6 @@
     <string name="dialog_routing_disclaimer_recommendations">– Predložene rute treba shvatiti samo kao preporuke;</string>
     <string name="dialog_routing_disclaimer_borders">– Budite oprezni s rutama u pograničnim zonama: rute koje je kreirala naša aplikacija ponekad mogu prelaziti državne granice na nedozvoljenim mjestima.</string>
     <string name="dialog_routing_disclaimer_beware">Budite oprezni i sigurni na cestama!</string>
-    <string name="dialog_routing_check_gps">Provjeri GPS signal</string>
-    <string name="dialog_routing_location_turn_on">Aktiviraj usluge lokacija</string>
-    <string name="dialog_routing_try_again">Pokušaj ponovo</string>
     <string name="not_now">Ne sada</string>
 
     <!-- SECTION: Strings for downloading map from search -->
@@ -584,4 +581,10 @@
     <string name="follow_system">Prati sustav</string>
     <!-- Title for the dialog when deleting a track with the track name passed in %@ -->
     <string name="delete_track_dialog_title">Izbrisati %s?</string>
+
+    <!-- SECTION: gps strings -->
+    <!-- Login to OSM button text -->
+    <string name="login_osm_credentials">Prijava s lozinkom</string>
+    <!-- Login to OSM button text -->
+    <string name="login_osm_browser">Prijava putem preglednika</string>
 </resources>

@@ -1106,3 +1106,16 @@
 
 /* Settings/Highlight downloaded regions on the map */
 "show_downloaded_regions" = "Regiuni descărcate violete";
+
+
+/********** gps strings **********/
+
+
+/* Login to OSM button text */
+"login_osm_credentials" = "Autentificare cu parolă";
+
+/* Login to OSM button text */
+"login_osm_browser" = "Conectare folosind browserul";
+
+/* Editor section title that shows recently used categories (types of objects) when adding a place on the map */
+"editor_add_select_category_recent_subtitle" = "Folosite recent";

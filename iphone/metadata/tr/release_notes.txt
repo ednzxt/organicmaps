@@ -1,16 +1,27 @@
-• YENİ: Daha yüksek kontrastlı koyu tema renkleri
-• OpenStreetMap verileri güncellendi (11 Ocak)
-• Kumarhaneler "Eğlence" kategorisinden çıkarıldı
-• Metro hatlarının kalınlığı azaltıldı
-• Motosiklet park yeri, bisiklet kiralama, bisiklet şarjı ve araç şarjı için arama sonuçlarına kapasite bilgisi eklendi
-• Arama sonuçlarında kat bilgisini göster
-• Daha geniş rota planlama düğmeleri
+• 16 Şubat itibarıyla OSM harita verileri
+• 1 Şubat itibarıyla Wikipedia verileri
+• Siyah yürüyüş ve bisiklet rotaları artık karanlık temada görülebiliyor
+• Daha fazla araç hizmeti eklendi: onarım, servis ve parça
+• OSM tarayıcı kimlik doğrulaması eklendi
+• Bazı yol türlerinde bisiklet erişimi düzeltildi
+• Ortalama hız hesaplaması düzeltildi
+• Kategoriler için arama sıralaması iyileştirildi
+• Özbek mutfağı eklendi
+• Haritaya teleferikler (zip lines) eklendi
+• Başlığında "?" bulunan Wikimedia bağlantıları düzeltildi
+• Koordinatlarda "+" bulunan GPX dosyalarının ayrıştırılması düzeltildi
 
 ### Çeviriler
 
-• Arnavutça uygulama çevirileri ve sesli yönlendirme eklendi
-• SSS güncellendi ve Arapça, Çekçe, Felemenkçe, Farsça, Yunanca, İbranice, Hintçe, Macarca, Endonezce, İtalyanca, Litvanca, Marathi, İsveççe, Telugu dilleri için SSS çevirileri eklendi
-• Almanca uygulama ve SSS çevirileri iyileştirildi
-• Bulgarca arama eşanlamlıları eklendi
-• Netlik için "Yakınlaştırma düğmeleri" ayarı yeniden adlandırıldı
-• Çeşitli diller için Weblate katkıda bulunanlardan çeviri düzeltmeleri
+• Bazı harita bölgelerinde yinelenen şehir adları kaldırıldı
+• İbranice sesli yönlendirmeler düzeltildi
+• Korece yazım hataları düzeltildi
+• Rusça arama eşanlamlıları eklendi
+• Almanca sesli yönlendirmeler iyileştirildi
+• Kullanılmayan demiryolu tüneli için eksik çeviri düzeltildi
+• Rumence ülke çevirisi düzeltildi
+• Laosca ve Ermenice çeviriler eklendi
+• Eksik Ermenice çeviriler eklendi
+• Weblate katkıda bulunanlardan çeviriler güncellendi
+
+Organic Maps'e katkıda bulunan, bağış yapan ve destekleyen herkese teşekkürler! En iyi haritaları birlikte oluşturalım!

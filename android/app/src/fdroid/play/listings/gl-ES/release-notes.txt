@@ -1,8 +1,9 @@
-• NOVO: Cores do tema escuro de maior contraste
-• NOVO: Google Assistant para navegación e busca
-• Datos do mapa OSM a 11 de xaneiro
-• A configuración do tema de navegación "Auto" segue o modo escuro/claro do sistema
-• Liñas de metro máis finas
-• Os resultados da busca mostran a capacidade para aparcamento de motocicletas, aluguer de bicicletas, carga de bicicletas e carga de automóbiles
-• Mostrar o nivel do andar nos resultados da busca
-…máis en omaps.org/gl/news
+• Datos de OSM a 16 de febreiro, Wikipedia a 1 de febreiro
+• As rutas de sendeirismo e ciclismo negras agora son visibles no tema escuro
+• Engadíronse tirolinas e máis servizos para automóbiles: reparación, servizo e pezas
+• Corrixiuse o enrutamento de bicicletas e o cálculo da velocidade media
+• Busca de categorías mellorada
+• Cociña uzbeka
+• Horarios de apertura expandibles
+• Mostrar e usar a altitude MSL para rutas gravadas en Android 14+
+…máis en omaps.org/news
