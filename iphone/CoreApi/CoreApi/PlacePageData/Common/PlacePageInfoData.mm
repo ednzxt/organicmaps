@@ -76,6 +76,7 @@ NSString * GetLocalizedMetadataValueString(MapObject::MetadataID metaID, std::st
         break;
       case MetadataID::FMD_CONTACT_FACEBOOK: _facebook = ToNSString(value); break;
       case MetadataID::FMD_CONTACT_INSTAGRAM: _instagram = ToNSString(value); break;
+      case MetadataID::FMD_CONTACT_TELEGRAM: _telegram = ToNSString(value); break;
       case MetadataID::FMD_CONTACT_TWITTER: _twitter = ToNSString(value); break;
       case MetadataID::FMD_CONTACT_VK: _vk = ToNSString(value); break;
       case MetadataID::FMD_CONTACT_LINE: _line = ToNSString(value); break;
