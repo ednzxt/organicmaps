@@ -217,6 +217,7 @@ PlacePageDialogUser::PlacePageDialogUser(QWidget * parent, place_page::Info cons
 
       addSocialNetworkWidget("Facebook", feature::Metadata::EType::FMD_CONTACT_FACEBOOK);
       addSocialNetworkWidget("Instagram", feature::Metadata::EType::FMD_CONTACT_INSTAGRAM);
+      addSocialNetworkWidget("Telegram", feature::Metadata::EType::FMD_CONTACT_TELEGRAM);
       addSocialNetworkWidget("Twitter", feature::Metadata::EType::FMD_CONTACT_TWITTER);
       addSocialNetworkWidget("VK", feature::Metadata::EType::FMD_CONTACT_VK);
       addSocialNetworkWidget("Line", feature::Metadata::EType::FMD_CONTACT_LINE);
