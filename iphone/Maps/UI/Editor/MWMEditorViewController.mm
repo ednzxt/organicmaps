@@ -677,6 +677,11 @@ void registerCellsForTableView(std::vector<MWMEditorCellID> const & cells, UITab
     [self configTextViewCell:cell cellID:cellID icon:@"ic_placepage_instagram" placeholder:L(@"instagram")];
     break;
   }
+  case MetadataID::FMD_CONTACT_TELEGRAM:
+  {
+    [self configTextViewCell:cell cellID:cellID icon:@"ic_placepage_telegram" placeholder:L(@"telegram")];
+    break;
+  }
   case MetadataID::FMD_CONTACT_TWITTER:
   {
     [self configTextViewCell:cell cellID:cellID icon:@"ic_placepage_twitter" placeholder:L(@"twitter")];
