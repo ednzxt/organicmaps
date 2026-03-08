@@ -118,6 +118,7 @@ PlacePageDialogDeveloper::PlacePageDialogDeveloper(QWidget * parent, place_page:
     case PropID::FMD_WEBSITE:
     case PropID::FMD_CONTACT_FACEBOOK:
     case PropID::FMD_CONTACT_INSTAGRAM:
+    case PropID::FMD_CONTACT_TELEGRAM:
     case PropID::FMD_CONTACT_TWITTER:
     case PropID::FMD_CONTACT_VK:
     case PropID::FMD_CONTACT_LINE:
