@@ -13,7 +13,7 @@ UNIT_TEST(EditorConfig_TypeDescription)
   Fields const poiInternet = {
       EType::FMD_OPEN_HOURS,      EType::FMD_PHONE_NUMBER, EType::FMD_WEBSITE,          EType::FMD_INTERNET,
       EType::FMD_EMAIL,           EType::FMD_LEVEL,        EType::FMD_CONTACT_FACEBOOK, EType::FMD_CONTACT_INSTAGRAM,
-      EType::FMD_CONTACT_TWITTER, EType::FMD_CONTACT_VK,   EType::FMD_CONTACT_LINE,
+      EType::FMD_CONTACT_TELEGRAM, EType::FMD_CONTACT_TWITTER, EType::FMD_CONTACT_VK,   EType::FMD_CONTACT_LINE,
   };
 
   pugi::xml_document doc;
