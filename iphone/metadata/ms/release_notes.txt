@@ -1,16 +1,27 @@
-• BARU: Warna tema gelap kontras lebih tinggi
-• Data OpenStreetMap dikemas kini (11 Januari)
-• Kasino dikecualikan daripada kategori "Hiburan"
-• Mengurangkan ketebalan laluan kereta api bawah tanah
-• Menambah maklumat kapasiti pada hasil carian untuk tempat letak motosikal, sewaan basikal, pengecasan basikal dan pengecasan kereta
-• Tunjukkan tingkat dalam hasil carian
-• Butang perancangan laluan yang lebih lebar
+• Data peta OSM per 16 Februari
+• Data Wikipedia per 1 Februari
+• Laluan mendaki dan berbasikal hitam kini kelihatan dalam tema gelap
+• Menambah lebih banyak perkhidmatan kereta: pembaikan, servis dan alat ganti
+• Menambah pengesahan penyemak imbas OSM
+• Memperbaiki akses basikal pada beberapa jenis jalan
+• Memperbaiki pengiraan kelajuan purata
+• Meningkatkan kedudukan carian untuk kategori
+• Menambah masakan Uzbekistan
+• Menambah zip line pada peta
+• Memperbaiki pautan Wikimedia dengan "?" dalam tajuk
+• Memperbaiki penghuraian fail GPX dengan "+" dalam koordinat
 
 ### Terjemahan
 
-• Menambah terjemahan aplikasi dan panduan suara bahasa Albania
-• Mengemas kini Soalan Lazim (FAQ) dan menambah terjemahan untuk bahasa Arab, Czech, Belanda, Farsi, Yunani, Ibrani, Hindi, Hungary, Indonesia, Itali, Lithuania, Marathi, Sweden, Telugu
-• Menambah baik terjemahan aplikasi dan FAQ bahasa Jerman
-• Menambah sinonim carian bahasa Bulgaria
-• Menamakan semula tetapan "Butang zum" untuk lebih jelas
-• Pembetulan terjemahan daripada penyumbang Weblate untuk pelbagai bahasa
+• Mengalih keluar nama bandar pendua di beberapa kawasan peta
+• Memperbaiki arahan suara Ibrani
+• Memperbaiki kesilapan taip Korea
+• Menambah sinonim carian Rusia
+• Meningkatkan arahan suara Jerman
+• Memperbaiki terjemahan yang hilang untuk terowong kereta api yang tidak digunakan
+• Memperbaiki terjemahan negara dalam bahasa Romania
+• Menambah terjemahan Laos dan Armenia
+• Menambah terjemahan Armenia yang hilang
+• Mengemas kini terjemahan daripada penyumbang Weblate
+
+Terima kasih kepada semua yang menyumbang, menderma dan menyokong Organic Maps! Mari bina peta terbaik bersama-sama!

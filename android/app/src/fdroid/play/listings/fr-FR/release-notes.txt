@@ -1,11 +1,9 @@
-• NOUVEAU : Thème sombre plus contrasté
-• NOUVEAU : Assistant Google pour navigation/recherche
-• Données OSM du 11 janvier
-• Thème navigation « Auto » selon le système
-• Lignes de métro plus fines
-• Capacités stationnement motos, location/recharge vélos, recharge autos affichées
-• Niveau d'étage dans la recherche
-• Traductions albanais et voix TTS
-• FAQ et traductions app mises à jour
-• Plantages corrigés
-…plus sur omaps.org/fr/news
+• Données OSM au 16 février, Wikipédia au 1er février
+• Les itinéraires de randonnée et cyclistes noirs sont désormais visibles dans le thème sombre
+• Ajout de tyroliennes et de plus de services automobiles : réparation, entretien et pièces
+• Correction du routage vélo et du calcul de la vitesse moyenne
+• Recherche par catégorie améliorée
+• Cuisine ouzbèke
+• Heures d'ouverture extensibles
+• Afficher et utiliser l'altitude MSL pour les traces enregistrées sur Android 14+
+…plus sur omaps.org/news

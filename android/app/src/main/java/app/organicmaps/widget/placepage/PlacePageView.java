@@ -56,18 +56,19 @@ import app.organicmaps.sdk.bookmarks.data.TrackRecording;
 import app.organicmaps.sdk.downloader.CountryItem;
 import app.organicmaps.sdk.downloader.MapManager;
 import app.organicmaps.sdk.editor.Editor;
+import app.organicmaps.sdk.location.LocationCompatExtractor;
 import app.organicmaps.sdk.location.LocationListener;
 import app.organicmaps.sdk.location.SensorListener;
 import app.organicmaps.sdk.routing.RoutingController;
 import app.organicmaps.sdk.util.StringUtils;
 import app.organicmaps.sdk.util.concurrency.UiThread;
 import app.organicmaps.sdk.widget.placepage.CoordinatesFormat;
-import app.organicmaps.util.Graphics;
 import app.organicmaps.util.SharingUtils;
 import app.organicmaps.util.UiUtils;
 import app.organicmaps.util.Utils;
 import app.organicmaps.util.bottomsheet.MenuBottomSheetFragment;
 import app.organicmaps.util.bottomsheet.MenuBottomSheetItem;
+import app.organicmaps.utils.Graphics;
 import app.organicmaps.widget.ArrowView;
 import app.organicmaps.widget.placepage.sections.PlacePageBookmarkFragment;
 import app.organicmaps.widget.placepage.sections.PlacePageLinksFragment;
@@ -772,8 +773,9 @@ public class PlacePageView extends Fragment
       return;
 
     final StringBuilder builder = new StringBuilder();
-    if (l.hasAltitude())
-      builder.append("▲").append(Framework.nativeFormatAltitude(l.getAltitude()));
+    final LocationCompatExtractor.Altitude altitude = LocationCompatExtractor.getAltitude(l);
+    if (altitude != null)
+      builder.append("▲").append(Framework.nativeFormatAltitude(altitude.altitude()));
     if (l.hasSpeed())
       builder.append("   ").append(Framework.nativeFormatSpeed(l.getSpeed()));
 

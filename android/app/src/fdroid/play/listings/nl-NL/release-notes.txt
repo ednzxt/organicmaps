@@ -1,9 +1,10 @@
-• NIEUW: Donkere themakleuren met hoger contrast
-• NIEUW: Google Assistant voor navigatie en zoeken
-• OSM-kaartgegevens van 11 januari
-• De instelling "Auto" voor het navigatiethema volgt de donkere/lichte modus van het systeem
-• Dunnere metrolijnen
-• Zoekresultaten tonen capaciteit voor motorfietsen parkeren, fietsverhuur, fietsen opladen en auto's opladen
-• Toon vloerniveau in zoekresultaten
-• Albanese vertalingen en TTS-spraakbegeleiding
-…meer op omaps.org/nl/news
+• OSM-data per 16 februari, Wikipedia per 1 februari
+• Zwarte wandel- en fietsroutes zijn nu zichtbaar in het donkere thema
+• Tokkelbanen en meer autodiensten toegevoegd: reparatie, onderhoud en onderdelen
+• Fietsroutering en berekening gemiddelde snelheid opgelost
+• Verbeterde categoriezoekfunctie
+• Oezbeekse keuken
+• Uitbreidbare openingstijden
+• Toon en gebruik MSL-hoogte voor tracks opgenomen op Android 14+
+• Import van KML, KMZ, GPX, GeoJSON vanuit WhatsApp opgelost
+…meer op omaps.org/news

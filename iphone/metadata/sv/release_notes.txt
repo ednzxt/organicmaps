@@ -1,16 +1,27 @@
-• NYHET: Mörkt tema med högre kontrast
-• Uppdaterad OpenStreetMap-data (11 januari)
-• Exkluderade kasinon från kategorin "Underhållning"
-• Minskad tjocklek på tunnelbanelinjer
-• Lade till kapacitetsinformation i sökresultat för motorcykelparkering, cykeluthyrning, cykelladdning och billaddning
-• Visa våningsplan i sökresultat
-• Bredare ruttplaneringsknappar
+• OSM-kartdata från 16 februari
+• Wikipedia-data från 1 februari
+• Svarta vandrings- och cykelleder är nu synliga i det mörka temat
+• Lade till fler biltjänster: reparation, service och delar
+• Lade till OSM-webbläsarautentisering
+• Fixade cykeltillgång på vissa vägtyper
+• Fixade beräkning av medelhastighet
+• Förbättrad sökranking för kategorier
+• Lade till uzbekiskt kök
+• Lade till ziplines på kartan
+• Fixade Wikimedia-länkar med "?" i titeln
+• Fixade tolkning av GPX-filer med "+" i koordinater
 
 ### Översättningar
 
-• Lade till albansk översättning av appen och röstguidning
-• Uppdaterade FAQ och lade till FAQ-översättningar för arabiska, tjeckiska, nederländska, farsi, grekiska, hebreiska, hindi, ungerska, indonesiska, italienska, litauiska, marathi, svenska, telugu
-• Förbättrade tyska app- och FAQ-översättningar
-• Lade till bulgariska sökssynonymer
-• Döpte om inställningen "Zoomknappar" för tydlighetens skull
-• Översättningskorrigeringar från Weblate-bidragsgivare för olika språk
+• Tog bort dubbla stadsnamn i vissa kartregioner
+• Fixade hebreiska röstanvisningar
+• Fixade koreanska stavfel
+• Lade till ryska söksynonymer
+• Förbättrade tyska röstanvisningar
+• Fixade saknad översättning för nedlagd järnvägstunnel
+• Fixade landöversättning på rumänska
+• Lade till laotiska och armeniska översättningar
+• Lade till saknade armeniska översättningar
+• Uppdaterade översättningar från Weblate-bidragsgivare
+
+Tack till alla som bidrar, donerar och stödjer Organic Maps! Låt oss bygga de bästa kartorna tillsammans!

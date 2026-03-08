@@ -1,11 +1,10 @@
-• NYHED: Højere kontrast mørke temafarver
-• NYHED: Google Assistant til navigation og søgning
-• OSM-kortdata pr. 11. januar
-• Indstillingen "Auto" navigationstema følger systemets mørke/lyse tilstand
-• Tyndere metrolinjer
-• Søgeresultater viser kapacitet for motorcykelparkering, cykeludlejning, cykelopladning og bilopladning
-• Vis etageniveau i søgeresultater
-• Albanske oversættelser og TTS stemmevejledning
-• Opdaterede FAQ og app-oversættelser
-• Rettede nedbrud
+• OSM-data pr. 16. februar, Wikipedia pr. 1. februar
+• Sorte vandre- og cykelruter er nu synlige i mørkt tema
+• Tilføjet svævebaner og flere biltjenester: reparation, service og reservedele
+• Rettet cykelruteplanlægning og beregning af gennemsnitshastighed
+• Forbedret kategorisøgning
+• Usbekisk køkken
+• Udvidelige åbningstider
+• Vis og brug MSL-højde for optagede spor på Android 14+
+• Rettet import af KML, KMZ, GPX, GeoJSON fra WhatsApp
 …mere på omaps.org/news

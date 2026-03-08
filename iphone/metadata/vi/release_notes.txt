@@ -1,16 +1,27 @@
-• MỚI: Màu sắc giao diện tối có độ tương phản cao hơn
-• Cập nhật dữ liệu OpenStreetMap (11 tháng 1)
-• Loại bỏ sòng bạc khỏi danh mục "Giải trí"
-• Giảm độ dày của các tuyến tàu điện ngầm
-• Thêm thông tin sức chứa vào kết quả tìm kiếm cho bãi đậu xe máy, thuê xe đạp, sạc xe đạp và sạc ô tô
-• Hiển thị tầng trong kết quả tìm kiếm
-• Các nút lập kế hoạch lộ trình rộng hơn
+• Dữ liệu bản đồ OSM tính đến ngày 16 tháng 2
+• Dữ liệu Wikipedia tính đến ngày 1 tháng 2
+• Các tuyến đường đi bộ và đi xe đạp màu đen hiện có thể nhìn thấy trong giao diện tối
+• Đã thêm nhiều dịch vụ ô tô hơn: sửa chữa, bảo dưỡng và phụ tùng
+• Đã thêm xác thực trình duyệt OSM
+• Đã sửa lỗi truy cập xe đạp trên một số loại đường
+• Đã sửa lỗi tính toán tốc độ trung bình
+• Cải thiện xếp hạng tìm kiếm cho các danh mục
+• Đã thêm ẩm thực Uzbekistan
+• Đã thêm đường trượt zip (zip lines) trên bản đồ
+• Đã sửa các liên kết Wikimedia có dấu "?" trong tiêu đề
+• Đã sửa lỗi phân tích tệp GPX có dấu "+" trong tọa độ
 
 ### Bản dịch
 
-• Thêm bản dịch ứng dụng và hướng dẫn bằng giọng nói tiếng Albania
-• Cập nhật câu hỏi thường gặp (FAQ) và thêm bản dịch cho tiếng Ả Rập, Séc, Hà Lan, Farsi, Hy Lạp, Do Thái, Hindi, Hungary, Indonesia, Ý, Litva, Marathi, Thụy Điển, Telugu
-• Cải thiện bản dịch ứng dụng và FAQ tiếng Đức
-• Thêm từ đồng nghĩa tìm kiếm tiếng Bulgaria
-• Đổi tên cài đặt "Nút thu phóng" để rõ ràng hơn
-• Các sửa lỗi dịch thuật từ những người đóng góp trên Weblate cho nhiều ngôn ngữ
+• Đã xóa tên thành phố trùng lặp ở một số khu vực bản đồ
+• Đã sửa hướng dẫn bằng giọng nói tiếng Do Thái
+• Đã sửa lỗi chính tả tiếng Hàn
+• Đã thêm từ đồng nghĩa tìm kiếm tiếng Nga
+• Cải thiện hướng dẫn bằng giọng nói tiếng Đức
+• Đã sửa bản dịch còn thiếu cho đường hầm đường sắt không còn sử dụng
+• Đã sửa bản dịch quốc gia bằng tiếng Romania
+• Đã thêm bản dịch tiếng Lào và tiếng Armenia
+• Đã thêm các bản dịch tiếng Armenia còn thiếu
+• Đã cập nhật bản dịch từ những người đóng góp trên Weblate
+
+Cảm ơn tất cả mọi người đã đóng góp, quyên góp và ủng hộ Organic Maps! Hãy cùng nhau xây dựng những bản đồ tốt nhất!

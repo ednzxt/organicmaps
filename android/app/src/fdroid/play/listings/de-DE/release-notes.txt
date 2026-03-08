@@ -1,9 +1,9 @@
-• NEU: Dunkles Design mit höherem Kontrast
-• NEU: Google Assistant für Navigation und Suche
-• OSM-Kartendaten vom 11. Januar
-• Die Einstellung „Auto“ für das Navigationsdesign folgt dem Hell-/Dunkelmodus des Systems
-• Dünnere U-Bahn-Linien
-• Suchergebnisse zeigen Kapazität für Motorradparkplätze, Fahrradverleih, Fahrradaufladen und Autoaufladen an
-• Anzeige der Etage in Suchergebnissen
-• Albanische Übersetzungen und TTS-Sprachführung
-…mehr unter omaps.org/de/news
+• OSM-Daten vom 16. Februar, Wikipedia vom 1. Februar
+• Schwarze Wander- und Radwege sind jetzt im dunklen Design sichtbar
+• Seilrutschen und weitere Autodienste hinzugefügt: Reparatur, Service und Teile
+• Fahrrad-Routing und Durchschnittsgeschwindigkeitsberechnung korrigiert
+• Verbesserte Kategoriesuche
+• Usbekische Küche
+• Erweiterbare Öffnungszeiten
+• Anzeige und Verwendung der MSL-Höhe für aufgezeichnete Tracks auf Android 14+
+…mehr auf omaps.org/news

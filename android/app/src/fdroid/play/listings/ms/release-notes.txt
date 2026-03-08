@@ -1,9 +1,9 @@
-• BARU: Warna tema gelap kontras lebih tinggi
-• BARU: Google Assistant untuk navigasi dan carian
-• Data peta OSM setakat 11 Januari
-• Tetapan tema navigasi "Auto" mengikut mod gelap/cerah sistem
-• Garisan kereta api bawah tanah yang lebih nipis
-• Keputusan carian menunjukkan kapasiti untuk tempat letak kereta motosikal, penyewaan basikal, pengecasan basikal dan pengecasan kereta
-• Tunjukkan aras lantai dalam keputusan carian
-• Terjemahan Albania dan panduan suara TTS
+• Data OSM setakat 16 Februari, Wikipedia setakat 1 Februari
+• Laluan mendaki dan berbasikal hitam kini kelihatan dalam tema gelap
+• Menambah flying fox dan lebih banyak perkhidmatan kereta: pembaikan, servis dan alat ganti
+• Memperbaiki laluan basikal dan pengiraan kelajuan purata
+• Carian kategori yang dipertingkatkan
+• Masakan Uzbekistan
+• Waktu operasi boleh dikembangkan
+• Tunjukkan dan gunakan ketinggian MSL untuk trek yang dirakam pada Android 14+
 …lagi di omaps.org/news

@@ -1,8 +1,11 @@
 #include "timezone.hpp"
 
+#include <glaze/json.hpp>
+#include <ranges>
+
 #include "platform/platform.hpp"
 
-#include <glaze/json.hpp>
+#include "defines.hpp"
 
 namespace om::tz
 {
@@ -37,7 +40,7 @@ int32_t TzOffsetAtUtc(TimeZone const & timeZone, time_t const utcTime)
   time_t const startOfYear = GenerationYearStart(timeZone.generation_year_offset);
   int64_t dayOffset = 0;
 
-  for (size_t i = 0; i < timeZone.transitions.size(); ++i)
+  for (size_t i = 0; i < timeZone.transitions_length; ++i)
   {
     auto const & [dayDelta, minuteOfDay] = timeZone.transitions[i];
     bool const isDst = i % 2 == 0;
@@ -59,8 +62,7 @@ int32_t TzOffsetAtUtc(TimeZone const & timeZone, time_t const utcTime)
 time_t LocalToUtc(TimeZone const & tz, ZonedTime const localTime)
 {
   // Initial guess using base offset
-  int32_t offset = tz.GetBaseOffset();
-  time_t utc = localTime - offset * kSecondsPerMinute;
+  time_t utc = localTime - tz.GetBaseOffset() * kSecondsPerMinute;
 
   for (int i = 0; i < 2; ++i)  // handle rare ambiguous DST hour
   {
@@ -70,7 +72,6 @@ time_t LocalToUtc(TimeZone const & tz, ZonedTime const localTime)
     if (newUtc == utc)
       break;  // converged
     utc = newUtc;
-    offset = candidate;
   }
 
   // Ambiguous fall-back: UTC corresponds to two possible offsets
@@ -105,24 +106,32 @@ ZonedTime Convert(time_t const time, TimeZone const & timeZone)
   return time + dstOffset * kSecondsPerMinute;
 }
 
-TimeZoneDb const & GetTimeZoneDb()
+TimeZoneDb::TimeZoneDb()
 {
-  static std::optional<TimeZoneDb> tzdb;
-  if (tzdb)
-    return *tzdb;
-
-  tzdb.emplace();
   std::string buffer;
   GetPlatform().GetReader(TIMEZONE_INFO_FILE)->ReadAsString(buffer);
-  if (auto const ec = glz::read_json(*tzdb, buffer); ec.ec != glz::error_code::none)
-    LOG(LERROR, ("Failed to load timezone database. ec:", ec.ec, "custom_error_message:", ec.custom_error_message));
+  if (auto const ec = glz::read_json(m_impl, buffer); ec.ec != glz::error_code::none)
+    LOG(LERROR, ("Failed to load timezone database. ec:", glz::format_error(ec.ec),
+                 "custom_error_message:", ec.custom_error_message));
 
-  for (auto & tz : tzdb->timezones | std::views::values)
+  for (auto & tz : m_impl.timezones | std::views::values)
   {
-    tz.format_version = static_cast<TimeZoneFormatVersion>(tzdb->tzdb_format_version);
-    tz.generation_year_offset = tzdb->tzdb_generation_year_offset;
+    tz.format_version = static_cast<TimeZoneFormatVersion>(m_impl.tzdb_format_version);
+    tz.generation_year_offset = m_impl.tzdb_generation_year_offset;
   }
-
-  return *tzdb;
 }
+
+TimeZoneDb const & TimeZoneDb::Instance()
+{
+  static TimeZoneDb inst;
+  return inst;
+}
+
+TimeZone const & TimeZoneDb::GetTZ(std::string const & tzName) const
+{
+  auto it = m_impl.timezones.find(tzName);
+  CHECK(it != m_impl.timezones.end(), (tzName));
+  return it->second;
+}
+
 }  // namespace om::tz

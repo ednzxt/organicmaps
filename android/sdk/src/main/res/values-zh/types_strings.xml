@@ -3,8 +3,8 @@
 
     <!-- SECTION: Types -->
     <string name="type.addr_interpolation">地址/区块</string>
-    <string name="type.addr_interpolation.even">偶地址/区块</string>
-    <string name="type.addr_interpolation.odd">奇‌地址/区块</string>
+    <string name="type.addr_interpolation.even">地址/区块</string>
+    <string name="type.addr_interpolation.odd">地址/区块</string>
     <string name="type.aerialway">架空索道</string>
     <string name="type.aerialway.cable_car">缆车</string>
     <string name="type.aerialway.chair_lift">吊椅式缆车</string>
@@ -351,6 +351,7 @@
     <string name="type.cuisine.tea">茶</string>
     <string name="type.cuisine.thai">泰国菜</string>
     <string name="type.cuisine.turkish">土耳其菜</string>
+    <string name="type.cuisine.uzbek">乌兹别克</string>
     <string name="type.cuisine.vegan">全素菜</string>
     <string name="type.cuisine.vegetarian">素菜</string>
     <string name="type.cuisine.vietnamese">越南菜</string>
@@ -446,6 +447,7 @@
     <string name="type.highway.pedestrian.bridge">人行天桥</string>
     <!-- These translations are used for all type.highway.*.tunnel. -->
     <string name="type.highway.pedestrian.tunnel">人行隧道</string>
+    <string name="type.highway.platform">公共交通站台</string>
     <string name="type.highway.primary">主要道路</string>
     <!-- These translations are used for all type.highway.*.bridge. -->
     <string name="type.highway.primary.bridge">桥</string>
@@ -547,8 +549,6 @@
     <string name="type.area_highway.track">土路</string>
     <string name="type.area_highway.trunk">干线道路</string>
     <string name="type.area_highway.unclassified">道路</string>
-    <string name="type.highway.world_level">高速公路—世界级</string>
-    <string name="type.highway.world_towns_level">高速公路—城镇级</string>
 
     <!-- SECTION: Types: Historic -->
     <string name="type.historic">历史地点</string>
@@ -842,6 +842,7 @@
     <string name="type.railway.crossing">铁路道口</string>
     <string name="type.railway.disused">废弃铁路</string>
     <string name="type.railway.disused.bridge">废弃铁路桥梁</string>
+    <string name="type.railway.disused.tunnel">废弃铁路隧道</string>
     <string name="type.railway.funicular">缆车</string>
     <string name="type.railway.funicular.bridge">缆车桥</string>
     <string name="type.railway.funicular.tunnel">缆车隧道</string>
@@ -1189,6 +1190,7 @@
     <string name="type.shop.kiosk">售货亭</string>
     <string name="type.shop.kitchen">厨房用品店</string>
     <string name="type.shop.laundry">洗衣店</string>
+    <string name="type.shop.leather">皮具店</string>
     <string name="type.shop.mall">商场</string>
     <string name="type.shop.massage">按摩院</string>
     <string name="type.shop.mobile_phone">手机专卖店</string>
@@ -1207,6 +1209,7 @@
     <string name="type.shop.pet">宠物店</string>
     <string name="type.shop.pet_grooming">宠物美容</string>
     <string name="type.shop.photo">照片店</string>
+    <string name="type.shop.religion">宗教用品店</string>
     <string name="type.shop.rental">租赁店</string>
     <string name="type.shop.rental.bicycle">自行车租赁店</string>
     <string name="type.amenity.bicycle_rental.shop">自行车租赁店</string>

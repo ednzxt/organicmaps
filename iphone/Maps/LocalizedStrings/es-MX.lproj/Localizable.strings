@@ -1106,3 +1106,16 @@
 
 /* Settings/Highlight downloaded regions on the map */
 "show_downloaded_regions" = "Regiones descargadas en morado";
+
+
+/********** gps strings **********/
+
+
+/* Login to OSM button text */
+"login_osm_credentials" = "Iniciar sesión con contraseña";
+
+/* Login to OSM button text */
+"login_osm_browser" = "Iniciar sesión utilizando el navegador";
+
+/* Editor section title that shows recently used categories (types of objects) when adding a place on the map */
+"editor_add_select_category_recent_subtitle" = "Recientes";

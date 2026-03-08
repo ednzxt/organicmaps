@@ -1,16 +1,27 @@
-• NOUVEAU : Couleurs du thème sombre plus contrastées
-• Données OpenStreetMap mises à jour (11 janvier)
-• Casinos exclus de la catégorie « Divertissement »
-• Réduction de l'épaisseur des lignes de métro
-• Ajout d'informations sur la capacité dans les résultats de recherche pour le stationnement de motos, la location de vélos, la recharge de vélos et la recharge de voitures
-• Affichage du niveau d'étage dans les résultats de recherche
-• Boutons de planification d'itinéraire plus larges
+• Données cartographiques OSM en date du 16 février
+• Données Wikipédia en date du 1er février
+• Les itinéraires de randonnée et de vélo noirs sont désormais visibles dans le thème sombre
+• Ajout de plus de services automobiles : réparation, entretien et pièces
+• Ajout de l'authentification par navigateur OSM
+• Correction de l'accès aux vélos sur certains types de routes
+• Correction du calcul de la vitesse moyenne
+• Amélioration du classement de recherche pour les catégories
+• Ajout de la cuisine ouzbèke
+• Ajout des tyroliennes sur la carte
+• Correction des liens Wikimedia avec "?" dans le titre
+• Correction de l'analyse des fichiers GPX avec "+" dans les coordonnées
 
 ### Traductions
 
-• Ajout des traductions de l'application et du guidage vocal en albanais
-• Mise à jour de la FAQ et ajout des traductions de la FAQ pour l'arabe, le tchèque, le néerlandais, le farsi, le grec, l'hébreu, l'hindi, le hongrois, l'indonésien, l'italien, le lituanien, le marathi, le suédois et le télougou
-• Amélioration des traductions allemandes de l'application et de la FAQ
-• Ajout de synonymes de recherche en bulgare
-• Renommage du paramètre « Boutons de zoom » pour plus de clarté
-• Corrections de traduction par les contributeurs Weblate pour plusieurs langues
+• Suppression des noms de villes en double dans certaines régions de la carte
+• Correction des instructions vocales en hébreu
+• Correction de coquilles en coréen
+• Ajout de synonymes de recherche en russe
+• Amélioration des instructions vocales en allemand
+• Correction de la traduction manquante pour le tunnel ferroviaire désaffecté
+• Correction de la traduction du pays en roumain
+• Ajout des traductions en lao et arménien
+• Ajout de traductions arméniennes manquantes
+• Mise à jour des traductions des contributeurs Weblate
+
+Merci à tous ceux qui contribuent, font des dons et soutiennent Organic Maps ! Construisons ensemble les meilleures cartes !

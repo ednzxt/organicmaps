@@ -1,16 +1,27 @@
-• UUTTA: Tumman teeman värit korkeammalla kontrastilla
-• Päivitetyt OpenStreetMap-tiedot (11. tammikuuta)
-• Yökerhot/kasinot poistettu Viihde-kategoriasta
-• Metrolinjojen paksuutta pienennetty
-• Lisätty kapasiteettitiedot hakutuloksiin moottoripyöräparkeille, pyörävuokraamoille sekä pyörien ja autojen latauspisteille
-• Näytä kerrosnumero hakutuloksissa
-• Leveämmät reittisuunnittelun painikkeet
+• OSM-karttatiedot 16. helmikuuta alkaen
+• Wikipedia-tiedot 1. helmikuuta alkaen
+• Mustat vaellus- ja pyöräilyreitit näkyvät nyt tummassa teemassa
+• Lisätty enemmän autopalveluita: korjaus, huolto ja varaosat
+• Lisätty OSM-selainautentikointi
+• Korjattu polkupyörien pääsy joillakin tietyypeillä
+• Korjattu keskinopeuden laskenta
+• Parannettu hakusijoitusta kategorioille
+• Lisätty uzbekistanilainen keittiö
+• Lisätty köysiradat kartalle
+• Korjattu Wikimedia-linkit, joiden otsikossa on "?"
+• Korjattu GPX-tiedostojen jäsennys, joiden koordinaateissa on "+"
 
 ### Käännökset
 
-• Lisätty Albanian sovelluskäännökset ja puheopastus
-• Päivitetty UKK ja lisätty UKK-käännökset seuraaville kielille: arabia, tšekki, hollanti, persia, kreikka, heprea, hindi, unkari, indonesia, italia, liettua, marathi, ruotsi, telugu
-• Parannettu saksan sovellus- ja UKK-käännöksiä
-• Lisätty bulgarian hakusynonyymejä
-• Nimetty "Zoomauspainikkeet"-asetus uudelleen selkeyden vuoksi
-• Käännöskorjauksia Weblate-avustajilta useille kielille
+• Poistettu kaksoiskappaleet kaupunkien nimistä joillakin kartta-alueilla
+• Korjattu hepreankieliset ääniopasteet
+• Korjattu korealaisia kirjoitusvirheitä
+• Lisätty venäjänkielisiä hakusynonyymejä
+• Parannettu saksankielisiä ääniopasteita
+• Korjattu puuttuva käännös käytöstä poistetulle rautatietunnelille
+• Korjattu maan käännös romaniaksi
+• Lisätty laosin ja armenian käännökset
+• Lisätty puuttuvia armeniankielisiä käännöksiä
+• Päivitetty käännöksiä Weblate-avustajilta
+
+Kiitos kaikille, jotka osallistuvat, lahjoittavat ja tukevat Organic Mapsia! Rakennetaan parhaat kartat yhdessä!

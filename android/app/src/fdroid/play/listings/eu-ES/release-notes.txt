@@ -1,9 +1,9 @@
-• BERRIA: Kontraste handiagoko gai iluneko koloreak
-• Google Assistant nabigaziorako eta bilaketarako
-• OSM maparen datuak urtarrilaren 11koak
-• "Auto" nabigazio-gaiak sistemaren modu iluna/argia jarraitzen du
-• Metro linea meheagoak
-• Bilaketa-emaitzek motozikletak aparkatzeko, bizikletak alokatzeko, bizikletak kargatzeko eta autoak kargatzeko edukiera erakusten dute
-• Erakutsi solairuaren maila bilaketa-emaitzetan
-• Albaniako itzulpenak eta TTS ahots-gida
-…gehiago hemen omaps.org/eu/news
+• OSM datuak otsailaren 16koak, Wikipedia otsailaren 1ekoak
+• Ibilbide beltzak eta bizikleta ibilbideak orain ikusgai daude gai ilunean
+• Tirolinak eta auto zerbitzu gehiago gehitu dira: konponketa, zerbitzua eta piezak
+• Bizikleta bideratzea eta batez besteko abiaduraren kalkulua konpondu dira
+• Kategoria bilaketa hobetua
+• Uzbekistango sukaldaritza
+• Ordutegi zabalgarriak
+• Erakutsi eta erabili MSL altitudea Android 14+ gailuetan grabatutako ibilbideetarako
+…gehiago omaps.org/news helbidean

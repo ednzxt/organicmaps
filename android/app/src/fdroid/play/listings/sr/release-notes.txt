@@ -1,10 +1,10 @@
-• НОВО: Боје тамне теме са већим контрастом
-• НОВО: Google Assistant за навигацију и претрагу
-• Подаци мапе ОСМ од 11. јануара
-• Поставка теме за навигацију „Аутоматски“ прати тамни/светли режим система
-• Тање линије метроа
-• Резултати претраге приказују капацитет за паркирање мотоцикала, изнајмљивање бицикала, пуњење бицикала и пуњење аутомобила
-• Прикажи ниво спрата у резултатима претраге
-• Албански преводи и ТТС гласовно навођење
-• Ажурирани ЧПП и преводи апликација
-…више на omaps.org/news
+• OSM podaci od 16. februara, Wikipedia od 1. februara
+• Crne planinarske i biciklističke rute su sada vidljive u tamnoj temi
+• Dodate zip linije i više auto servisa: popravka, servis i delovi
+• Ispravljeno rutiranje bicikla i proračun prosečne brzine
+• Poboljšana pretraga kategorija
+• Uzbekistanska kuhinja
+• Proširivo radno vreme
+• Prikaži i koristi MSL nadmorsku visinu za snimljene tragove na Android 14+
+• Popravljen uvoz KML, KMZ, GPX, GeoJSON iz WhatsApp-a
+…više na omaps.org/news
