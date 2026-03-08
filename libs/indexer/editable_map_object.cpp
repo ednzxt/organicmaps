@@ -250,6 +250,7 @@ bool EditableMapObject::IsValidMetadata(MetadataID type, std::string const & val
   case MetadataID::FMD_WEBSITE_MENU: return ValidateWebsite(value);
   case MetadataID::FMD_CONTACT_FACEBOOK: return ValidateFacebookPage(value);
   case MetadataID::FMD_CONTACT_INSTAGRAM: return ValidateInstagramPage(value);
+  case MetadataID::FMD_CONTACT_TELEGRAM: return ValidateTelegramPage(value);
   case MetadataID::FMD_CONTACT_TWITTER: return ValidateTwitterPage(value);
   case MetadataID::FMD_CONTACT_VK: return ValidateVkPage(value);
   case MetadataID::FMD_CONTACT_LINE: return ValidateLinePage(value);
@@ -285,6 +286,7 @@ void EditableMapObject::SetMetadata(MetadataID type, std::string value)
   case MetadataID::FMD_WEBSITE_MENU: value = ValidateAndFormat_website(value); break;
   case MetadataID::FMD_CONTACT_FACEBOOK: value = ValidateAndFormat_facebook(value); break;
   case MetadataID::FMD_CONTACT_INSTAGRAM: value = ValidateAndFormat_instagram(value); break;
+  case MetadataID::FMD_CONTACT_TELEGRAM: value = ValidateAndFormat_telegram(value); break;
   case MetadataID::FMD_CONTACT_TWITTER: value = ValidateAndFormat_twitter(value); break;
   case MetadataID::FMD_CONTACT_VK: value = ValidateAndFormat_vk(value); break;
   case MetadataID::FMD_CONTACT_LINE: value = ValidateAndFormat_contactLine(value); break;
