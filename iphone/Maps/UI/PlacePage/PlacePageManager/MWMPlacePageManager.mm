@@ -337,6 +337,13 @@ using namespace storage;
   [self.ownerViewController openUrl:ToNSString(fullUrl) externally:YES];
 }
 
+- (void)openTelegram:(PlacePageData *)data
+{
+  std::string const fullUrl =
+      osm::socialContactToURL(osm::MapObject::MetadataID::FMD_CONTACT_TELEGRAM, [data.infoData.telegram UTF8String]);
+  [self.ownerViewController openUrl:ToNSString(fullUrl) externally:YES];
+}
+
 - (void)openTwitter:(PlacePageData *)data
 {
   std::string const fullUrl =
