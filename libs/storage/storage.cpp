@@ -1598,11 +1598,13 @@ StatusAndError Storage::GetNodeStatusInfo(CountryTree::Node const & node,
 
 void Storage::GetNodeAttrs(CountryId const & countryId, NodeAttrs & nodeAttrs) const
 {
+  ASSERT(!countryId.empty(), ());
   CHECK_THREAD_CHECKER(m_threadChecker, ());
 
   CountryTree::NodesBufferT nodes;
   m_countries.Find(countryId, nodes);
   CHECK(!nodes.empty(), (countryId));
+
   // If nodes.size() > 1 countryId corresponds to a disputed territories.
   // In that case it's guaranteed that most of attributes are equal for
   // each element of nodes. See Country class description for further details.
@@ -1846,86 +1848,17 @@ CountryNameSynonyms const & Storage::GetCountryNameSynonyms() const
 {
   return m_countryNameSynonyms;
 }
-
-MwmTopCityGeoIds const & Storage::GetMwmTopCityGeoIds() const
-{
-  return m_mwmTopCityGeoIds;
-}
-
-std::vector<base::GeoObjectId> Storage::GetTopCountryGeoIds(CountryId const & countryId) const
-{
-  std::vector<base::GeoObjectId> result;
-
-  ForEachAncestorExceptForTheRoot(countryId, [this, &result](CountryId const & id, CountryTree::Node const &)
-  {
-    auto const it = m_mwmTopCountryGeoIds.find(id);
-    if (it != m_mwmTopCountryGeoIds.cend())
-      result.insert(result.end(), it->second.cbegin(), it->second.cend());
-  });
-
-  return result;
-}
 /// @}
-
-void Storage::GetQueuedChildren(CountryId const & parent, CountriesVec & queuedChildren) const
-{
-  CountryTree::Node const * const node = m_countries.FindFirst(parent);
-  if (!node)
-  {
-    ASSERT(false, ());
-    return;
-  }
-
-  queuedChildren.clear();
-  node->ForEachChild([&queuedChildren, this](CountryTree::Node const & child)
-  {
-    NodeStatus status = GetNodeStatus(child).status;
-    ASSERT_NOT_EQUAL(status, NodeStatus::Undefined, ());
-    if (status == NodeStatus::Downloading || status == NodeStatus::InQueue)
-      queuedChildren.push_back(child.Value().Name());
-  });
-}
-
-void Storage::GetGroupNodePathToRoot(CountryId const & groupNode, CountriesVec & path) const
-{
-  path.clear();
-
-  CountryTree::NodesBufferT nodes;
-  m_countries.Find(groupNode, nodes);
-  if (nodes.empty())
-  {
-    LOG(LWARNING, ("CountryId =", groupNode, "not found in m_countries."));
-    return;
-  }
-
-  if (nodes.size() != 1)
-  {
-    LOG(LWARNING, (groupNode, "Group node can't have more than one parent."));
-    return;
-  }
-
-  if (nodes[0]->ChildrenCount() == 0)
-  {
-    LOG(LWARNING, (nodes[0]->Value().Name(), "is a leaf node."));
-    return;
-  }
-
-  ForEachAncestorExceptForTheRoot(nodes,
-                                  [&path](CountryId const & id, CountryTree::Node const &) { path.push_back(id); });
-  path.push_back(m_countries.GetRoot().Value().Name());
-}
 
 void Storage::GetTopmostNodesFor(CountryId const & countryId, CountriesVec & nodes, size_t level) const
 {
   nodes.clear();
+  if (countryId.empty())
+    return;
 
   CountryTree::NodesBufferT treeNodes;
   m_countries.Find(countryId, treeNodes);
-  if (treeNodes.empty())
-  {
-    LOG(LWARNING, ("CountryId =", countryId, "not found in m_countries."));
-    return;
-  }
+  CHECK(!treeNodes.empty(), (countryId));
 
   nodes.resize(treeNodes.size());
   for (size_t i = 0; i < treeNodes.size(); ++i)
@@ -1939,26 +1872,24 @@ void Storage::GetTopmostNodesFor(CountryId const & countryId, CountriesVec & nod
   }
 }
 
-CountryId const Storage::GetParentIdFor(CountryId const & countryId) const
+CountryId Storage::GetParentIdFor(CountryId const & countryId) const
 {
+  ASSERT(!countryId.empty(), ());
+
   CountryTree::NodesBufferT nodes;
   m_countries.Find(countryId, nodes);
-  if (nodes.empty())
-  {
-    LOG(LWARNING, ("CountryId =", countryId, "not found in m_countries."));
-    return string();
-  }
+  CHECK(!nodes.empty(), (countryId));
 
   if (nodes.size() > 1)
   {
     // Disputed territory. Has multiple parents.
-    return string();
+    return {};
   }
 
   return nodes[0]->Value().GetParent();
 }
 
-CountryId const Storage::GetTopmostParentFor(CountryId const & countryId) const
+CountryId Storage::GetTopmostParentFor(CountryId const & countryId) const
 {
   return ::storage::GetTopmostParentFor(m_countries, countryId);
 }

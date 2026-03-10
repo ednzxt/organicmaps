@@ -345,16 +345,6 @@ public:
   /// nor World.mwm and WorldCoasts.mwm.
   void GetChildrenInGroups(CountryId const & parent, CountriesVec & downloadedChildren, CountriesVec & availChildren,
                            bool keepAvailableChildren = false) const;
-  /// \brief Fills |queuedChildren| with children of |parent| if they (or thier childen) are in |m_queue|.
-  /// \note For group node children if one of child's ancestor has status
-  /// NodeStatus::Downloading or NodeStatus::InQueue the child is considered as a queued child
-  /// and will be added to |queuedChildren|.
-  void GetQueuedChildren(CountryId const & parent, CountriesVec & queuedChildren) const;
-
-  /// \brief Fills |path| with list of CountryId corresponding with path to the root of hierachy.
-  /// \param groupNode is start of path, can't be a leaf node.
-  /// \param path is resulting array of CountryId.
-  void GetGroupNodePathToRoot(CountryId const & groupNode, CountriesVec & path) const;
 
   /// \brief Fills |nodes| with CountryIds of topmost nodes for this |countryId|.
   /// \param level is distance from top level except root.
@@ -365,10 +355,10 @@ public:
   /// \brief Returns topmost country id prior root id or |countryId| itself, if it's already
   /// a topmost node or disputed territory id if |countryId| is a disputed territory or belongs to
   /// disputed territory.
-  CountryId const GetTopmostParentFor(CountryId const & countryId) const;
+  CountryId GetTopmostParentFor(CountryId const & countryId) const;
   /// \brief Returns parent id for node if node has single parent. Otherwise (if node is disputed
   /// territory and has multiple parents or does not exist) returns empty CountryId
-  CountryId const GetParentIdFor(CountryId const & countryId) const;
+  CountryId GetParentIdFor(CountryId const & countryId) const;
 
   /// \brief Returns current version for mwms which are used by storage.
   inline int64_t GetCurrentDataVersion() const { return m_currentVersion; }
@@ -448,8 +438,6 @@ public:
   /// @return Pointer that will be stored for later use.
   Affiliations const * GetAffiliations() const;
   CountryNameSynonyms const & GetCountryNameSynonyms() const;
-  MwmTopCityGeoIds const & GetMwmTopCityGeoIds() const;
-  std::vector<base::GeoObjectId> GetTopCountryGeoIds(CountryId const & countryId) const;
   /// @}
 
   /// For each node with \a root subtree (including).

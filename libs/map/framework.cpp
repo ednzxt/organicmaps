@@ -1,4 +1,5 @@
 #include "map/framework.hpp"
+#include "base/assert.hpp"
 #include "map/benchmark_tools.hpp"
 #include "map/gps_tracker.hpp"
 #include "map/place_page_info.hpp"
@@ -759,10 +760,10 @@ void Framework::FillInfoFromFeatureType(FeatureType & ft, place_page::Info & inf
   bool const isState = ftypes::IsStateChecker::Instance()(types);
   if (isState || ftypes::IsCountryChecker::Instance()(types))
   {
-    size_t const level = isState ? 1 : 0;
-    CountriesVec countries;
+    // countryId may be empty after all
     CountryId countryId = m_infoGetter->GetRegionCountryId(info.GetMercator());
-    GetStorage().GetTopmostNodesFor(countryId, countries, level);
+    CountriesVec countries;
+    GetStorage().GetTopmostNodesFor(countryId, countries, isState ? 1 : 0 /* level */);
     if (countries.size() == 1)
       countryId = countries.front();
 
@@ -1093,8 +1094,15 @@ namespace
 
 double ScaleModeToFactor(Framework::EScaleMode mode)
 {
-  double factors[] = {2.0, 1.5, 0.5, 0.67};
-  return factors[mode];
+  switch (mode)
+  {
+    using enum Framework::EScaleMode;
+  case SCALE_MAG: return 2.0;
+  case SCALE_MAG_LIGHT: return 1.5;
+  case SCALE_MIN: return 0.5;
+  case SCALE_MIN_LIGHT: return 0.67;
+  }
+  UNREACHABLE();
 }
 
 }  // namespace
@@ -3369,12 +3377,13 @@ void Framework::SetPlacePageLocation(place_page::Info & info)
 {
   ASSERT(m_infoGetter, ());
 
+  // countryId may be empty after all
   if (info.GetCountryId().empty())
     info.SetCountryId(m_infoGetter->GetRegionCountryId(info.GetMercator()));
 
-  CountriesVec countries;
   if (info.GetTopmostCountryIds().empty())
   {
+    CountriesVec countries;
     GetStorage().GetTopmostNodesFor(info.GetCountryId(), countries);
     info.SetTopmostCountryIds(std::move(countries));
   }
