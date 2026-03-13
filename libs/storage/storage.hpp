@@ -14,7 +14,6 @@
 
 #include "base/cancellable.hpp"
 #include "base/thread_checker.hpp"
-#include "base/thread_pool_delayed.hpp"
 
 #include "defines.hpp"
 
@@ -22,10 +21,8 @@
 #include <functional>
 #include <list>
 #include <memory>
-#include <set>
 #include <string>
 #include <unordered_map>
-#include <utility>
 #include <vector>
 
 namespace storage_tests
@@ -186,11 +183,12 @@ private:
   /// stores countries whose download has failed recently
   CountriesSet m_failedCountries;
 
-  /// @todo Do we really store a list of local files here (of different versions)?
-  /// I suspect that only one at a time, old versions are deleted automatically.
+  /// Usually the list value has only 1 entry.
+  /// 2 entries are possible in a moment of updating a map (old and new are present).
   std::map<CountryId, std::list<LocalFilePtr>> m_localFiles;
 
   // World and WorldCoasts are fake countries, together with any custom mwm in data folder.
+  // Together with "old" (outdated) countries, that were splitted with the new regions set.
   std::map<platform::CountryFile, LocalFilePtr> m_localFilesForFakeCountries;
 
   // Since the diffs applying runs on a different thread, the result
@@ -243,21 +241,7 @@ private:
 
   CountryNameGetter m_countryNameGetter;
 
-  /**
-   * @brief Mapping from countryId to the list of names of
-   * geographical objects (such as countries) that encompass this countryId.
-   * @note Affiliations are inherited from ancestors of the countryId in country tree.
-   * Initialized with data of countries.txt (field "affiliations").
-   * Once filled, they are not changed.
-   */
-  Affiliations m_affiliations;
-  CountryNameSynonyms m_countryNameSynonyms;
-
-  /// @todo This containers are empty for now, but probably will be used in future.
-  /// @{
-  MwmTopCityGeoIds m_mwmTopCityGeoIds;
-  MwmTopCountryGeoIds m_mwmTopCountryGeoIds;
-  /// @}
+  CountriesInfo m_countriesInfo;
 
   ThreadChecker m_threadChecker;
 
@@ -529,7 +513,6 @@ public:
   LocalAndRemoteSize CountrySizeInBytes(CountryId const & countryId) const;
   MwmSize GetRemoteSize(platform::CountryFile const & file) const;
   platform::CountryFile const & GetCountryFile(CountryId const & countryId) const;
-  LocalFilePtr GetLatestLocalFile(platform::CountryFile const & countryFile) const;
   LocalFilePtr GetLatestLocalFile(CountryId const & countryId) const;
 
   /// Slow version, but checks if country is out of date
