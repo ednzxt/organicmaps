@@ -274,10 +274,6 @@ class PathProvider:
         return os.path.join(self.intermediate_data_path, "id_to_wikidata.csv")
 
     @property
-    def wiki_url_path(self) -> AnyStr:
-        return os.path.join(self.intermediate_data_path, "wiki_urls.txt")
-
-    @property
     def ugc_path(self) -> AnyStr:
         return os.path.join(self.intermediate_data_path, "ugc_db.sqlite3")
 
@@ -333,7 +329,7 @@ class PathProvider:
 
     @property
     def counties_txt_path(self) -> AnyStr:
-        return os.path.join(self.mwm_path, "countries.txt")
+        return os.path.join(self.mwm_path, "countries.json")
 
     @property
     def user_resource_path(self) -> AnyStr:

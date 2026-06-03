@@ -292,6 +292,8 @@
     <string name="pref_appearance_light">ແຈ້ງ</string>
     <!-- Settings "Appearance" category: "Dark" title, should be consistent with the pref_appearance_title translation. -->
     <string name="pref_appearance_dark">ມືດ</string>
+    <!-- Settings "Appearance" category: "Scheduled" title, should be consistent with the pref_appearance_title translation. -->
+    <string name="pref_appearance_scheduled">ໂໝດສະຫວ່າງຈາກອາລຸນເຖິງຕອນແລງ</string>
     <!-- Tex label above the Donate button -->
     <string name="donate_description">ມອບແຜນທີ່ຟຣີທີ່ບໍ່ມີໂຄສະນາໃຫ້ກັບຜູ້ໃຊ້ຫຼາຍລ້ານຄົນ!</string>
 
@@ -323,6 +325,8 @@
     <string name="clear_search">ລຶບປະຫວັດການຄົ້ນຫາ</string>
     <!-- Place Page link to Wikipedia article (if map object has it). -->
     <string name="read_in_wikipedia">ວິກິພີເດຍ</string>
+    <!-- Source attribution for Wikipedia articles displayed in the place description screen. -->
+    <string name="article_from_wikipedia">ບົດຄວາມຈາກ wikipedia.org</string>
     <!-- Place Page link to Wikimedia Commons. -->
     <string name="wikimedia_commons">ວິກິມີເດຍ ຄອມມອນສ໌</string>
     <string name="p2p_your_location">ຕຳແໜ່ງຂອງທ່ານ</string>
@@ -576,6 +580,10 @@
     <string name="layers_title">ຮູບແບບແຜນທີ່ ແລະ ເລເຢີ້</string>
     <string name="bookmarks_empty_list_title">ລາຍການນີ້ວ່າງເປົ່າ</string>
     <string name="bookmarks_empty_list_message">ເພື່ອເພີ່ມບຸກມາກ, ໃຫ້ແຕະໃສ່ສະຖານທີ່ໃນແຜນທີ່ ແລ້ວແຕະທີ່ໄອຄອນຮູບດາວ</string>
+    <!-- Button to change the color of all bookmarks in the current list -->
+    <string name="change_all_bookmarks_color">ປ່ຽນສີຂອງບຸກມາກທັງໝົດ</string>
+    <!-- Button to change the color of all tracks in the current list -->
+    <string name="change_all_tracks_color">ປ່ຽນສີຂອງເສັ້ນທາງທັງໝົດ</string>
     <string name="category_desc_more">…ເພີ່ມເຕີມ</string>
     <!-- Menu title for exporting a file in the default KMZ format -->
     <string name="export_file">ສົ່ງອອກ KMZ</string>
@@ -620,6 +628,12 @@
     <string name="toll_road">ທາງເສຍຄ່າທຳນຽມ</string>
     <string name="unpaved_road">ທາງບໍ່ປູຢາງ</string>
     <string name="ferry_crossing">ຈຸດຂ້າມເຮືອຟາກ</string>
+    <!-- Route warning shown on the map for this obstacle type. -->
+    <string name="road_warning_steps">ຂັ້ນໄດ</string>
+    <!-- Route warning shown on the map for this obstacle type. -->
+    <string name="road_warning_gate">ປະຕູຮົ້ວ</string>
+    <!-- Route warning shown on the map for this obstacle type. -->
+    <string name="road_warning_lift_gate">ໄມ້ກັ້ນຍົກ</string>
     <!-- A generic "Yes" button in dialogs -->
     <string name="yes">ແມ່ນ</string>
     <!-- A generic "No" button in dialogs -->
@@ -654,6 +668,13 @@
     <string name="moreyear_ago_sorttype">ຫຼາຍກວ່າໜຶ່ງປີຜ່ານມາ</string>
     <string name="near_me_sorttype">ໃກ້ຂ້ອຍ</string>
     <string name="others_sorttype">ອື່ນໆ</string>
+    <!-- Place Page opening hours text -->
+    <string name="closed_now">ປິດຢູ່ໃນຂະນະນີ້</string>
+    <string name="opens_tomorrow_at">ຈະເປີດມື້ອື່ນເວລາ %s</string>
+    <string name="opens_dayoftheweek_at">ຈະເປີດວັນ%1$s ເວລາ %2$s</string>
+    <string name="opens_at">ຈະເປີດເວລາ %s</string>
+    <string name="closes_at">ຈະປິດເວລາ %s</string>
+    <string name="editor_add_select_category_all_subtitle">ໝວດໝູ່ທັງໝົດ</string>
 
     <!-- SECTION: Bookmark types used for sorting -->
     <string name="food_places">ອາຫານ</string>
@@ -807,4 +828,26 @@
     <string name="share_track">ແບ່ງປັນເສັ້ນທາງ</string>
     <!-- Title for the dialog when deleting a track with the track name passed in %@ -->
     <string name="delete_track_dialog_title">ລຶບ %s ບໍ່?</string>
+
+    <!-- SECTION: gps strings -->
+    <!-- Editor section title that shows recently used categories (types of objects) when adding a place on the map -->
+    <string name="editor_add_select_category_recent_subtitle">ໃຊ້ບໍ່ດົນມານີ້</string>
+    <!-- Toast message shown when bookmark colors are changed in category settings -->
+    <string name="toast_bookmarks_color_changed">ສີຂອງບຸກມາກໄດ້ປ່ຽນແລ້ວ</string>
+    <!-- Toast message shown when track colors are changed in category settings -->
+    <string name="toast_tracks_color_changed">ສີຂອງເສັ້ນທາງໄດ້ປ່ຽນແລ້ວ</string>
+    <!-- Tab label for the spectrum color picker mode -->
+    <string name="color_picker_spectrum">Spectrum</string>
+    <!-- Tab label for the RGB sliders color picker mode -->
+    <string name="color_picker_sliders">ຕົວເລື່ອນ</string>
+    <!-- Label for the red channel slider in the color picker -->
+    <string name="color_picker_red">ສີແດງ</string>
+    <!-- Label for the green channel slider in the color picker -->
+    <string name="color_picker_green">ຂຽວ</string>
+    <!-- Label for the blue channel slider in the color picker -->
+    <string name="color_picker_blue">ສີຟ້າ</string>
+    <!-- Label for the hex color input field in the color picker -->
+    <string name="color_picker_hex_label">sRGB Hex ສີ #</string>
+    <!-- Tab label for the grid color picker mode -->
+    <string name="color_picker_grid">ຕາຂ່າຍ</string>
 </resources>

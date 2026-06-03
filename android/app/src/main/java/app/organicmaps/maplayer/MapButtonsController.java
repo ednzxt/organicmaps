@@ -56,11 +56,13 @@ public class MapButtonsController extends Fragment
   private LayersButton mToggleMapLayerButton;
   @Nullable
   FloatingActionButton mTrackRecordingStatusButton;
-
   @Nullable
   private MyPositionButton mNavMyPosition;
+  private View mMainMenuFrame;
   private SearchWheel mSearchWheel;
   private BadgeDrawable mBadgeDrawable;
+  @Nullable
+  private ObjectAnimator mBlinkingAnimator;
   private float mContentHeight;
   private float mContentWidth;
 
@@ -99,29 +101,9 @@ public class MapButtonsController extends Fragment
     mInnerLeftButtonsFrame = mFrame.findViewById(R.id.map_buttons_inner_left);
     mInnerRightButtonsFrame = mFrame.findViewById(R.id.map_buttons_inner_right);
     mBottomButtonsFrame = mFrame.findViewById(R.id.map_buttons_bottom);
+    mMainMenuFrame = activity.findViewById(R.id.menu_frame);
 
     final FloatingActionButton helpButton = mFrame.findViewById(R.id.help_button);
-    if (helpButton != null)
-    {
-      if (Framework.nativeCanShowCrowdfundingPromo() && !TextUtils.isEmpty(Utils.getDonateUrl(requireContext())))
-      {
-        helpButton.setImageResource(R.drawable.ic_crowdfunding);
-        helpButton.getDrawable().setTintList(null);
-      }
-      else if (Config.isNY() && !TextUtils.isEmpty(Utils.getDonateUrl(requireContext())))
-      {
-        helpButton.setImageResource(R.drawable.ic_christmas_tree);
-        helpButton.getDrawable().setTintList(null);
-      }
-      else
-      {
-        helpButton.setImageResource(app.organicmaps.branding.R.drawable.logo);
-        // Keep this button colorful in normal theme.
-        if (!ThemeUtils.isDarkTheme(requireContext()))
-          helpButton.getDrawable().setTintList(null);
-      }
-    }
-
     final View zoomFrame = mFrame.findViewById(R.id.zoom_buttons_container);
     mFrame.findViewById(R.id.nav_zoom_in)
         .setOnClickListener((v) -> mMapButtonClickListener.onMapButtonClick(MapButtons.zoomIn));
@@ -188,6 +170,7 @@ public class MapButtonsController extends Fragment
     if (mTrackRecordingStatusButton != null)
       mButtonsMap.put(MapButtons.trackRecordingStatus, mTrackRecordingStatusButton);
     showButton(false, MapButtons.trackRecordingStatus);
+    updateHelpButtonIcon();
     return mFrame;
   }
 
@@ -219,15 +202,20 @@ public class MapButtonsController extends Fragment
 
   void animateIconBlinking(boolean show, @NonNull FloatingActionButton button)
   {
+    if (mBlinkingAnimator != null)
+    {
+      mBlinkingAnimator.cancel();
+      mBlinkingAnimator = null;
+    }
     if (show)
     {
       Drawable drawable = button.getDrawable();
-      ObjectAnimator colorAnimator = ObjectAnimator.ofArgb(drawable, "tint", 0xFF757575, 0xFFFF0000);
-      colorAnimator.setDuration(2500);
-      colorAnimator.setEvaluator(new ArgbEvaluator());
-      colorAnimator.setRepeatCount(ObjectAnimator.INFINITE);
-      colorAnimator.setRepeatMode(ObjectAnimator.REVERSE);
-      colorAnimator.start();
+      mBlinkingAnimator = ObjectAnimator.ofArgb(drawable, "tint", 0xFF757575, 0xFFFF0000);
+      mBlinkingAnimator.setDuration(2500);
+      mBlinkingAnimator.setEvaluator(new ArgbEvaluator());
+      mBlinkingAnimator.setRepeatCount(ObjectAnimator.INFINITE);
+      mBlinkingAnimator.setRepeatMode(ObjectAnimator.REVERSE);
+      mBlinkingAnimator.start();
     }
   }
 
@@ -293,6 +281,31 @@ public class MapButtonsController extends Fragment
     updateMenuBadge(TrackRecorder.nativeIsTrackRecordingEnabled());
   }
 
+  public void updateHelpButtonIcon()
+  {
+    final View view = mButtonsMap.get(MapButtons.help);
+    if (!(view instanceof FloatingActionButton helpButton))
+      return;
+
+    if (Framework.nativeCanShowCrowdfundingPromo() && !TextUtils.isEmpty(Utils.getDonateUrl(requireContext())))
+    {
+      helpButton.setImageResource(R.drawable.ic_crowdfunding);
+      helpButton.getDrawable().setTintList(null);
+    }
+    else if (Config.isNY() && !TextUtils.isEmpty(Utils.getDonateUrl(requireContext())))
+    {
+      helpButton.setImageResource(R.drawable.ic_christmas_tree);
+      helpButton.getDrawable().setTintList(null);
+    }
+    else
+    {
+      helpButton.setImageResource(app.organicmaps.branding.R.drawable.logo);
+      // Keep this button colorful in normal theme.
+      if (!ThemeUtils.isDarkTheme(requireContext()))
+        helpButton.getDrawable().setTintList(null);
+    }
+  }
+
   public void updateLayerButton()
   {
     if (mToggleMapLayerButton == null)
@@ -322,6 +335,9 @@ public class MapButtonsController extends Fragment
   {
     if (mContentHeight == 0)
       return;
+
+    if (UiUtils.isVisible(mMainMenuFrame) && mMainMenuFrame.getTop() > 0)
+      translationY = Math.min(translationY, mMainMenuFrame.getTop());
 
     // Move the buttons containers to follow the place page
     if (mInnerRightButtonsFrame != null
@@ -406,13 +422,13 @@ public class MapButtonsController extends Fragment
   public void onStart()
   {
     super.onStart();
-    final FragmentActivity activity = requireActivity();
-    mPlacePageViewModel.getPlacePageDistanceToTop().observe(activity, mPlacePageDistanceToTopObserver);
-    mMapButtonsViewModel.getButtonsHidden().observe(activity, mButtonHiddenObserver);
-    mMapButtonsViewModel.getMyPositionMode().observe(activity, mMyPositionModeObserver);
-    mMapButtonsViewModel.getSearchOption().observe(activity, mSearchOptionObserver);
-    mMapButtonsViewModel.getTrackRecorderState().observe(activity, mTrackRecorderObserver);
-    mMapButtonsViewModel.getTopButtonsMarginTop().observe(activity, mTopButtonMarginObserver);
+    final var viewLifecycleOwner = getViewLifecycleOwner();
+    mPlacePageViewModel.getPlacePageDistanceToTop().observe(viewLifecycleOwner, mPlacePageDistanceToTopObserver);
+    mMapButtonsViewModel.getButtonsHidden().observe(viewLifecycleOwner, mButtonHiddenObserver);
+    mMapButtonsViewModel.getMyPositionMode().observe(viewLifecycleOwner, mMyPositionModeObserver);
+    mMapButtonsViewModel.getSearchOption().observe(viewLifecycleOwner, mSearchOptionObserver);
+    mMapButtonsViewModel.getTrackRecorderState().observe(viewLifecycleOwner, mTrackRecorderObserver);
+    mMapButtonsViewModel.getTopButtonsMarginTop().observe(viewLifecycleOwner, mTopButtonMarginObserver);
   }
 
   public void onResume()
@@ -421,12 +437,10 @@ public class MapButtonsController extends Fragment
     mSearchWheel.onResume();
     updateMenuBadge();
     updateLayerButton();
-    final WindowInsetUtils.PaddingInsetsListener insetsListener =
-        new WindowInsetUtils.PaddingInsetsListener.Builder()
-            .setInsetsTypeMask(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout())
-            .setAllSides()
-            .build();
-    ViewCompat.setOnApplyWindowInsetsListener(mFrame, insetsListener);
+    updateHelpButtonIcon();
+    ViewCompat.setOnApplyWindowInsetsListener(
+        mFrame, WindowInsetUtils.PaddingInsetsListener.allSides(WindowInsetsCompat.Type.systemBars()
+                                                                | WindowInsetsCompat.Type.displayCutout()));
     // Fixes insets on older Androids and with a search opened via API on all Androids.
     if (mFrame.hasWindowFocus())
       ViewCompat.requestApplyInsets(mFrame);
@@ -443,11 +457,11 @@ public class MapButtonsController extends Fragment
   public void onStop()
   {
     super.onStop();
-    mMapButtonsViewModel.getTopButtonsMarginTop().removeObserver(mTopButtonMarginObserver);
-    mPlacePageViewModel.getPlacePageDistanceToTop().removeObserver(mPlacePageDistanceToTopObserver);
-    mMapButtonsViewModel.getButtonsHidden().removeObserver(mButtonHiddenObserver);
-    mMapButtonsViewModel.getMyPositionMode().removeObserver(mMyPositionModeObserver);
-    mMapButtonsViewModel.getSearchOption().removeObserver(mSearchOptionObserver);
+    if (mBlinkingAnimator != null)
+    {
+      mBlinkingAnimator.cancel();
+      mBlinkingAnimator = null;
+    }
   }
 
   public void onSearchOptionChange(@Nullable SearchWheel.SearchOption searchOption)

@@ -2,9 +2,7 @@
 
 #include "qt/create_feature_dialog.hpp"
 #include "qt/editor_dialog.hpp"
-#include "qt/place_page_dialog_common.hpp"
-#include "qt/place_page_dialog_developer.hpp"
-#include "qt/place_page_dialog_user.hpp"
+#include "qt/mainwindow.hpp"
 #include "qt/qt_common/helpers.hpp"
 #include "qt/routing_settings_dialog.hpp"
 #include "qt/screenshoter.hpp"
@@ -37,6 +35,7 @@
 #include <QtGui/QGuiApplication>
 #include <QtGui/QMouseEvent>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QDialog>
 #include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QMenu>
 
@@ -117,21 +116,12 @@ DrawWidget::DrawWidget(Framework & framework, std::unique_ptr<ScreenshotParams> 
     auto const routerType = routingManager.GetLastUsedRouter();
     if (routerType == routing::RouterType::Pedestrian || routerType == routing::RouterType::Bicycle)
     {
-      RoutingManager::DistanceAltitude da;
-      if (!routingManager.GetRouteAltitudesAndDistancesM(da))
+      ElevationInfo ei;
+      if (!routingManager.GetRouteElevationInfo(ei))
         return;
 
-      for (int iter = 0; iter < 2; ++iter)
-      {
-        LOG(LINFO, ("Altitudes", iter == 0 ? "before" : "after", "simplify:"));
-        LOG_SHORT(LDEBUG, (da));
-
-        uint32_t totalAscent, totalDescent;
-        da.CalculateAscentDescent(totalAscent, totalDescent);
-        LOG_SHORT(LINFO, ("Ascent:", totalAscent, "Descent:", totalDescent));
-
-        da.Simplify();
-      }
+      auto const altInfo = ei.CalculateAltitudesInfo(ElevationInfo::kDefThresholdMWM);
+      LOG(LINFO, ("Ascent:", altInfo.GetTotalAscent(), "Descent:", altInfo.GetTotalDescent()));
     }
   });
 
@@ -561,20 +551,20 @@ void DrawWidget::SubmitRulerPoint(m2::PointD const & pt)
 
 void DrawWidget::SubmitRoutingPoint(m2::PointD const & pt, bool pointIsMercator)
 {
-  auto & routingManager = m_framework.GetRoutingManager();
+  auto & rm = m_framework.GetRoutingManager();
 
   // Check if limit of intermediate points is reached.
   bool const isIntermediate = m_routePointAddMode == RouteMarkType::Intermediate;
-  if (isIntermediate && !routingManager.CouldAddIntermediatePoint())
-    routingManager.RemoveRoutePoint(RouteMarkType::Intermediate, 0);
+  if (isIntermediate && !rm.CouldAddIntermediatePoint())
+    rm.RemoveRoutePoint(RouteMarkType::Intermediate, 0);
 
   // Insert implicit start point.
-  if (m_routePointAddMode == RouteMarkType::Finish && routingManager.GetRoutePoints().empty())
+  if (m_routePointAddMode == RouteMarkType::Finish && rm.GetRoutePoints().empty())
   {
     RouteMarkData startPoint;
     startPoint.m_pointType = RouteMarkType::Start;
     startPoint.m_isMyPosition = true;
-    routingManager.AddRoutePoint(std::move(startPoint));
+    rm.AddRoutePoint(std::move(startPoint));
   }
 
   RouteMarkData point;
@@ -585,23 +575,22 @@ void DrawWidget::SubmitRoutingPoint(m2::PointD const & pt, bool pointIsMercator)
   else
     point.m_position = pointIsMercator ? pt : P2G(pt);
 
-  routingManager.AddRoutePoint(std::move(point));
+  // Fill title/subtitle from the nearest feature and address, like Android/iOS do.
+  if (auto const fid = m_framework.GetFeatureAtPoint(point.m_position); fid.IsValid())
+    m_framework.GetDataSource().ReadFeature([&](FeatureType & ft) { point.m_title = ft.GetReadableName(); }, fid);
+  auto const addr = m_framework.GetAddressAtPoint(point.m_position);
+  point.m_subTitle = addr.FormatAddress();
 
-  if (routingManager.GetRoutePoints().size() >= 2)
+  rm.AddRoutePoint(std::move(point));
+
+  if (rm.GetRoutePoints().size() >= 2)
   {
-    if (RoutingSettings::UseDebugGuideTrack())
-    {
-      // Like in guides_tests.cpp, GetTestGuides().
-      routing::GuidesTracks guides;
-      guides[10] = {{{mercator::FromLatLon(48.13999, 11.56873), 10},
-                     {mercator::FromLatLon(48.14096, 11.57246), 10},
-                     {mercator::FromLatLon(48.14487, 11.57259), 10}}};
-      routingManager.RoutingSession().SetGuidesForTests(std::move(guides));
-    }
+    if (RoutingSettings::UseDebugGuideTrack() && !m_guideTracks.empty())
+      rm.RoutingSession().SetGuidesForTests(m_guideTracks);
     else
-      routingManager.RoutingSession().SetGuidesForTests({});
+      rm.RoutingSession().SetGuidesForTests({});
 
-    routingManager.BuildRoute();
+    rm.BuildRoute();
   }
 }
 
@@ -619,9 +608,8 @@ void DrawWidget::FollowRoute()
 {
   auto & routingManager = m_framework.GetRoutingManager();
 
-  /// @DebugNote
-  /// Uncomment to debug TTS.
-  // routingManager.SetTurnNotificationsLocale("es");
+  routingManager.SetTurnNotificationsLocale("en");
+  /// @DebugNote Uncomment to Debug TTS.
   // routingManager.EnableTurnNotifications(true);
 
   auto const points = routingManager.GetRoutePoints();
@@ -668,55 +656,49 @@ void DrawWidget::OnRouteRecommendation(RoutingManager::Recommendation recommenda
 void DrawWidget::ShowPlacePage()
 {
   place_page::Info const & info = m_framework.GetCurrentPlacePageInfo();
+  if (auto * mw = qobject_cast<MainWindow *>(parent()))
+    mw->ShowPlacePage(info);
+}
 
-  std::unique_ptr<QDialog> placePageDialog = nullptr;
-  bool developerMode;
-  if (settings::Get(settings::kDeveloperMode, developerMode) && developerMode)
-    placePageDialog = std::make_unique<PlacePageDialogDeveloper>(this, info);
+void DrawWidget::RoutePointFromPlace(RouteMarkType type, m2::PointD const & mercator)
+{
+  SetRoutePointAddMode(type);
+  SubmitRoutingPoint(mercator, true);
+  if (auto * mw = qobject_cast<MainWindow *>(parent()))
+    mw->HidePlacePage();
+}
+
+void DrawWidget::RouteAlongTrack(kml::TrackId trackId)
+{
+  m_guideTracks.clear();
+  m_guideTracks[trackId].push_back(m_framework.GetBookmarkManager().GetTrack(trackId)->GetGeometry());
+  if (auto * mw = qobject_cast<MainWindow *>(parent()))
+    mw->HidePlacePage();
+}
+
+void DrawWidget::EditPlace(FeatureID const & featureId)
+{
+  osm::EditableMapObject emo;
+  if (m_framework.GetEditableMapObject(featureId, emo))
+  {
+    EditorDialog dlg(this, emo);
+    int const result = dlg.exec();
+    if (result == QDialog::Accepted)
+    {
+      m_framework.SaveEditedMapObject(emo);
+      m_framework.UpdatePlacePageInfoForCurrentSelection();
+    }
+    else if (result == QDialogButtonBox::DestructiveRole)
+    {
+      m_framework.DeleteFeature(featureId);
+    }
+  }
   else
-    placePageDialog = std::make_unique<PlacePageDialogUser>(this, info);
-
-  switch (placePageDialog->exec())
   {
-  case place_page_dialog::EditPlace:
-  {
-    osm::EditableMapObject emo;
-    if (m_framework.GetEditableMapObject(info.GetID(), emo))
-    {
-      EditorDialog dlg(this, emo);
-      int const result = dlg.exec();
-      if (result == QDialog::Accepted)
-      {
-        m_framework.SaveEditedMapObject(emo);
-        m_framework.UpdatePlacePageInfoForCurrentSelection();
-      }
-      else if (result == QDialogButtonBox::DestructiveRole)
-      {
-        m_framework.DeleteFeature(info.GetID());
-      }
-    }
-    else
-    {
-      LOG(LERROR, ("Error while trying to edit feature."));
-    }
+    LOG(LERROR, ("Error while trying to edit feature."));
   }
-  break;
-  case place_page_dialog::RouteFrom:
-    SetRoutePointAddMode(RouteMarkType::Start);
-    SubmitRoutingPoint(info.GetMercator(), true);
-    break;
-  case place_page_dialog::AddStop:
-    SetRoutePointAddMode(RouteMarkType::Intermediate);
-    SubmitRoutingPoint(info.GetMercator(), true);
-    break;
-  case place_page_dialog::RouteTo:
-    SetRoutePointAddMode(RouteMarkType::Finish);
-    SubmitRoutingPoint(info.GetMercator(), true);
-    break;
-  default: break;
-  }
-
-  m_framework.DeactivateMapSelection();
+  if (auto * mw = qobject_cast<MainWindow *>(parent()))
+    mw->HidePlacePage();
 }
 
 void DrawWidget::SetRuler(bool enabled)

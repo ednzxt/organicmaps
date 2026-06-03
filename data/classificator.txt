@@ -81,6 +81,7 @@ world  +
         grave_yard  +
             christian  -
             {}
+        hookah_lounge  -
         hospital  -
         hunting_stand  -
         ice_cream  -
@@ -275,6 +276,7 @@ world  +
         {}
     building  +
         address  -
+        construction  -
         garage  -
         guardhouse  -
         has_parts  -
@@ -370,7 +372,7 @@ world  +
         mediterranean  -
         mexican  -
         moroccan  -
-        noodles  -
+        noodle  -
         oriental  -
         pancake  -
         pasta  -
@@ -386,6 +388,7 @@ world  +
         sausage  -
         savory_pancakes  -
         seafood  -
+        shawarma  -
         soba  -
         spanish  -
         steak_house  -
@@ -728,6 +731,7 @@ world  +
         breakwater  -
         bridge  -
         cairn  -
+        ceremonial_gate  -
         chimney  -
         communications_tower  -
         crane  -
@@ -801,7 +805,9 @@ world  +
             {}
         strait  -
         tree_row  -
-        volcano  -
+        volcano  +
+            active  -
+            {}
         water  +
             basin  -
             ditch  -
@@ -822,8 +828,10 @@ world  +
         {}
     noexit  -
     office  +
+        architect  -
         company  -
         diplomatic  -
+        educational_institution  -
         estate_agent  -
         government  -
         insurance  -
@@ -1274,6 +1282,9 @@ world  +
         shoes  -
         small_appliances  -
         {}
+    roller_coaster  +
+        track  -
+        {}
     route  +
         ferry  -
         shuttle_train  -
@@ -1310,7 +1321,17 @@ world  +
         cheese  -
         chemist  -
         chocolate  -
-        clothes  -
+        clothes  +
+            children  -
+            fashion  -
+            hats  -
+            men  -
+            sports  -
+            suits  -
+            underwear  -
+            wedding  -
+            women  -
+            {}
         coffee  -
         collector  -
         computer  -
@@ -1335,6 +1356,7 @@ world  +
         florist  -
         funeral_directors  -
         furniture  -
+        games  -
         garden_centre  -
         gas  -
         gift  -
@@ -1414,27 +1436,39 @@ world  +
         baseball  -
         basketball  -
         beachvolleyball  -
+        boules  -
         bowls  -
         chess  -
         climbing  -
         cricket  -
         curling  -
+        cycling  -
         diving  -
         equestrian  -
         field_hockey  -
+        four_square  -
         futsal  -
         golf  -
         gymnastics  -
         handball  -
+        horse_racing  -
         ice_hockey  -
+        karting  -
+        motocross  -
+        motor  -
         multi  -
+        netball  -
         padel  -
         pelota  -
+        pickleball  -
+        rugby_union  -
+        running  -
         scuba_diving  -
         shooting  -
         skateboard  -
         skiing  -
         soccer  -
+        softball  -
         swimming  -
         table_tennis  -
         tennis  -
@@ -1485,6 +1519,7 @@ world  +
         hump  -
         {}
     waterway  +
+        access_point  -
         canal  +
             tunnel  -
             {}

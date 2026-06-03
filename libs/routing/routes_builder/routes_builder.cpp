@@ -58,7 +58,7 @@ RoutesBuilder::Params::Params(VehicleType type, ms::LatLon const & start, ms::La
   : Params(type, {mercator::FromLatLon(start), mercator::FromLatLon(finish)})
 {}
 
-RoutesBuilder::Params::Params(VehicleType type, std::vector<m2::PointD> && checkpoints)
+RoutesBuilder::Params::Params(VehicleType type, CheckpointsGeometry && checkpoints)
   : m_type(type)
   , m_checkpoints(std::move(checkpoints))
 {}
@@ -110,7 +110,7 @@ RoutesBuilder::RoutesBuilder(size_t threadsNumber) : m_threadPool(threadsNumber)
   for (auto const & localFile : localFiles)
   {
     auto const & countryFile = localFile.GetCountryFile();
-    // Only maps from countries.txt should be used.
+    // Only maps from countries.json should be used.
     if (!m_cpg->GetStorageForTesting().IsLeaf(countryFile.GetName()))
       continue;
 

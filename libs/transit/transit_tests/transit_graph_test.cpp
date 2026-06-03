@@ -10,6 +10,8 @@
 #include <utility>
 #include <vector>
 
+namespace transit_graph_test
+{
 using namespace routing;
 using namespace routing::transit;
 using namespace std;
@@ -275,9 +277,7 @@ unique_ptr<GraphData> CreateGraphFromJson()
   mapping[base::GeoObjectId(105)] = vector<FeatureId>({15});
   mapping[base::GeoObjectId(106)] = vector<FeatureId>({16});
 
-  base::Json root(jsonBuffer.c_str());
-  CHECK(root.get() != nullptr, ("Cannot parse the json."));
-  graph->DeserializeFromJson(root, mapping);
+  graph->DeserializeFromJson(jsonBuffer, mapping);
   return graph;
 }
 
@@ -773,3 +773,4 @@ UNIT_TEST(ClipGraph_TwoLinesTest)
   TestGraph(*graph, *expectedGraph);
 }
 }  // namespace
+}  // namespace transit_graph_test

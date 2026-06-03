@@ -6,9 +6,9 @@
 "type.addr_interpolation.even" = "Adresas / blokas";
 "type.addr_interpolation.odd" = "Adresas / blokas";
 "type.aerialway" = "Keltuvas";
-"type.aerialway.cable_car" = "Cable Car";
-"type.aerialway.chair_lift" = "Kėdė Liftas";
-"type.aerialway.drag_lift" = "Pasipriešinimas Liftas";
+"type.aerialway.cable_car" = "Kabininis keltuvas";
+"type.aerialway.chair_lift" = "Kėdutinis keltuvas";
+"type.aerialway.drag_lift" = "Vilkimo keltuvas";
 "type.aerialway.gondola" = "Gondola";
 "type.aerialway.mixed_lift" = "Mišrus keltuvas";
 "type.aerialway.station" = "Keltuvo stotis";
@@ -18,7 +18,7 @@
 "type.aeroway.apron" = "Peronas";
 "type.aeroway.gate" = "Vartai";
 "type.aeroway.helipad" = "Sraigtasparnių aikštelė";
-"type.aeroway.runway" = "Runway";
+"type.aeroway.runway" = "Kilimo ir tūpimo takas";
 "type.aeroway.taxiway" = "Riedėjimo takas";
 "type.aeroway.terminal" = "Terminalas";
 "type.amenity" = "Paslaugos";
@@ -249,6 +249,7 @@
 
 /* Duplicates [address] in strings.txt */
 "type.building.address" = "Adresas";
+"type.building.construction" = "Statomas pastatas";
 "type.building.has_parts" = "Pastatas";
 "type.building_part" = "Pastatas";
 "type.building.garage" = "Garažas";
@@ -340,7 +341,7 @@
 "type.cuisine.mediterranean" = "Viduržemio jūros virtuvė";
 "type.cuisine.mexican" = "Meksikiečių virtuvė";
 "type.cuisine.moroccan" = "Maroko virtuvė";
-"type.cuisine.noodles" = "Makaronai";
+"type.cuisine.noodle" = "Makaronai";
 "type.cuisine.oriental" = "Rytų Azijos virtuvė";
 "type.cuisine.pancake" = "Blynai";
 "type.cuisine.pasta" = "Makaronai";
@@ -356,6 +357,7 @@
 "type.cuisine.sausage" = "Dešrelės";
 "type.cuisine.savory_pancakes" = "Nesaldūs blynai";
 "type.cuisine.seafood" = "Jūros gėrybės";
+"type.cuisine.shawarma" = "Šavarma";
 "type.cuisine.soba" = "Soba";
 "type.cuisine.spanish" = "Ispanų virtuvė";
 "type.cuisine.steak_house" = "Kepsnių restoranas";
@@ -642,6 +644,7 @@
 "type.historic.castle.shiro" = "Japonų pilis";
 "type.historic.castle.stately" = "Iškilminga pilis";
 "type.historic.city_gate" = "Miesto vartai";
+"type.man_made.ceremonial_gate" = "Ceremonijų vartai";
 "type.historic.citywalls" = "Miesto siena";
 "type.historic.fort" = "Fortas";
 "type.historic.gallows" = "Kartuvės";
@@ -882,13 +885,16 @@
 "type.natural.tree_row" = "Medžių eilė";
 "type.natural.vineyard" = "Vynuogynas";
 "type.natural.volcano" = "Ugnikalnis";
+"type.natural.volcano.active" = "Aktyvus ugnikalnis";
 "type.natural.water" = "Vanduo";
 "type.natural.wetland" = "Šlapynė";
 "type.natural.wetland.bog" = "Pelkė";
 "type.natural.wetland.marsh" = "Liūnas";
 "type.noexit" = "Akligatvis";
 "type.office" = "Biuras";
+"type.office.architect" = "Architektūros biuras";
 "type.office.company" = "Įmonės biuras";
+"type.office.educational_institution" = "Švietimo įstaiga";
 "type.office.estate_agent" = "Nekilnojamojo turto agentūra";
 "type.office.government" = "Valstybinė įstaiga";
 "type.office.insurance" = "Draudimo agentūra";
@@ -1293,6 +1299,15 @@
 "type.shop.chemist" = "Buitinė chemija";
 "type.shop.chocolate" = "Šokolado parduotuvė";
 "type.shop.clothes" = "Drabužių parduotuvė";
+"type.shop.clothes.children" = "Vaikų drabužių parduotuvė";
+"type.shop.clothes.fashion" = "Mados parduotuvė";
+"type.shop.clothes.hats" = "Kepurių parduotuvė";
+"type.shop.clothes.men" = "Vyriškų drabužių parduotuvė";
+"type.shop.clothes.sports" = "Sporto drabužių parduotuvė";
+"type.shop.clothes.suits" = "Kostiumų parduotuvė";
+"type.shop.clothes.underwear" = "Apatinių rūbų parduotuvė";
+"type.shop.clothes.wedding" = "Vestuvių drabužių parduotuvė";
+"type.shop.clothes.women" = "Moteriškų drabužių parduotuvė";
 "type.shop.coffee" = "Kavos parduotuvė";
 "type.shop.computer" = "Kompiuterių parduotuvė";
 "type.shop.confectionery" = "Saldumynų parduotuvė";
@@ -1313,6 +1328,7 @@
 "type.shop.funeral_directors" = "Laidojimo paslaugos";
 "type.shop.furniture" = "Baldai";
 "type.shop.garden_centre" = "Sodo centras";
+"type.shop.games" = "Žaidimų parduotuvė";
 "type.shop.gas" = "Dujų parduotuvė";
 "type.shop.gift" = "Dovanų parduotuvė";
 "type.shop.greengrocer" = "Vaisiai ir daržovės";
@@ -1431,6 +1447,18 @@
 "type.sport.field_hockey" = "Žolės riedulys";
 "type.sport.badminton" = "Badmintonas";
 "type.sport.pelota" = "Baskų pelota";
+"type.sport.boules" = "Petankas";
+"type.sport.cycling" = "Dviračių sportas";
+"type.sport.four_square" = "Keturi kvadratai";
+"type.sport.horse_racing" = "Žirgų lenktynės";
+"type.sport.karting" = "Kartingas";
+"type.sport.motocross" = "Motokrosas";
+"type.sport.motor" = "Motorinis sportas";
+"type.sport.netball" = "Tinklasvydis";
+"type.sport.pickleball" = "Pikbolas";
+"type.sport.rugby_union" = "Regbis";
+"type.sport.running" = "Bėgimas";
+"type.sport.softball" = "Softbolas";
 "type.tourism" = "Turizmas";
 "type.tourism.aquarium" = "Akvariumas";
 
@@ -1451,6 +1479,7 @@
 "type.attraction.historic" = "Istorinė atrakcija";
 "type.attraction.maze" = "Labirintas";
 "type.attraction.roller_coaster" = "Amerikietiški kalneliai";
+"type.roller_coaster.track" = "Amerikietiški kalneliai";
 "type.attraction.water_slide" = "Vandens kalnelis";
 "type.tourism.attraction.specified" = "Lankytina vieta";
 "type.tourism.camp_site" = "Stovyklavietė";
@@ -1484,6 +1513,7 @@
 "type.traffic_calming.bump" = "Greičio mažinimo kalnelis";
 "type.traffic_calming.hump" = "Greičio mažinimo kalnelis";
 "type.waterway" = "Vandens kelias";
+"type.waterway.access_point" = "Prieigos prie vandens kelių taškas";
 "type.waterway.canal" = "Kanalas";
 "type.waterway.canal.tunnel" = "Kanalo tunelis";
 "type.waterway.fish_pass" = "Žuvitakis";
@@ -1577,3 +1607,4 @@
 "type.craft.watchmaker" = "Laikrodininkas";
 "type.xmas_feature.market" = "Kalėdų mugė";
 "type.xmas_feature.tree" = "Kalėdų eglutė";
+"type.amenity.hookah_lounge" = "Kaljanų baras";

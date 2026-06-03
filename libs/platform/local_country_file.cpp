@@ -3,8 +3,8 @@
 #include "platform/mwm_version.hpp"
 #include "platform/platform.hpp"
 
+#include "coding/blake3.hpp"
 #include "coding/internal/file_data.hpp"
-#include "coding/sha1.hpp"
 
 #include "base/assert.hpp"
 #include "base/file_name_utils.hpp"
@@ -107,16 +107,27 @@ bool LocalCountryFile::operator==(LocalCountryFile const & rhs) const
 
 bool LocalCountryFile::ValidateIntegrity() const
 {
-  auto calculatedSha1 = coding::SHA1::CalculateBase64(GetPath(MapFileType::Map));
-  ASSERT_EQUAL(calculatedSha1, m_countryFile.GetSha1(), ("Integrity failure"));
-  return calculatedSha1 == m_countryFile.GetSha1();
+  auto calculatedHash = coding::Blake3::CalculateMwmBase64(GetPath(MapFileType::Map));
+  ASSERT_EQUAL(calculatedHash, m_countryFile.GetHash(), ("Integrity failure"));
+  return calculatedHash == m_countryFile.GetHash();
 }
 
 // static
 LocalCountryFile LocalCountryFile::MakeForTesting(std::string countryFileName, int64_t version)
 {
-  LocalCountryFile localFile(GetPlatform().WritableDir(), CountryFile(std::move(countryFileName)), version);
+  auto const & pl = GetPlatform();
+  // Try ResourcesDir first (where test data files like minsk-pass.mwm reside),
+  // fall back to WritableDir (per-test temp directory for parallel execution).
+  std::string dir = pl.ResourcesDir();
+  LocalCountryFile localFile(dir, CountryFile(countryFileName), version);
   localFile.SyncWithDisk();
+
+  if (!localFile.HasFiles())
+  {
+    dir = pl.WritableDir();
+    localFile = LocalCountryFile(dir, CountryFile(std::move(countryFileName)), version);
+    localFile.SyncWithDisk();
+  }
   return localFile;
 }
 

@@ -188,6 +188,7 @@
     <string name="type.building">Bygning</string>
     <!-- Duplicates [address] in strings.txt -->
     <string name="type.building.address">Adresse</string>
+    <string name="type.building.construction">Bygning under oppføring</string>
     <string name="type.building.has_parts">Bygning</string>
     <string name="type.building_part">Bygning</string>
     <string name="type.building.garage">Garasje</string>
@@ -276,7 +277,7 @@
     <string name="type.cuisine.mediterranean">Middelhavsmat</string>
     <string name="type.cuisine.mexican">Meksikansk mat</string>
     <string name="type.cuisine.moroccan">Marokkansk mat</string>
-    <string name="type.cuisine.noodles">Nudler</string>
+    <string name="type.cuisine.noodle">Nudler</string>
     <string name="type.cuisine.oriental">Orientalsk mat</string>
     <string name="type.cuisine.pancake">Pannekake</string>
     <string name="type.cuisine.pasta">Pasta</string>
@@ -292,6 +293,7 @@
     <string name="type.cuisine.sausage">Pølse</string>
     <string name="type.cuisine.savory_pancakes">Fylte pannekaker</string>
     <string name="type.cuisine.seafood">Sjømat</string>
+    <string name="type.cuisine.shawarma">Shawarma</string>
     <string name="type.cuisine.soba">Soba</string>
     <string name="type.cuisine.spanish">Spansk mat</string>
     <string name="type.cuisine.steak_house">Biffrestaurant</string>
@@ -512,6 +514,7 @@
     <string name="type.historic.castle.shiro">Japanske borger</string>
     <string name="type.historic.castle.stately">Slott</string>
     <string name="type.historic.city_gate">Byport</string>
+    <string name="type.man_made.ceremonial_gate">Seremoniell port</string>
     <string name="type.historic.citywalls">Bymur</string>
     <string name="type.historic.fort">Fort</string>
     <string name="type.historic.gallows">Galge</string>
@@ -577,6 +580,8 @@
     <string name="type.leisure.stadium">Stadion</string>
     <string name="type.leisure.swimming_pool">Svømmebasseng</string>
     <string name="type.leisure.swimming_pool.private">Svømmebasseng</string>
+    <string name="type.leisure.track">Løpebane</string>
+    <string name="type.leisure.track.area">Løpebane</string>
     <string name="type.leisure.water_park">Vannpark</string>
     <string name="type.man_made.chimney">Fabrikkpipe</string>
     <string name="type.man_made.lighthouse">Fyr</string>
@@ -638,12 +643,15 @@
     <string name="type.natural.tree_row">Trerekke</string>
     <string name="type.natural.vineyard">Vingård</string>
     <string name="type.natural.volcano">Vulkan</string>
+    <string name="type.natural.volcano.active">Aktiv vulkan</string>
     <string name="type.natural.water">Vann</string>
     <string name="type.natural.wetland">Våtmarksområde</string>
     <string name="type.natural.wetland.bog">Myr</string>
     <string name="type.natural.wetland.marsh">Sump</string>
     <string name="type.office">Kontor</string>
+    <string name="type.office.architect">Arkitektkontor</string>
     <string name="type.office.company">Firmakontor</string>
+    <string name="type.office.educational_institution">Utdanningsinstitusjon</string>
     <string name="type.office.estate_agent">Eiendomsmegler</string>
     <string name="type.office.government">Offentlig kontor</string>
     <string name="type.office.insurance">Forsikring</string>
@@ -989,6 +997,15 @@
     <string name="type.shop.chemist">Husholdningsartikler</string>
     <string name="type.shop.chocolate">Butikk</string>
     <string name="type.shop.clothes">Klesbutikk</string>
+    <string name="type.shop.clothes.children">Barneklærbutikk</string>
+    <string name="type.shop.clothes.fashion">Motebutikk</string>
+    <string name="type.shop.clothes.hats">Hattebutikk</string>
+    <string name="type.shop.clothes.men">Herreklærbutikk</string>
+    <string name="type.shop.clothes.sports">Sportsklærbutikk</string>
+    <string name="type.shop.clothes.suits">Draktbutikk</string>
+    <string name="type.shop.clothes.underwear">Undertøybutikk</string>
+    <string name="type.shop.clothes.wedding">Brudekjolebutikk</string>
+    <string name="type.shop.clothes.women">Dameklærbutikk</string>
     <string name="type.shop.coffee">Butikk</string>
     <string name="type.shop.computer">Databutikk</string>
     <string name="type.shop.confectionery">Søtsaker</string>
@@ -1009,6 +1026,7 @@
     <string name="type.shop.funeral_directors">Begravelsebyrå</string>
     <string name="type.shop.furniture">Møbelbutikk</string>
     <string name="type.shop.garden_centre">Planteskole</string>
+    <string name="type.shop.games">Spillbutikk</string>
     <string name="type.shop.gas">Gassbutikk</string>
     <string name="type.shop.gift">Gavebutikk</string>
     <string name="type.shop.greengrocer">Frukt- og grønnsakshandler</string>
@@ -1124,6 +1142,18 @@
     <string name="type.sport.field_hockey">Landhockey</string>
     <string name="type.sport.badminton">Badminton</string>
     <string name="type.sport.pelota">Baskisk pelota</string>
+    <string name="type.sport.boules">Boule</string>
+    <string name="type.sport.cycling">Sykling</string>
+    <string name="type.sport.four_square">Fire kvadrater</string>
+    <string name="type.sport.horse_racing">Hesteveddeløp</string>
+    <string name="type.sport.karting">Gokart</string>
+    <string name="type.sport.motocross">Motocross</string>
+    <string name="type.sport.motor">Motorsport</string>
+    <string name="type.sport.netball">Netball</string>
+    <string name="type.sport.pickleball">Pickleball</string>
+    <string name="type.sport.rugby_union">Rugby</string>
+    <string name="type.sport.running">Løping</string>
+    <string name="type.sport.softball">Softball</string>
     <string name="type.tourism">Turisme</string>
     <string name="type.tourism.aquarium">Akvarium</string>
     <!-- Typically serviced, staff is present and food is available (compared to wilderness_hut). -->
@@ -1141,6 +1171,7 @@
     <string name="type.attraction.historic">Historisk attraksjon</string>
     <string name="type.attraction.maze">Labyrint</string>
     <string name="type.attraction.roller_coaster">Berg- og dalbane</string>
+    <string name="type.roller_coaster.track">Berg- og dalbane</string>
     <string name="type.attraction.water_slide">Vannrutsjebane</string>
     <string name="type.tourism.attraction.specified">Attraksjon</string>
     <string name="type.tourism.camp_site">Campingplass</string>
@@ -1153,7 +1184,7 @@
     <string name="type.tourism.hotel">Hotell</string>
     <string name="type.tourism.information">Turistinformasjon</string>
     <string name="type.tourism.information.board">Informasjonstavle</string>
-    <string name="type.tourism.information.guidepost">Guidepost</string>
+    <string name="type.tourism.information.guidepost">Veiviser</string>
     <string name="type.tourism.information.map">Turistkart</string>
     <string name="type.tourism.information.office">Turistkontor</string>
     <string name="type.tourism.information.visitor_centre">Besøkssenter</string>
@@ -1166,6 +1197,7 @@
     <string name="type.tourism.wilderness_hut">Villmarkshytte</string>
     <string name="type.tourism.zoo">Dyrehage</string>
     <string name="type.tourism.zoo.petting">Dyrehage</string>
+    <string name="type.waterway.access_point">Adkomstpunkt for vannvei</string>
     <string name="type.waterway.canal">Kanal</string>
     <string name="type.waterway.canal.tunnel">Kanal</string>
     <string name="type.waterway.fish_pass">Fiskestige</string>
@@ -1183,7 +1215,7 @@
     <string name="type.wheelchair.limited">Begrenset tilgang for rullestol</string>
     <string name="type.wheelchair.no">Ingen tilgang for rullestol</string>
     <string name="type.wheelchair.yes">Full tilgang for rullestol</string>
-    <string name="type.piste_type.snow_park">Snow Park</string>
+    <string name="type.piste_type.snow_park">Snøpark</string>
     <string name="type.piste_type.hike">Tursti i snø</string>
     <string name="type.piste_type.connection">Pisteforbindelse</string>
     <string name="type.piste_type.skitour">Skitour-stien</string>
@@ -1219,4 +1251,5 @@
     <string name="type.craft.watchmaker">Urmaker</string>
     <string name="type.xmas_feature.market">Julemarked</string>
     <string name="type.xmas_feature.tree">Juletre</string>
+    <string name="type.amenity.hookah_lounge">Vannpipebar</string>
 </resources>

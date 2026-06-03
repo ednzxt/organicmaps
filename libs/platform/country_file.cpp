@@ -2,8 +2,6 @@
 
 #include "base/assert.hpp"
 
-#include <sstream>
-
 #include "defines.hpp"
 
 namespace platform
@@ -26,16 +24,14 @@ CountryFile::CountryFile() : m_mapSize(0) {}
 
 CountryFile::CountryFile(std::string name) : m_name(std::move(name)), m_mapSize(0) {}
 
-CountryFile::CountryFile(std::string name, MwmSize size, std::string sha1)
+CountryFile::CountryFile(std::string name, MwmSize size, std::string hash)
   : m_name(std::move(name))
   , m_mapSize(size)
-  , m_sha1(std::move(sha1))
+  , m_hash(std::move(hash))
 {}
 
 std::string DebugPrint(CountryFile const & file)
 {
-  std::ostringstream os;
-  os << "CountryFile [" << file.m_name << "]";
-  return os.str();
+  return "CountryFile [" + file.m_name + "]";
 }
 }  // namespace platform

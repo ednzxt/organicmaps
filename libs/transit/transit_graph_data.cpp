@@ -11,6 +11,7 @@
 #include <algorithm>
 #include <iterator>
 #include <set>
+#include <string_view>
 
 #include "defines.hpp"
 
@@ -19,8 +20,6 @@ namespace routing
 namespace transit
 {
 using namespace routing;
-using namespace std;
-
 namespace
 {
 struct ClearVisitor
@@ -37,10 +36,10 @@ struct SortVisitor
   template <typename Cont>
   void operator()(Cont & c, char const * /* name */) const
   {
-    sort(c.begin(), c.end());
+    std::sort(c.begin(), c.end());
 
     auto const end = c.end();
-    auto const it = unique(c.begin(), end, [](auto const & l, auto const & r)
+    auto const it = std::unique(c.begin(), end, [](auto const & l, auto const & r)
     {
       if (l == r)
       {
@@ -87,24 +86,24 @@ struct CheckSortedVisitor
 };
 
 template <typename T>
-void Append(vector<T> const & src, vector<T> & dst)
+void Append(std::vector<T> const & src, std::vector<T> & dst)
 {
   dst.insert(dst.end(), src.begin(), src.end());
 }
 
-bool HasStop(vector<Stop> const & stops, StopId stopId)
+bool HasStop(std::vector<Stop> const & stops, StopId stopId)
 {
-  return binary_search(stops.cbegin(), stops.cend(), Stop(stopId));
+  return std::binary_search(stops.cbegin(), stops.cend(), Stop(stopId));
 }
 
 /// \brief Removes from |items| all items which stop ids is not contained in |stops|.
 /// \note This method keeps relative order of |items|.
 template <class Item>
-void ClipItemsByStops(vector<Stop> const & stops, vector<Item> & items)
+void ClipItemsByStops(std::vector<Stop> const & stops, std::vector<Item> & items)
 {
-  CHECK(is_sorted(stops.cbegin(), stops.cend()), ());
+  CHECK(std::is_sorted(stops.cbegin(), stops.cend()), ());
 
-  vector<Item> itemsToFill;
+  std::vector<Item> itemsToFill;
   for (auto const & item : items)
   {
     for (auto const stopId : item.GetStopIds())
@@ -123,10 +122,10 @@ void ClipItemsByStops(vector<Stop> const & stops, vector<Item> & items)
 /// \returns ref to an item at |items| by |id|.
 /// \note |items| must be sorted before a call of this method.
 template <class Id, class Item>
-Item const & FindById(vector<Item> const & items, Id id)
+Item const & FindById(std::vector<Item> const & items, Id id)
 {
-  auto const s1Id = equal_range(items.cbegin(), items.cend(), Item(id));
-  CHECK_EQUAL(distance(s1Id.first, s1Id.second), 1,
+  auto const s1Id = std::equal_range(items.cbegin(), items.cend(), Item(id));
+  CHECK_EQUAL(std::distance(s1Id.first, s1Id.second), 1,
               ("An item with id:", id, "is not unique or there's not such item. items:", items));
   return *s1Id.first;
 }
@@ -134,9 +133,9 @@ Item const & FindById(vector<Item> const & items, Id id)
 /// \brief Fills |items| with items which have ids from |ids|.
 /// \note |items| must be sorted before a call of this method.
 template <class Id, class Item>
-void UpdateItems(set<Id> const & ids, vector<Item> & items)
+void UpdateItems(std::set<Id> const & ids, std::vector<Item> & items)
 {
-  vector<Item> itemsToFill;
+  std::vector<Item> itemsToFill;
   itemsToFill.reserve(ids.size());
   for (auto const id : ids)
     itemsToFill.push_back(FindById(items, id));
@@ -146,7 +145,8 @@ void UpdateItems(set<Id> const & ids, vector<Item> & items)
 }
 
 template <class Item>
-void ReadItems(uint32_t start, uint32_t end, string const & name, NonOwningReaderSource & src, vector<Item> & items)
+void ReadItems(uint32_t start, uint32_t end, std::string const & name, NonOwningReaderSource & src,
+               std::vector<Item> & items)
 {
   Deserializer<NonOwningReaderSource> deserializer(src);
   CHECK_EQUAL(src.Pos(), start, ("Wrong", TRANSIT_FILE_TAG, "section format. Table name:", name));
@@ -157,7 +157,7 @@ void ReadItems(uint32_t start, uint32_t end, string const & name, NonOwningReade
 }  // namespace
 
 // DeserializerFromJson ---------------------------------------------------------------------------
-DeserializerFromJson::DeserializerFromJson(json_t * node, OsmIdToFeatureIdsMap const & osmIdToFeatureIds)
+DeserializerFromJson::DeserializerFromJson(JsonValue * node, OsmIdToFeatureIdsMap const & osmIdToFeatureIds)
   : m_node(node)
   , m_osmIdToFeatureIds(osmIdToFeatureIds)
 {}
@@ -167,21 +167,21 @@ void DeserializerFromJson::operator()(m2::PointD & p, char const * name)
   // @todo(bykoianko) Instead of having a special operator() method for m2::PointD class it's
   // necessary to add Point class to transit_types.hpp and process it in DeserializerFromJson with
   // regular method.
-  json_t * item = nullptr;
+  JsonValue * item = nullptr;
   if (name == nullptr)
     item = m_node;  // Array item case
   else
-    item = base::GetJSONObligatoryField(m_node, name);
+    item = GetJsonObligatoryField(m_node, name);
 
-  CHECK(json_is_object(item), ("Item is not a json object:", name));
-  FromJSONObject(item, "x", p.x);
-  FromJSONObject(item, "y", p.y);
+  CHECK(item->is_object(), ("Item is not a json object:", name));
+  FromJsonValue(*GetJsonObligatoryField(item, "x"), p.x);
+  FromJsonValue(*GetJsonObligatoryField(item, "y"), p.y);
 }
 
 void DeserializerFromJson::operator()(FeatureIdentifiers & id, char const * name)
 {
   // Conversion osm id to feature id.
-  string osmIdStr;
+  std::string osmIdStr;
   GetField(osmIdStr, name);
   uint64_t osmIdNum;
   CHECK(strings::to_uint64(osmIdStr, osmIdNum), ("Cann't convert osm id string:", osmIdStr, "to a number."));
@@ -215,15 +215,19 @@ void DeserializerFromJson::operator()(EdgeFlags & edgeFlags, char const * name)
 
 void DeserializerFromJson::operator()(StopIdRanges & rs, char const * name)
 {
-  vector<StopId> stopIds;
+  std::vector<StopId> stopIds;
   (*this)(stopIds, name);
   rs = StopIdRanges({stopIds});
 }
 
 // GraphData --------------------------------------------------------------------------------------
-void GraphData::DeserializeFromJson(base::Json const & root, OsmIdToFeatureIdsMap const & mapping)
+void GraphData::DeserializeFromJson(std::string_view json, OsmIdToFeatureIdsMap const & mapping)
 {
-  DeserializerFromJson deserializer(root.get(), mapping);
+  JsonValue root;
+  if (auto const error = glz::read_json(root, json); error)
+    MYTHROW(RootException, (glz::format_error(error, json)));
+
+  DeserializerFromJson deserializer(&root, mapping);
   Visit(deserializer);
 
   // Removes equivalent edges from |m_edges|. If there are several equivalent edges only
@@ -376,7 +380,7 @@ void GraphData::Sort()
   Visit(v);
 }
 
-void GraphData::ClipGraph(vector<m2::RegionD> const & borders)
+void GraphData::ClipGraph(std::vector<m2::RegionD> const & borders)
 {
   Sort();
   CheckValidSortedUnique();
@@ -396,15 +400,15 @@ void GraphData::SetGateBestPedestrianSegment(size_t gateIdx, SingleMwmSegment co
   m_gates[gateIdx].SetBestPedestrianSegment(s);
 }
 
-void GraphData::ClipLines(vector<m2::RegionD> const & borders)
+void GraphData::ClipLines(std::vector<m2::RegionD> const & borders)
 {
   // Set with stop ids with stops which are inside |borders|.
-  set<StopId> stopIdInside;
+  std::set<StopId> stopIdInside;
   for (auto const & stop : m_stops)
     if (m2::RegionsContain(borders, stop.GetPoint()))
       stopIdInside.insert(stop.GetId());
 
-  set<StopId> hasNeighborInside;
+  std::set<StopId> hasNeighborInside;
   for (auto const & edge : m_edges)
   {
     auto const stop1Inside = stopIdInside.count(edge.GetStop1Id()) != 0;
@@ -418,7 +422,7 @@ void GraphData::ClipLines(vector<m2::RegionD> const & borders)
   stopIdInside.insert(hasNeighborInside.cbegin(), hasNeighborInside.cend());
 
   // Filling |lines| with stops inside |borders|.
-  vector<Line> lines;
+  std::vector<Line> lines;
   for (auto const & line : m_lines)
   {
     // Note. |stopIdsToFill| will be filled with continuous sequences of stop ids.
@@ -430,7 +434,7 @@ void GraphData::ClipLines(vector<m2::RegionD> const & borders)
     Ranges stopIdsToFill;
     Ranges const & ranges = line.GetStopIds();
     CHECK_EQUAL(ranges.size(), 1, ());
-    vector<StopId> const & stopIds = ranges[0];
+    std::vector<StopId> const & stopIds = ranges[0];
     auto it = stopIds.begin();
     while (it != stopIds.end())
     {
@@ -456,8 +460,8 @@ void GraphData::ClipLines(vector<m2::RegionD> const & borders)
 
 void GraphData::ClipStops()
 {
-  CHECK(is_sorted(m_stops.cbegin(), m_stops.cend()), ());
-  set<StopId> stopIds;
+  CHECK(std::is_sorted(m_stops.cbegin(), m_stops.cend()), ());
+  std::set<StopId> stopIds;
   for (auto const & line : m_lines)
     for (auto const & range : line.GetStopIds())
       stopIds.insert(range.cbegin(), range.cend());
@@ -467,8 +471,8 @@ void GraphData::ClipStops()
 
 void GraphData::ClipNetworks()
 {
-  CHECK(is_sorted(m_networks.cbegin(), m_networks.cend()), ());
-  set<NetworkId> networkIds;
+  CHECK(std::is_sorted(m_networks.cbegin(), m_networks.cend()), ());
+  std::set<NetworkId> networkIds;
   for (auto const & line : m_lines)
     networkIds.insert(line.GetNetworkId());
 
@@ -487,9 +491,9 @@ void GraphData::ClipTransfer()
 
 void GraphData::ClipEdges()
 {
-  CHECK(is_sorted(m_stops.cbegin(), m_stops.cend()), ());
+  CHECK(std::is_sorted(m_stops.cbegin(), m_stops.cend()), ());
 
-  vector<Edge> edges;
+  std::vector<Edge> edges;
   for (auto const & edge : m_edges)
     if (HasStop(m_stops, edge.GetStop1Id()) && HasStop(m_stops, edge.GetStop2Id()))
       edges.push_back(edge);
@@ -500,17 +504,17 @@ void GraphData::ClipEdges()
 
 void GraphData::ClipShapes()
 {
-  CHECK(is_sorted(m_edges.cbegin(), m_edges.cend()), ());
+  CHECK(std::is_sorted(m_edges.cbegin(), m_edges.cend()), ());
 
   // Set with shape ids contained in m_edges.
-  set<ShapeId> shapeIdInEdges;
+  std::set<ShapeId> shapeIdInEdges;
   for (auto const & edge : m_edges)
   {
     auto const & shapeIds = edge.GetShapeIds();
     shapeIdInEdges.insert(shapeIds.cbegin(), shapeIds.cend());
   }
 
-  vector<Shape> shapes;
+  std::vector<Shape> shapes;
   for (auto const & shape : m_shapes)
     if (shapeIdInEdges.count(shape.GetId()) != 0)
       shapes.push_back(shape);

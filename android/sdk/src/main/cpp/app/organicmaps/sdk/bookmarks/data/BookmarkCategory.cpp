@@ -3,6 +3,10 @@
 #include "app/organicmaps/sdk/Framework.hpp"
 #include "app/organicmaps/sdk/core/jni_helper.hpp"
 
+#include "drape/color.hpp"
+
+#include "kml/types.hpp"
+
 namespace
 {
 inline jclass getBookmarkCategoryClass(JNIEnv * env)
@@ -196,5 +200,24 @@ JNIEXPORT jintArray Java_app_organicmaps_sdk_bookmarks_data_BookmarkCategory_nat
   env->ReleaseIntArrayElements(jTypes, arr, 0);
 
   return jTypes;
+}
+
+JNIEXPORT void Java_app_organicmaps_sdk_bookmarks_data_BookmarkCategory_nativeSetCategoryBookmarksColor(JNIEnv *,
+                                                                                                        jclass,
+                                                                                                        jlong catId,
+                                                                                                        jint colorIndex)
+{
+  CHECK_LESS(static_cast<size_t>(colorIndex), kml::kOrderedPredefinedColors.size(), ());
+  frm()->GetBookmarkManager().GetEditSession().SetCategoryBookmarksColor(static_cast<kml::MarkGroupId>(catId),
+                                                                         kml::kOrderedPredefinedColors[colorIndex]);
+}
+
+JNIEXPORT void Java_app_organicmaps_sdk_bookmarks_data_BookmarkCategory_nativeSetCategoryTracksCustomColor(JNIEnv *,
+                                                                                                           jclass,
+                                                                                                           jlong catId,
+                                                                                                           jint color)
+{
+  frm()->GetBookmarkManager().GetEditSession().SetCategoryTracksColor(
+      static_cast<kml::MarkGroupId>(catId), dp::Color::FromARGB(static_cast<uint32_t>(color)));
 }
 }  // extern "C"

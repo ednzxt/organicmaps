@@ -58,7 +58,10 @@ static constexpr NSTimeInterval kTimeoutIntervalInSeconds = 10;
 @property(nonatomic, strong) NSURLSession * session;
 @property(nonatomic, strong) NSMutableDictionary * tasks;
 @property(nonatomic, strong) NSMutableDictionary * restoredTasks;
-/// Stores a map of URL.path => NSData to resume failed downloads.
+/// Maps a full download URL string => resume NSData. Keyed by the full URL, not just the path,
+/// because resume data is bound to the server that produced it: -downloadTaskWithResumeData:
+/// rebuilds the request from the blob and re-issues it to that server, so reusing it for a
+/// different mirror (CDN fallback or ?map-download-server) would ignore the newly selected server.
 @property(nonatomic, strong) NSMutableDictionary * resumeData;
 @property(nonatomic, strong) MapFileSaveStrategy * saveStrategy;
 
@@ -148,7 +151,7 @@ static constexpr NSTimeInterval kTimeoutIntervalInSeconds = 10;
   }
   else
   {
-    NSData * resumeData = self.resumeData[url.path];
+    NSData * resumeData = self.resumeData[url.absoluteString];
     NSURLSessionTask * task =
         resumeData ? [self.session downloadTaskWithResumeData:resumeData] : [self.session downloadTaskWithURL:url];
     TaskInfo * info = [[TaskInfo alloc] initWithTask:task completion:completion progress:progress];
@@ -166,7 +169,7 @@ static constexpr NSTimeInterval kTimeoutIntervalInSeconds = 10;
   if (info)
   {
     [info.task cancel];
-    [self.resumeData removeObjectForKey:info.task.currentRequest.URL.path];
+    [self.resumeData removeObjectForKey:info.task.currentRequest.URL.absoluteString];
     [self.tasks removeObjectForKey:@(taskIdentifier)];
   }
   else
@@ -177,7 +180,7 @@ static constexpr NSTimeInterval kTimeoutIntervalInSeconds = 10;
       if (restoredTask.taskIdentifier == taskIdentifier)
       {
         [restoredTask cancel];
-        [self.resumeData removeObjectForKey:restoredTask.currentRequest.URL.path];
+        [self.resumeData removeObjectForKey:restoredTask.currentRequest.URL.absoluteString];
         [self.restoredTasks removeObjectForKey:key];
         break;
       }
@@ -187,10 +190,12 @@ static constexpr NSTimeInterval kTimeoutIntervalInSeconds = 10;
 
 - (void)clear
 {
-  for (TaskInfo * info in self.tasks)
+  // Fast enumeration over an NSDictionary yields its keys, not its values: self.tasks is keyed by
+  // task identifier and restoredTasks by URL path. Iterate allValues to cancel the task objects.
+  for (TaskInfo * info in self.tasks.allValues)
     [info.task cancel];
 
-  for (NSURLSessionTask * restoredTask in self.restoredTasks)
+  for (NSURLSessionTask * restoredTask in self.restoredTasks.allValues)
     [restoredTask cancel];
 
   [self.tasks removeAllObjects];
@@ -204,10 +209,13 @@ static constexpr NSTimeInterval kTimeoutIntervalInSeconds = 10;
 {
   NSString * urlPath = downloadTask.currentRequest.URL.path;
   [self.restoredTasks removeObjectForKey:urlPath];
+
+  // Resume data is keyed by the full URL (see resumeData declaration), unlike restoredTasks above.
+  NSString * urlString = downloadTask.currentRequest.URL.absoluteString;
   if (error && error.userInfo && error.userInfo[NSURLSessionDownloadTaskResumeData])
-    self.resumeData[urlPath] = error.userInfo[NSURLSessionDownloadTaskResumeData];
+    self.resumeData[urlString] = error.userInfo[NSURLSessionDownloadTaskResumeData];
   else
-    [self.resumeData removeObjectForKey:urlPath];
+    [self.resumeData removeObjectForKey:urlString];
 
   TaskInfo * info = [self.tasks objectForKey:@(downloadTask.taskIdentifier)];
   if (!info)

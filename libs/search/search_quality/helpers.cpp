@@ -18,21 +18,27 @@
 #include <limits>
 #include <utility>
 
-#include "defines.hpp"
+#include <glaze/json.hpp>
 
-#include "cppjansson/cppjansson.hpp"
+#include "defines.hpp"
 
 namespace search
 {
 namespace search_quality
 {
-using namespace std;
+namespace helpers_json
+{
+struct Coord
+{
+  double coord = 0.0;
+};
+}  // namespace helpers_json
 
 namespace
 {
 uint64_t ReadVersionFromHeader(platform::LocalCountryFile const & mwm)
 {
-  vector<string> const kSpecialFiles = {WORLD_FILE_NAME, WORLD_COASTS_FILE_NAME};
+  std::vector<std::string> const kSpecialFiles = {WORLD_FILE_NAME, WORLD_COASTS_FILE_NAME};
   for (auto const & name : kSpecialFiles)
     if (mwm.GetCountryName() == name)
       return mwm.GetVersion();
@@ -43,42 +49,41 @@ uint64_t ReadVersionFromHeader(platform::LocalCountryFile const & mwm)
 
 void CheckLocale()
 {
-  string const kJson = "{\"coord\":123.456}";
-  string const kErrorMsg = "Bad locale. Consider setting LC_ALL=C";
+  std::string const kJson = "{\"coord\":123.456}";
+  std::string const kErrorMsg = "Bad locale. Consider setting LC_ALL=C";
 
   double coord;
   {
-    base::Json root(kJson.c_str());
-    FromJSONObject(root.get(), "coord", coord);
+    helpers_json::Coord root;
+    auto const error = glz::read_json(root, kJson);
+    CHECK(!error, (glz::format_error(error, kJson)));
+    coord = root.coord;
   }
 
-  string line;
+  std::string line;
   {
-    auto root = base::NewJSONObject();
-    ToJSONObject(*root, "coord", coord);
-
-    unique_ptr<char, JSONFreeDeleter> buffer(json_dumps(root.get(), JSON_COMPACT));
-
-    line.append(buffer.get());
+    helpers_json::Coord root{.coord = coord};
+    auto const error = glz::write_json(root, line);
+    CHECK(!error, (glz::format_error(error)));
   }
 
   CHECK_EQUAL(line, kJson, (kErrorMsg));
 
   {
-    string const kTest = "123.456";
+    std::string const kTest = "123.456";
     double value;
     VERIFY(strings::to_double(kTest, value), (kTest));
     CHECK_EQUAL(strings::to_string(value), kTest, (kErrorMsg));
   }
 }
 
-void ReadStringsFromFile(string const & path, vector<string> & result)
+void ReadStringsFromFile(std::string const & path, std::vector<std::string> & result)
 {
-  ifstream stream(path.c_str());
+  std::ifstream stream(path.c_str());
   CHECK(stream.is_open(), ("Can't open", path));
 
-  string s;
-  while (getline(stream, s))
+  std::string s;
+  while (std::getline(stream, s))
   {
     strings::Trim(s);
     if (!s.empty())
@@ -86,7 +91,7 @@ void ReadStringsFromFile(string const & path, vector<string> & result)
   }
 }
 
-void SetPlatformDirs(string const & dataPath, string const & mwmPath)
+void SetPlatformDirs(std::string const & dataPath, std::string const & mwmPath)
 {
   Platform & platform = GetPlatform();
 
@@ -100,12 +105,13 @@ void SetPlatformDirs(string const & dataPath, string const & mwmPath)
   LOG(LINFO, ("resources dir =", platform.ResourcesDir()));
 }
 
-void InitViewport(string viewportName, m2::RectD & viewport)
+void InitViewport(std::string viewportName, m2::RectD & viewport)
 {
-  map<string, m2::RectD> const kViewports = {{"default", m2::RectD(m2::PointD(0.0, 0.0), m2::PointD(1.0, 1.0))},
-                                             {"moscow", mercator::RectByCenterLatLonAndSizeInMeters(55.7, 37.7, 5000)},
-                                             {"london", mercator::RectByCenterLatLonAndSizeInMeters(51.5, 0.0, 5000)},
-                                             {"zurich", mercator::RectByCenterLatLonAndSizeInMeters(47.4, 8.5, 5000)}};
+  std::map<std::string, m2::RectD> const kViewports = {
+      {"default", m2::RectD(m2::PointD(0.0, 0.0), m2::PointD(1.0, 1.0))},
+      {"moscow", mercator::RectByCenterLatLonAndSizeInMeters(55.7, 37.7, 5000)},
+      {"london", mercator::RectByCenterLatLonAndSizeInMeters(51.5, 0.0, 5000)},
+      {"zurich", mercator::RectByCenterLatLonAndSizeInMeters(47.4, 8.5, 5000)}};
 
   auto it = kViewports.find(viewportName);
   if (it == kViewports.end())
@@ -119,19 +125,19 @@ void InitViewport(string viewportName, m2::RectD & viewport)
   LOG(LINFO, ("Viewport is set to:", viewportName, DebugPrint(viewport)));
 }
 
-void InitDataSource(FrozenDataSource & dataSource, string const & mwmListPath)
+void InitDataSource(FrozenDataSource & dataSource, std::string const & mwmListPath)
 {
-  vector<platform::LocalCountryFile> mwms;
+  std::vector<platform::LocalCountryFile> mwms;
   if (!mwmListPath.empty())
   {
-    vector<string> availableMwms;
+    std::vector<std::string> availableMwms;
     ReadStringsFromFile(mwmListPath, availableMwms);
     for (auto const & countryName : availableMwms)
       mwms.emplace_back(GetPlatform().WritableDir(), platform::CountryFile(countryName), 0);
   }
   else
   {
-    platform::FindAllLocalMapsAndCleanup(numeric_limits<int64_t>::max() /* the latest version */, mwms);
+    platform::FindAllLocalMapsAndCleanup(std::numeric_limits<int64_t>::max() /* the latest version */, mwms);
   }
 
   LOG(LINFO, ("Initializing the data source with the following mwms:"));
@@ -144,14 +150,14 @@ void InitDataSource(FrozenDataSource & dataSource, string const & mwmListPath)
   LOG(LINFO, ());
 }
 
-unique_ptr<search::tests_support::TestSearchEngine> InitSearchEngine(DataSource & dataSource, string const & locale,
-                                                                     size_t numThreads)
+std::unique_ptr<search::tests_support::TestSearchEngine> InitSearchEngine(DataSource & dataSource,
+                                                                          std::string const & locale, size_t numThreads)
 {
   search::Engine::Params params;
   params.m_locale = locale;
   params.m_numThreads = base::checked_cast<size_t>(numThreads);
 
-  return make_unique<search::tests_support::TestSearchEngine>(dataSource, params);
+  return std::make_unique<search::tests_support::TestSearchEngine>(dataSource, params);
 }
 }  // namespace search_quality
 }  // namespace search

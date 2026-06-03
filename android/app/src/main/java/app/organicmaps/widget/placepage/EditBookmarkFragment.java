@@ -27,17 +27,20 @@ import app.organicmaps.sdk.bookmarks.data.BookmarkCategory;
 import app.organicmaps.sdk.bookmarks.data.BookmarkInfo;
 import app.organicmaps.sdk.bookmarks.data.BookmarkManager;
 import app.organicmaps.sdk.bookmarks.data.Icon;
-import app.organicmaps.sdk.bookmarks.data.PredefinedColors;
 import app.organicmaps.sdk.bookmarks.data.Track;
 import app.organicmaps.util.InputUtils;
 import app.organicmaps.util.UiUtils;
 import app.organicmaps.util.WindowInsetUtils.PaddingInsetsListener;
 import app.organicmaps.utils.Graphics;
+import app.organicmaps.widget.colorpicker.TrackColorPickerFragment;
+import app.organicmaps.widget.colorpicker.TrackColorPickerViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import java.util.List;
 
-public class EditBookmarkFragment extends BaseMwmDialogFragment implements View.OnClickListener, Listener
+public class EditBookmarkFragment extends BaseMwmDialogFragment
+    implements View.OnClickListener, Listener, BookmarkColorDialogFragment.OnBookmarkColorChangeListener,
+               TrackColorPickerFragment.OnTrackColorChangeListener
 {
   public static final String EXTRA_CATEGORY_ID = "CategoryId";
   public static final String EXTRA_ID = "BookmarkTrackId";
@@ -302,42 +305,42 @@ public class EditBookmarkFragment extends BaseMwmDialogFragment implements View.
     if (mIcon == null && mTrack == null)
       return;
 
-    final Bundle args = new Bundle();
+    final FragmentManager manager = getChildFragmentManager();
     if (mTrack != null)
-      args.putInt(BookmarkColorDialogFragment.ICON_COLOR, PredefinedColors.getPredefinedColorIndex(mColor));
+    {
+      final Bundle args = new Bundle();
+      args.putInt(TrackColorPickerViewModel.EXTRA_INITIAL_COLOR, mColor);
+      final TrackColorPickerFragment fragment = new TrackColorPickerFragment();
+      fragment.setArguments(args);
+      fragment.show(manager, null);
+    }
     else
     {
+      final Bundle args = new Bundle();
       args.putInt(BookmarkColorDialogFragment.ICON_COLOR, mIcon.getColor());
       args.putInt(BookmarkColorDialogFragment.ICON_RES, mIcon.getResId());
+      final BookmarkColorDialogFragment dialogFragment = new BookmarkColorDialogFragment();
+      dialogFragment.setArguments(args);
+      dialogFragment.show(manager, null);
     }
-    final FragmentManager manager = getChildFragmentManager();
-    String className = BookmarkColorDialogFragment.class.getName();
-    final FragmentFactory factory = manager.getFragmentFactory();
-    final BookmarkColorDialogFragment dialogFragment =
-        (BookmarkColorDialogFragment) factory.instantiate(getContext().getClassLoader(), className);
-    dialogFragment.setArguments(args);
-    switch (mType)
-    {
-    case TYPE_BOOKMARK ->
-      dialogFragment.setOnColorSetListener(colorPos -> {
-        if (mIcon != null && mIcon.getColor() == colorPos)
-          return;
+  }
 
-        mIcon = new Icon(colorPos, mIcon.getType());
-        refreshColorMarker();
-      });
-    case TYPE_TRACK ->
-      dialogFragment.setOnColorSetListener(colorPos -> {
-        int from = mTrack.getColor();
-        int to = PredefinedColors.getColor(colorPos);
-        if (from == to)
-          return;
-        mColor = to;
-        refreshTrackColor();
-      });
-    }
+  @Override
+  public void onBookmarkColorSet(int colorPos)
+  {
+    if (mIcon == null || mIcon.getColor() == colorPos)
+      return;
+    mIcon = new Icon(colorPos, mIcon.getType());
+    refreshColorMarker();
+  }
 
-    dialogFragment.show(requireActivity().getSupportFragmentManager(), null);
+  @Override
+  public void onTrackColorSet(int color)
+  {
+    if (mColor == color)
+      return;
+    mColor = color;
+    refreshTrackColor();
   }
 
   private void refreshColorMarker()

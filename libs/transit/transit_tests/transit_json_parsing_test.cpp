@@ -12,6 +12,8 @@
 #include <utility>
 #include <vector>
 
+namespace transit_json_parsing_test
+{
 using namespace routing;
 using namespace routing::transit;
 using namespace std;
@@ -22,10 +24,11 @@ template <typename Obj>
 void TestDeserializerFromJson(string const & jsonBuffer, OsmIdToFeatureIdsMap const & osmIdToFeatureIds,
                               string const & name, vector<Obj> const & expected)
 {
-  base::Json root(jsonBuffer.c_str());
-  CHECK(root.get() != nullptr, ("Cannot parse the json."));
+  JsonValue root;
+  auto const error = glz::read_json(root, jsonBuffer);
+  CHECK(!error, (glz::format_error(error, jsonBuffer)));
 
-  DeserializerFromJson deserializer(root.get(), osmIdToFeatureIds);
+  DeserializerFromJson deserializer(&root, osmIdToFeatureIds);
 
   vector<Obj> objects;
   deserializer(objects, name.c_str());
@@ -335,3 +338,4 @@ UNIT_TEST(DeserializerFromJson_Networks)
   TestDeserializerFromJson(jsonBuffer, "networks", expected);
 }
 }  // namespace
+}  // namespace transit_json_parsing_test

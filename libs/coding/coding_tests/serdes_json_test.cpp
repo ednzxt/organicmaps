@@ -15,6 +15,8 @@
 #include <unordered_set>
 #include <vector>
 
+namespace serdes_json_test
+{
 using namespace std;
 
 namespace
@@ -42,7 +44,7 @@ bool TestSerDes(T const & value)
     coding::DeserializerJson des(jsonStr);
     des(deserializedValue);
   }
-  catch (base::Json::Exception const & exception)
+  catch (coding::JsonException const & exception)
   {
     LOG(LWARNING, ("Exception while parsing json string, reason:", exception.what(), "json:", jsonStr));
     return false;
@@ -263,3 +265,4 @@ UNIT_TEST(SerdesJsonTest)
     TEST(TestSerDes(objectsMap), ());
   }
 }
+}  // namespace serdes_json_test
