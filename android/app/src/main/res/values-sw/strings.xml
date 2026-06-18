@@ -573,6 +573,7 @@
     <string name="button_plan">Panga</string>
     <string name="placepage_remove_stop">Ondoa eneo la kusimama</string>
     <string name="placepage_add_stop">Ongeza eneo la kusimama</string>
+    <string name="drag_to_reorder">Panga upya</string>
     <string name="saved">Imehifadhiwa</string>
     <!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
     <string name="alert_reauth_message">Tafadhali ingia kwenye OpenStreetMap ili kupakia kiotomatiki hariri zako zote za ramani. Pata maelezo zaidi <a href="https://github.com/organicmaps/organicmaps/issues/6144">hapa</a>.</string>
@@ -712,6 +713,7 @@
     <string name="opens_at">Hufunguka saa %s</string>
     <string name="closes_at">Inafungwa saa %s</string>
     <string name="editor_add_select_category_all_subtitle">Kategoria Zote</string>
+    <string name="placepage_replace_stop">Badilisha Stop</string>
 
     <!-- SECTION: Bookmark types used for sorting -->
     <string name="food_places">Chakula</string>

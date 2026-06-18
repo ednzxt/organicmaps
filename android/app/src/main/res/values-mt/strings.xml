@@ -575,6 +575,7 @@
     <string name="button_plan">Pjan</string>
     <string name="placepage_remove_stop">Neħħi l-Waqfa</string>
     <string name="placepage_add_stop">Żid Waqfa</string>
+    <string name="drag_to_reorder">Irranġa mill-ġdid</string>
     <string name="saved">Salvat</string>
     <!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
     <string name="alert_reauth_message">Illoggja f’ OpenStreetMap biex awtomatikament ittella’ l-editjar kollu tal-mappa tiegħek. Tgħallem aktar <a href="https://github.com/organicmaps/organicmaps/issues/6144">hawn</a>.</string>
@@ -724,6 +725,7 @@
     <string name="opens_at">Jiftaħ f \' %s</string>
     <string name="closes_at">Jagħlaq f ’ %s</string>
     <string name="editor_add_select_category_all_subtitle">Kategoriji kollha</string>
+    <string name="placepage_replace_stop">Biddel Waqaf</string>
 
     <!-- SECTION: Bookmark types used for sorting -->
     <string name="food_places">Ikel</string>

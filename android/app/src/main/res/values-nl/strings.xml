@@ -575,6 +575,7 @@
     <string name="button_plan">Plan</string>
     <string name="placepage_remove_stop">Verwijder tussenstop</string>
     <string name="placepage_add_stop">Voeg tussenstop toe</string>
+    <string name="drag_to_reorder">Herschikken</string>
     <string name="saved">Opgeslagen</string>
     <!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
     <string name="alert_reauth_message">Log in op OpenStreetMap om al je kaartbewerkingen automatisch te uploaden. Meer informatie <a href="https://github.com/organicmaps/organicmaps/issues/6144">hier</a>.</string>
@@ -724,6 +725,7 @@
     <string name="opens_at">Opent om %s</string>
     <string name="closes_at">Sluit om %s</string>
     <string name="editor_add_select_category_all_subtitle">Alle categorieën</string>
+    <string name="placepage_replace_stop">Vervang Stop</string>
 
     <!-- SECTION: Bookmark types used for sorting -->
     <string name="food_places">Voedsel</string>

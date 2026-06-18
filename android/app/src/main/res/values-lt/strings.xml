@@ -575,6 +575,7 @@
     <string name="button_plan">Planas</string>
     <string name="placepage_remove_stop">Šalinti stotelę</string>
     <string name="placepage_add_stop">Pridėti stotelę</string>
+    <string name="drag_to_reorder">Pakeisti tvarką</string>
     <string name="saved">Įrašyta</string>
     <!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
     <string name="alert_reauth_message">Prisijunkite prie „OpenStreetMap“, kad galėtumėte automatiškai įkelti visus savo žemėlapio pakeitimus. Išsamesnė informacija – <a href="https://github.com/organicmaps/organicmaps/issues/6144">čia</a>.</string>
@@ -724,6 +725,7 @@
     <string name="opens_at">Atsidaro %s</string>
     <string name="closes_at">Užsidaro %s</string>
     <string name="editor_add_select_category_all_subtitle">Visos kategorijos</string>
+    <string name="placepage_replace_stop">Pakeisti Stop</string>
 
     <!-- SECTION: Bookmark types used for sorting -->
     <string name="food_places">Maistas</string>

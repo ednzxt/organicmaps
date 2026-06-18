@@ -4,6 +4,7 @@
 
 @class TrackInfo;
 @class ElevationProfileData;
+@class PlacePageTrackSelectionData;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -12,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly) MWMTrackID trackId;
 @property(nonatomic, readonly) MWMMarkGroupID groupId;
 @property(nonatomic, readonly, nullable) NSString * trackCategory;
+@property(nonatomic, readonly) NSArray<PlacePageTrackSelectionData *> * trackSelectionCandidates;
 @property(nonatomic, readonly, nullable) NSString * trackDescription;
 @property(nonatomic, readonly) BOOL isHtmlDescription;
 

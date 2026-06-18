@@ -162,6 +162,7 @@ protected:
   TViewportChangedFn m_viewportChangedFn;
 
   drape_ptr<df::DrapeEngine> m_drapeEngine;
+  double m_fontScaleFactor = 1.0;
 
   StorageDownloadingPolicy m_storageDownloadingPolicy;
   storage::Storage m_storage;
@@ -267,7 +268,7 @@ public:
   kml::MarkGroupId AddCategory(std::string const & categoryName);
 
   kml::MarkGroupId LastEditedBMCategory() { return GetBookmarkManager().LastEditedBMCategory(); }
-  kml::PredefinedColor LastEditedBMColor() const { return GetBookmarkManager().LastEditedBMColor(); }
+  kml::ColorData LastEditedBMColor() const { return GetBookmarkManager().LastEditedBMColor(); }
 
   void ShowBookmark(kml::MarkId id);
   void ShowBookmark(Bookmark const * bookmark);
@@ -698,6 +699,8 @@ public:
   void SetMapLanguageCode(std::string const & langCode);
 
   void SetLargeFontsSize(bool isLargeSize);
+  // Multiplied on top of the SetLargeFontsSize (Large Fonts) factor.
+  void SetFontScaleFactor(double scaleFactor);
   bool LoadLargeFontsSize();
 
   bool LoadAutoZoom();

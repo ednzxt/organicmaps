@@ -575,6 +575,7 @@
     <string name="button_plan">Planifikatu</string>
     <string name="placepage_remove_stop">Kendu geltokia</string>
     <string name="placepage_add_stop">Gehitu geltokia</string>
+    <string name="drag_to_reorder">Berrantolatu</string>
     <string name="saved">Gordeta</string>
     <!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
     <string name="alert_reauth_message">Hasi saioa OpenStreetMap-en zure mapen aldaketa guztiak automatikoki kargatzeko. Lortu informazio gehiago <a href="https://github.com/organicmaps/organicmaps/issues/6144">hemen</a>.</string>
@@ -721,6 +722,7 @@
     <string name="opens_at">%setan irekiko da</string>
     <string name="closes_at">%setan itxiko da</string>
     <string name="editor_add_select_category_all_subtitle">Kategoria guztiak</string>
+    <string name="placepage_replace_stop">Ordeztu geldialdia</string>
 
     <!-- SECTION: Bookmark types used for sorting -->
     <string name="food_places">Janariak</string>

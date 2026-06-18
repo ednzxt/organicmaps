@@ -575,6 +575,7 @@
     <string name="button_plan">Naplánovať</string>
     <string name="placepage_remove_stop">Odstrániť zastávku</string>
     <string name="placepage_add_stop">Pridať zastávku</string>
+    <string name="drag_to_reorder">Zmeniť poradie</string>
     <string name="saved">Uložené</string>
     <!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
     <string name="alert_reauth_message">Prihláste sa do OpenStreetMap, aby ste mohli automaticky nahrať všetky svoje úpravy mapy. Viac informácií sa dozviete <a href="https://github.com/organicmaps/organicmaps/issues/6144">tade</a>.</string>
@@ -722,6 +723,7 @@
     <string name="opens_at">Otvárajú o %s</string>
     <string name="closes_at">Zatvárajú o %s</string>
     <string name="editor_add_select_category_all_subtitle">Všetky kategórie</string>
+    <string name="placepage_replace_stop">Nahradiť zastávku</string>
 
     <!-- SECTION: Bookmark types used for sorting -->
     <string name="food_places">Jedlo</string>

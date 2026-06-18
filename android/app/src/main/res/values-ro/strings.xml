@@ -575,6 +575,7 @@
     <string name="button_plan">Planifică</string>
     <string name="placepage_remove_stop">Scoateți opritorul</string>
     <string name="placepage_add_stop">Adaugă oprire</string>
+    <string name="drag_to_reorder">Reordonare</string>
     <string name="saved">Salvat</string>
     <!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
     <string name="alert_reauth_message">Vă rugăm să vă conectați la OpenStreetMap pentru a încărca automat toate modificările aduse hărții. Aflați mai multe <a href="https://github.com/organicmaps/organicmaps/issues/6144">aici</a>.</string>
@@ -721,6 +722,7 @@
     <string name="opens_at">Deschide la %s</string>
     <string name="closes_at">Închide la %s</string>
     <string name="editor_add_select_category_all_subtitle">Toate categoriile</string>
+    <string name="placepage_replace_stop">Înlocuiți oprirea</string>
 
     <!-- SECTION: Bookmark types used for sorting -->
     <string name="food_places">Mâncare</string>

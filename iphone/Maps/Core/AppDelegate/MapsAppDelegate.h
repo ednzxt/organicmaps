@@ -1,4 +1,3 @@
-#import "DownloadIndicatorProtocol.h"
 #import "MWMNavigationController.h"
 
 @class MapViewController;
@@ -6,11 +5,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MapsAppDelegate : UIResponder <UIApplicationDelegate, DownloadIndicatorProtocol>
-{
-  NSInteger m_activeDownloadsCounter;
-  UIBackgroundTaskIdentifier m_backgroundTask;
-}
+@interface MapsAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property(nonatomic) UIWindow * window;
 
@@ -26,9 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)customizeAppearance;
 + (void)customizeAppearanceForNavigationBar:(UINavigationBar *)navigationBar;
-
-- (void)disableDownloadIndicator;
-- (void)enableDownloadIndicator;
 
 - (void)showMap;
 

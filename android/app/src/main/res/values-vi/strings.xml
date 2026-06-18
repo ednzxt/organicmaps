@@ -575,6 +575,7 @@
     <string name="button_plan">Kế hoạch</string>
     <string name="placepage_remove_stop">Xóa điểm dừng</string>
     <string name="placepage_add_stop">Thêm điểm dừng</string>
+    <string name="drag_to_reorder">Sắp xếp lại</string>
     <string name="saved">Đã lưu</string>
     <!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
     <string name="alert_reauth_message">Vui lòng đăng nhập vào OpenStreetMap để tự động tải lên tất cả các chỉnh sửa bản đồ của bạn. Tìm hiểu thêm <a href="https://github.com/organicmaps/organicmaps/issues/6144">tại đây</a>.</string>
@@ -719,6 +720,7 @@
     <string name="opens_at">Mở tại %s</string>
     <string name="closes_at">Đóng cửa lúc %s</string>
     <string name="editor_add_select_category_all_subtitle">Mọi thể loại</string>
+    <string name="placepage_replace_stop">Thay thế điểm dừng</string>
 
     <!-- SECTION: Bookmark types used for sorting -->
     <string name="food_places">Đồ ăn</string>

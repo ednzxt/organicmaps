@@ -575,6 +575,7 @@
     <string name="button_plan">Kavanda</string>
     <string name="placepage_remove_stop">Eemalda peatus</string>
     <string name="placepage_add_stop">Lisa peatus</string>
+    <string name="drag_to_reorder">Järjestuse muutmine</string>
     <string name="saved">Salvestatud</string>
     <!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
     <string name="alert_reauth_message">Oma kaastöö automaatseks üleslaadimiseks palun logi OpenStreetMappi sisse. Lisateave <a href="https://github.com/organicmaps/organicmaps/issues/6144">leidub siin</a>.</string>
@@ -724,6 +725,7 @@
     <string name="opens_at">Avatakse kell %s</string>
     <string name="closes_at">Suletakse kell %s</string>
     <string name="editor_add_select_category_all_subtitle">Kõik kategooriad</string>
+    <string name="placepage_replace_stop">Asenda peatus</string>
 
     <!-- SECTION: Bookmark types used for sorting -->
     <string name="food_places">Toit</string>

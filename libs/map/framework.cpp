@@ -33,6 +33,7 @@
 
 #include "indexer/categories_holder.hpp"
 #include "indexer/classificator.hpp"
+#include "indexer/classificator_loader.hpp"
 #include "indexer/drawing_rules.hpp"
 #include "indexer/editable_map_object.hpp"
 #include "indexer/feature.hpp"
@@ -1750,7 +1751,7 @@ void Framework::CreateDrapeEngine(ref_ptr<dp::GraphicsContextFactory> contextFac
   auto const isolinesEnabled = m_isolinesManager.IsEnabled();
 
   auto const simplifiedTrafficColors = m_trafficManager.HasSimplifiedColorScheme();
-  auto const fontsScaleFactor = LoadLargeFontsSize() ? kLargeFontsScaleFactor : 1.0;
+  auto const fontsScaleFactor = (LoadLargeFontsSize() ? kLargeFontsScaleFactor : 1.0) * m_fontScaleFactor;
 
   auto const tileBackgroundMode = dp::BackgroundMode::Default;  // Load from config here if needed.
 
@@ -1998,6 +1999,9 @@ void Framework::MarkMapStyle(MapStyle mapStyle)
     mapStyleStr = MapStyleToString(mapStyle);
   }
   settings::Set(kMapStyleKey, mapStyleStr);
+  // Make sure the new style's family is resident before switching (a no-op once it is loaded, so
+  // light<->dark stays zero-IO); drape worker threads observe the switch only via UpdateMapStyle.
+  classificator::EnsureStyleLoaded(mapStyle);
   GetStyleReader().SetCurrentStyle(mapStyle);
 }
 
@@ -2776,7 +2780,7 @@ void Framework::Load3dMode(bool & allow3d, bool & allow3dBuildings)
 
 bool Framework::LoadLargeFontsSize()
 {
-  bool isLargeSize;
+  bool isLargeSize = false;
   return settings::Get(kLargeFontsSize, isLargeSize) && isLargeSize;
 }
 
@@ -2784,11 +2788,30 @@ void Framework::SetLargeFontsSize(bool isLargeSize)
 {
   settings::Set(kLargeFontsSize, isLargeSize);
 
-  double const scaleFactor = isLargeSize ? kLargeFontsScaleFactor : 1.0;
+  double const resultScaleFactor = (isLargeSize ? kLargeFontsScaleFactor : 1.0) * m_fontScaleFactor;
 
-  ASSERT(m_drapeEngine, ());
-  m_drapeEngine->SetFontScaleFactor(scaleFactor);
+  if (!m_drapeEngine)
+    return;
 
+  m_drapeEngine->SetFontScaleFactor(resultScaleFactor);
+  Invalidate();
+}
+
+void Framework::SetFontScaleFactor(double scaleFactor)
+{
+  if (m_fontScaleFactor == scaleFactor)
+    return;
+  m_fontScaleFactor = scaleFactor;
+
+  if (!m_drapeEngine)
+    return;
+
+  bool isLargeSize = false;
+  UNUSED_VALUE(settings::Get(kLargeFontsSize, isLargeSize));
+
+  auto const resultScaleFactor = (isLargeSize ? kLargeFontsScaleFactor : 1.0) * m_fontScaleFactor;
+
+  m_drapeEngine->SetFontScaleFactor(resultScaleFactor);
   Invalidate();
 }
 

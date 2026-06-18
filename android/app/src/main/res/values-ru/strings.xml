@@ -575,6 +575,7 @@
     <string name="button_plan">Построить</string>
     <string name="placepage_remove_stop">Удалить остановку</string>
     <string name="placepage_add_stop">Добавить остановку</string>
+    <string name="drag_to_reorder">Изменить порядок</string>
     <string name="saved">Сохранено</string>
     <!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
     <string name="alert_reauth_message">Пожалуйста войдите в аккаунт OpenStreetMap.org, чтобы публиковать ваши изменения карты. Подробности по <a href="https://github.com/organicmaps/organicmaps/issues/6144">ссылке</a>.</string>
@@ -728,6 +729,7 @@
     <string name="opens_at">Открывается в %s</string>
     <string name="closes_at">Закрывается в %s</string>
     <string name="editor_add_select_category_all_subtitle">Все категории</string>
+    <string name="placepage_replace_stop">Заменить остановку</string>
 
     <!-- SECTION: Bookmark types used for sorting -->
     <string name="food_places">Еда</string>

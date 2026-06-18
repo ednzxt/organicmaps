@@ -575,6 +575,7 @@
     <string name="button_plan">プラン</string>
     <string name="placepage_remove_stop">停留所を削除</string>
     <string name="placepage_add_stop">中間地点を追加</string>
+    <string name="drag_to_reorder">並べ替え</string>
     <string name="saved">保存</string>
     <!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
     <string name="alert_reauth_message">すべてのマップ編集を自動的にアップロードするには、OpenStreetMapにログインしてください。詳しくは <a href="https://github.com/organicmaps/organicmaps/issues/6144">こちら</a>.</string>
@@ -720,6 +721,7 @@
     <string name="opens_at">%s から営業</string>
     <string name="closes_at">%s に閉店</string>
     <string name="editor_add_select_category_all_subtitle">全てのカテゴリ</string>
+    <string name="placepage_replace_stop">リプレースストップ</string>
 
     <!-- SECTION: Bookmark types used for sorting -->
     <string name="food_places">食べ物</string>

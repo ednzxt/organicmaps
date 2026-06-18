@@ -575,6 +575,7 @@
     <string name="button_plan">Rencana</string>
     <string name="placepage_remove_stop">Hapus pemberhentian</string>
     <string name="placepage_add_stop">Tambah perhentian</string>
+    <string name="drag_to_reorder">Mengatur ulang</string>
     <string name="saved">Tersimpan</string>
     <!-- Alert to ask user relogin to OpenStreetMap with OAuth2 flow after OAuth1 authentication is deprecated. -->
     <string name="alert_reauth_message">Silahkan login ke OpenStreetMap untuk mengupload semua hasil edit peta Anda secara otomatis. Pelajari lebih lanjut <a href="https://github.com/organicmaps/organicmaps/issues/6144">di sini</a>.</string>
@@ -719,6 +720,7 @@
     <string name="opens_at">Dibuka di %s</string>
     <string name="closes_at">Ditutup pada %s</string>
     <string name="editor_add_select_category_all_subtitle">Semua kategori</string>
+    <string name="placepage_replace_stop">Ganti Berhenti</string>
 
     <!-- SECTION: Bookmark types used for sorting -->
     <string name="food_places">Makanan</string>
